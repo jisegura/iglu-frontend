@@ -1,0 +1,8 @@
+<div class="contenedor">
+  <mat-card>
+    <button mat-raised-button color="primary" class="btn-pedido" (click)="newPedido()"><mat-icon>add</mat-icon></button>
+    <button *ngFor="let pedido of pedidos.slice().reverse()" mat-stroked-button color="primary" class="btn-pedido" (click)="switchPedido(pedido)">
+      <span>{{pedido.numero}}</span>
+    </button>
+  </mat-card>
+</div>

@@ -1,0 +1,49 @@
+<div class="contenedor">
+  <mat-card class="carta-height">
+    <ng-container *ngFor="let pedido of pedidos">
+      <mat-card-title *ngIf="pedido.active">Pedido Numero {{pedido.numero}}</mat-card-title>
+    </ng-container>
+    <mat-card-content>
+      <div class="tabla-contenido">
+        <table class="table table-sm table-striped">
+          <tbody>
+            <ng-container *ngFor="let pedido of pedidos">
+              <ng-container *ngIf="pedido.active">
+                <tr *ngFor="let producto of pedido.productos">
+                  <td>{{getNameProducto(producto.id)}}</td>
+                  <td>
+                    <mat-form-field class="cant">
+                      <input matInput placeholder="cant" min="1" value="{{producto.cant}}" (input)="producto.cant = $event.target.value" type="number">
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field class="desc" color="warn">
+                      <input matInput placeholder="desc" type="number" min="0" max="100" value="{{producto.desc}}" (input)="producto.desc = $event.target.value">
+                      <span class="scolor" matPrefix>-</span>
+                      <span class="scolor" matSuffix>%</span>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <strong>{{getPriceProducto(producto.id, producto.cant, producto.desc) | currency}}</strong>
+                  </td>
+                </tr>
+              </ng-container>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </mat-card-content>
+    <mat-card-footer>
+      <ng-container *ngFor="let pedido of pedidos">
+        <button class="btn-margen" mat-raised-button color="primary" *ngIf="pedido.active" (click)="openDialog()">Completar Venta</button>
+        <button mat-raised-button *ngIf="pedido.active" (click)="cancelarPedido(pedido)">Cancelar Venta</button>
+        <mat-form-field *ngIf="pedido.active" class="desc-total" color="warn">
+          <input matInput placeholder="desc" type="number" min="0" max="100" value="{{pedido.desc_total}}" (input)="pedido.desc_total = $event.target.value">
+          <span class="scolor" matPrefix>-</span>
+          <span class="scolor" matSuffix>%</span>
+        </mat-form-field>
+        <span *ngIf="pedido.active" class="factura-total">{{getTotalCost() | currency}}</span>
+      </ng-container>
+    </mat-card-footer>
+  </mat-card>
+</div>
