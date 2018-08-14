@@ -23,6 +23,7 @@ import { IgluPedidoComponent } from './iglu-pedido/iglu-pedido.component';
 import { IgluConfirmarPedidoDialogComponent } from './iglu-confirmar-pedido-dialog/iglu-confirmar-pedido-dialog.component';
 import { IgluTablaProductoComponent } from './iglu-tabla-producto/iglu-tabla-producto.component';
 import { IgluSidemenuComponent } from './iglu-sidemenu/iglu-sidemenu.component';
+import { IgluConfigmenuButtonsComponent } from './iglu-configmenu-buttons/iglu-configmenu-buttons.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { IgluSidemenuComponent } from './iglu-sidemenu/iglu-sidemenu.component';
     IgluPedidoComponent,
     IgluConfirmarPedidoDialogComponent,
     IgluTablaProductoComponent,
-    IgluSidemenuComponent
+    IgluSidemenuComponent,
+    IgluConfigmenuButtonsComponent
   ],
   entryComponents: [IgluConfirmarPedidoDialogComponent],
   imports: [
