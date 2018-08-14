@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidenavService } from '../sidenav.service';
 
 @Component({
   selector: 'app-iglu-configmenu-buttons',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IgluConfigmenuButtonsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private sidenavService: SidenavService
+  ) { }
 
   ngOnInit() {
+  }
+
+  public toggleSidenav(): void{
+    this.sidenavService
+      .toggle()
+      .then(() => { });
   }
 
 }
