@@ -2,12 +2,24 @@
 
 <mat-drawer-container class="main-container">
   <mat-drawer mode="side" opened="true" disableClose="true">
-    <app-iglu-pedido></app-iglu-pedido>
+
   </mat-drawer>
   <mat-drawer-content>
-    <app-iglu-factura></app-iglu-factura>
-    <app-iglu-producto></app-iglu-producto>
+    <div class="row">
+      <app-iglu-pedido></app-iglu-pedido>
+      <div class="container">
+        <div class="row">
+          <div class="container">
+            <app-iglu-factura></app-iglu-factura>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container">
+            <app-iglu-producto></app-iglu-producto>
+          </div>
+        </div>
+      </div>
+    </div>
   </mat-drawer-content>
-  <mat-drawer mode="side" position="end" opened>Drawer content</mat-drawer>
 </mat-drawer-container>
 
