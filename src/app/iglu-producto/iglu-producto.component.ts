@@ -23,7 +23,7 @@ export class IgluProductoComponent implements OnInit {
 
   getCantidad(producto: Producto): number{
     if (this.pedidos.length != 0) {
-      var cantidad = this.pedidos.find(pedido => pedido.active).productos.find(prod => prod.id == producto.id);
+      let cantidad = this.pedidos.find(pedido => pedido.active).productos.find(prod => prod.id == producto.id_producto);
       return (cantidad != undefined) ? cantidad.cant : 0;
     } else {
       return 0;
@@ -32,7 +32,7 @@ export class IgluProductoComponent implements OnInit {
 
   isVisible(producto: Producto): boolean{
     if (this.pedidos.length != 0) {
-      var cantidad = this.pedidos.find(pedido => pedido.active).productos.find(prod => prod.id == producto.id);
+      let cantidad = this.pedidos.find(pedido => pedido.active).productos.find(prod => prod.id == producto.id_producto);
       return (cantidad != undefined) ? false : true;
     } else {
       return true;
@@ -41,11 +41,11 @@ export class IgluProductoComponent implements OnInit {
 
   addProducto(producto: Producto): void{
     if (this.pedidos.length != 0) {
-      var cantidad = this.pedidos.find(pedido => pedido.active).productos.find(prod => prod.id == producto.id);
-      if (this.pedidos.find(pedido => pedido.active).productos.find(prod => prod.id == producto.id) != undefined) {
-        this.pedidos.find(pedido => pedido.active).productos.find(prod => prod.id == producto.id).cant++
+      let cantidad = this.pedidos.find(pedido => pedido.active).productos.find(prod => prod.id == producto.id_producto);
+      if (this.pedidos.find(pedido => pedido.active).productos.find(prod => prod.id == producto.id_producto) != undefined) {
+        this.pedidos.find(pedido => pedido.active).productos.find(prod => prod.id == producto.id_producto).cant++
       } else {
-        this.pedidos.find(pedido => pedido.active).productos.push({"id": producto.id, "cant": 1, "desc": 0});
+        this.pedidos.find(pedido => pedido.active).productos.push({"id": producto.id_producto, "cant": 1, "desc": 0});
       }
     }
   }

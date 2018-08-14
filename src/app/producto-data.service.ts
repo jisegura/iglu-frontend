@@ -10,154 +10,154 @@ import { map } from 'rxjs/operators';
 export class ProductoDataService {
 
   producto: Producto[] = [{
-    "id": 1,
-    "name": "1 Kilo",
-    "price": 200,
-    "image": '/images/porter.jpg'
+    "id_producto": 1,
+    "nombre": "1 Kilo",
+    "precio": 200,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 2,
-    "name": "Bombom",
-    "price": 60,
-    "image": '/images/porter.jpg'
+    "id_producto": 2,
+    "nombre": "Bombom",
+    "precio": 60,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 3,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 3,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 4,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 4,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 5,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 5,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 6,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 6,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 7,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 7,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 8,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 8,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 9,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 9,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 10,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 10,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 11,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 11,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 12,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 12,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 13,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 13,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 14,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 14,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 15,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 15,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 16,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 16,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 17,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 17,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 18,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 18,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 19,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 19,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 20,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 20,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 21,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 21,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 22,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 22,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 23,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 23,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 24,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 24,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   },
   {
-    "id": 25,
-    "name": "Cafe",
-    "price": 80,
-    "image": '/images/porter.jpg'
+    "id_producto": 25,
+    "nombre": "Cafe",
+    "precio": 80,
+    "imagen": '/images/porter.jpg'
   }];
 
   constructor(/*private http: Http*/) { }
