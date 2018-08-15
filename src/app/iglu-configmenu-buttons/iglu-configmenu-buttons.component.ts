@@ -8,11 +8,11 @@ import { SidenavService } from '../sidenav.service';
 })
 export class IgluConfigmenuButtonsComponent implements OnInit {
 
-  constructor(
+  public constructor(
     private sidenavService: SidenavService
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void{
   }
 
   public toggleSidenav(): void{

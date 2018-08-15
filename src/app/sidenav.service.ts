@@ -9,7 +9,7 @@ export class SidenavService {
 
   private sidenav: MatSidenav;
 
-  constructor() { }
+  public constructor() { }
 
   public setSidenav(sidenav: MatSidenav): void{
     this.sidenav = sidenav;

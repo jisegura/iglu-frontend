@@ -9,15 +9,19 @@ import { Pedido } from '../pedido.model';
 })
 export class IgluPedidoComponent implements OnInit {
 
-  pedidos: Pedido[];
+  public pedidos: Pedido[];
 
-  constructor(private pedidoDataService : PedidoDataService) { }
+  public constructor(
+    private pedidoDataService: PedidoDataService
+  ) { }
 
-  ngOnInit() {
-    this.pedidoDataService.getPedidos().subscribe(pedidos => this.pedidos = pedidos);
+  public ngOnInit(): void{
+    this.pedidoDataService
+      .getPedidos()
+      .subscribe(pedidos => this.pedidos = pedidos);
   }
 
-  newPedido(): void{
+  public newPedido(): void{
     if (this.pedidos.length != 0) {
       let pos = 0;
       let index = 1;
@@ -47,7 +51,7 @@ export class IgluPedidoComponent implements OnInit {
     }
   }
 
-  switchPedido(pedido: Pedido): void{
+  public switchPedido(pedido: Pedido): void{
     if (!pedido.active) {
       this.pedidos.find(pedido => pedido.active).active = false;
       pedido.active = true;

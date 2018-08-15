@@ -13,22 +13,30 @@ import { IgluConfirmarPedidoDialogComponent } from '../iglu-confirmar-pedido-dia
 })
 export class IgluFacturaComponent implements OnInit {
 
-  productos: Producto[] = [];
-  pedidos: Pedido[];
+  public productos: Producto[] = [];
+  public pedidos: Pedido[];
 
 
-  constructor(public dialog: MatDialog, private pedidoDataService : PedidoDataService, private productoDataService : ProductoDataService) { }
+  public constructor(
+    public dialog: MatDialog,
+    private pedidoDataService: PedidoDataService,
+    private productoDataService: ProductoDataService
+  ) { }
 
-  ngOnInit() {
-    this.pedidoDataService.getPedidos().subscribe(pedidos => this.pedidos = pedidos);
-    this.productoDataService.getProductos().subscribe(productos => this.productos = productos);
+  public ngOnInit(): void{
+    this.pedidoDataService
+      .getPedidos()
+      .subscribe(pedidos => this.pedidos = pedidos);
+    this.productoDataService
+      .getProductos()
+      .subscribe(productos => this.productos = productos);
   }
 
   private getDescuento(precio: number, descuento: number): number{
     return precio - ((precio * descuento) / 100);
   }
 
-  getTotalCost(): number {
+  public getTotalCost(): number{
     let suma: number = 0;
     if (this.pedidos.length != 0) {
       this.pedidos.find(pedido => pedido.active).productos.forEach(producto => {
@@ -38,22 +46,22 @@ export class IgluFacturaComponent implements OnInit {
     return this.getDescuento(suma, this.pedidos.find(pedido => pedido.active).desc_total);
   }
 
-  getNameProducto(id: number): string{
+  public getNameProducto(id: number): string{
     return this.productos.find(producto => producto.id_producto == id).nombre;
   }
 
-  getPriceProducto(id: number, cant: number, desc: number): number{
+  public getPriceProducto(id: number, cant: number, desc: number): number{
     return this.getDescuento(this.productos.find(producto => producto.id_producto == id).precio * cant, desc);
   }
 
-  cancelarPedido(pedido: Pedido): void{
+  public cancelarPedido(pedido: Pedido): void{
     this.pedidos.splice(this.pedidos.findIndex(ped => ped.numero == pedido.numero), 1);
     if (this.pedidos.length != 0) {
       this.pedidos[0].active = true;
     }
   }
 
-  openDialog(): void{
+  public openDialog(): void{
     const dialogRef = this.dialog.open(IgluConfirmarPedidoDialogComponent, {
       data: {
         pedido: this.pedidos.find(pedido => pedido.active)

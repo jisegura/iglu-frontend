@@ -11,41 +11,60 @@ import { Producto } from '../producto.model';
 })
 export class IgluProductoComponent implements OnInit {
 
-  productos : Producto[];
-  pedidos: Pedido[];
+  public productos: Producto[];
+  public pedidos: Pedido[];
 
-  constructor(private pedidoDataService : PedidoDataService, private productoDataService : ProductoDataService) { }
+  public constructor(
+    private pedidoDataService: PedidoDataService,
+    private productoDataService: ProductoDataService
+  ) { }
 
-  ngOnInit() {
-    this.pedidoDataService.getPedidos().subscribe(pedidos => this.pedidos = pedidos);
-    this.productoDataService.getProductos().subscribe(productos => this.productos = productos);
+  public ngOnInit(): void{
+    this.pedidoDataService
+      .getPedidos()
+      .subscribe(pedidos => this.pedidos = pedidos);
+    this.productoDataService
+      .getProductos()
+      .subscribe(productos => this.productos = productos);
   }
 
-  getCantidad(producto: Producto): number{
+  public getCantidad(producto: Producto): number{
     if (this.pedidos.length != 0) {
-      let cantidad = this.pedidos.find(pedido => pedido.active).productos.find(prod => prod.id == producto.id_producto);
+      let cantidad = this.pedidos
+                      .find(pedido => pedido.active).productos
+                      .find(prod => prod.id == producto.id_producto);
       return (cantidad != undefined) ? cantidad.cant : 0;
     } else {
       return 0;
     }
   }
 
-  isVisible(producto: Producto): boolean{
+  public isVisible(producto: Producto): boolean{
     if (this.pedidos.length != 0) {
-      let cantidad = this.pedidos.find(pedido => pedido.active).productos.find(prod => prod.id == producto.id_producto);
+      let cantidad = this.pedidos
+                      .find(pedido => pedido.active).productos
+                      .find(prod => prod.id == producto.id_producto);
       return (cantidad != undefined) ? false : true;
     } else {
       return true;
     }
   }
 
-  addProducto(producto: Producto): void{
+  public addProducto(producto: Producto): void{
     if (this.pedidos.length != 0) {
-      let cantidad = this.pedidos.find(pedido => pedido.active).productos.find(prod => prod.id == producto.id_producto);
-      if (this.pedidos.find(pedido => pedido.active).productos.find(prod => prod.id == producto.id_producto) != undefined) {
-        this.pedidos.find(pedido => pedido.active).productos.find(prod => prod.id == producto.id_producto).cant++
+      let cantidad = this.pedidos
+                      .find(pedido => pedido.active).productos
+                      .find(prod => prod.id == producto.id_producto);
+      if (this.pedidos
+            .find(pedido => pedido.active).productos
+            .find(prod => prod.id == producto.id_producto) != undefined) {
+        this.pedidos
+          .find(pedido => pedido.active).productos
+          .find(prod => prod.id == producto.id_producto).cant++
       } else {
-        this.pedidos.find(pedido => pedido.active).productos.push({"id": producto.id_producto, "cant": 1, "desc": 0});
+        this.pedidos
+          .find(pedido => pedido.active).productos
+          .push({"id": producto.id_producto, "cant": 1, "desc": 0});
       }
     }
   }

@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IgluSidemenuComponent implements OnInit {
 
-  constructor() { }
+  public constructor() { }
 
-  ngOnInit() {
+  public ngOnInit(): void{
   }
 
 }

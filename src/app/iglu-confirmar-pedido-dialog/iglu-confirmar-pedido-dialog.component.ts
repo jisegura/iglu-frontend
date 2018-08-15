@@ -10,12 +10,14 @@ import { Pedido } from '../pedido.model';
 })
 export class IgluConfirmarPedidoDialogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
+  public constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void{
   }
 
-  getNumeroPedido(): number{
+  public getNumeroPedido(): number{
     return this.data.pedido.numero;
   }
 

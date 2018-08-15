@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class ProductoDataService {
 
-  producto: Producto[] = [{
+  public producto: Producto[] = [{
     "id_producto": 1,
     "nombre": "1 Kilo",
     "precio": 200,
@@ -160,9 +160,9 @@ export class ProductoDataService {
     "imagen": '/images/porter.jpg'
   }];
 
-  constructor(/*private http: Http*/) { }
+  public constructor(/*private http: Http*/) { }
 
-  getProductos(): Observable<Producto[]>{
+  public getProductos(): Observable<Producto[]>{
     return of(this.producto);
   }
 

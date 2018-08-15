@@ -11,16 +11,20 @@ import { Pedido } from '../pedido.model';
 })
 export class IgluTablaProductoComponent implements OnInit {
 
-  @Input() fila: number;
-  @Input() col: number;
-  @Input() pedido: Pedido;
-  productos: Producto[];
-  tablaProductos: TablaProducto[][];
+  @Input() public fila: number;
+  @Input() public col: number;
+  @Input() public pedido: Pedido;
+  public productos: Producto[];
+  public tablaProductos: TablaProducto[][];
 
-  constructor(private productoDataService : ProductoDataService) { }
+  public constructor(
+    private productoDataService: ProductoDataService
+  ) { }
 
-  ngOnInit() {
-    this.productoDataService.getProductos().subscribe(productos => this.productos = productos);
+  public ngOnInit(): void{
+    this.productoDataService
+      .getProductos()
+      .subscribe(productos => this.productos = productos);
     this.crearTabla();
   }
 

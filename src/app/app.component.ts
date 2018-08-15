@@ -12,11 +12,11 @@ export class AppComponent implements OnInit {
 
   @ViewChild('sidenav') public sidenav: MatSidenav;
 
-  constructor(
+  public constructor(
     private sidenavService: SidenavService
   ) { }
 
-  public ngOnInit() {
+  public ngOnInit(): void{
     this.sidenavService
       .setSidenav(this.sidenav);
   }

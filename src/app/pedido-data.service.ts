@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 })
 export class PedidoDataService {
 
-  pedidos: Pedido[] = [];
+  public pedidos: Pedido[] = [];
 
   /*pedidos: Pedido[] = [{
     "id": 1,
@@ -40,9 +40,9 @@ export class PedidoDataService {
     }]
   }]*/
 
-  constructor() { }
+  public constructor() { }
 
-  getPedidos(): Observable<Pedido[]>{
+  public getPedidos(): Observable<Pedido[]>{
     return of(this.pedidos);
   }
 }
