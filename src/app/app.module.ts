@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatMenuModule } from '@angular/material/menu';
 
 //import { ProductoDataService } from './producto-data.service';
 
@@ -24,6 +25,7 @@ import { IgluConfirmarPedidoDialogComponent } from './iglu-confirmar-pedido-dial
 import { IgluTablaProductoComponent } from './iglu-tabla-producto/iglu-tabla-producto.component';
 import { IgluSidemenuComponent } from './iglu-sidemenu/iglu-sidemenu.component';
 import { IgluConfigmenuButtonsComponent } from './iglu-configmenu-buttons/iglu-configmenu-buttons.component';
+import { IgluSidebarComponent } from './iglu-sidebar/iglu-sidebar.component';
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { IgluConfigmenuButtonsComponent } from './iglu-configmenu-buttons/iglu-c
     IgluConfirmarPedidoDialogComponent,
     IgluTablaProductoComponent,
     IgluSidemenuComponent,
-    IgluConfigmenuButtonsComponent
+    IgluConfigmenuButtonsComponent,
+    IgluSidebarComponent
   ],
   entryComponents: [IgluConfirmarPedidoDialogComponent],
   imports: [
@@ -51,7 +54,8 @@ import { IgluConfigmenuButtonsComponent } from './iglu-configmenu-buttons/iglu-c
     MatInputModule,
     MatSelectModule,
     MatDialogModule,
-    MatRadioModule
+    MatRadioModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
