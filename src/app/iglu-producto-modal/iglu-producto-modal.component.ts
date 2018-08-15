@@ -10,6 +10,8 @@ import { Producto } from '../producto.model';
 })
 export class IgluProductoModalComponent implements OnInit {
 
+  public hide: boolean = true;
+
   public constructor(
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }

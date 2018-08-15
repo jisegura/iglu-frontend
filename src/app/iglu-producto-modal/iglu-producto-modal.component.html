@@ -1,9 +1,62 @@
-<h2 mat-dialog-title>{{getTitulo()}} un producto</h2>
-<mat-dialog-content>
-  contenido
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>No</button>
-  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-  <button mat-button [mat-dialog-close]="true">Yes</button>
-</mat-dialog-actions>
+<div class="modal-container">
+  <div class="modal-header">
+    <h2 mat-dialog-title>{{getTitulo()}} un producto</h2>
+  </div>
+  <div class="modal-body">
+    <mat-dialog-content>
+      <div class="row">
+        <mat-form-field class="col-12">
+          <mat-select placeholder="Seleccionar producto">
+            <mat-option *ngFor="let prod of data.productos" value="option">{{prod.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-checkbox class="col-4">
+          Editar nombre
+        </mat-checkbox>
+
+        <mat-checkbox class="col-4">
+          Editar precio
+        </mat-checkbox>
+
+        <mat-checkbox class="col-4">
+          Editar imagen
+        </mat-checkbox>
+
+        <mat-form-field class="col-4">
+          <input matInput placeholder="Nombre">
+        </mat-form-field>
+
+        <mat-form-field class="col-4">
+          <input matInput type="number" placeholder="Precio">
+        </mat-form-field>
+
+        <div class="col-4 btn-box">
+          <button mat-raised-button color="primary" class="col-12" (click)="fileInput.click()">
+            <span>Subir imagen</span>
+            <input #fileInput type="file" (change)="onFileInput($event)" style="display:none;" />
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="offset-8 col-4">
+          <input matInput placeholder="Contraseña admin" [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </mat-form-field>
+      </div>
+    </mat-dialog-content>
+  </div>
+  <div class="modal-footer">
+    <mat-dialog-actions>
+      <div class="row">
+        <button mat-raised-button mat-dialog-close>Cancelar</button>
+        <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+        <button mat-raised-button color="primary" [mat-dialog-close]="true">{{getTitulo()}}</button>
+      </div>
+    </mat-dialog-actions>
+  </div>
+</div>
+
