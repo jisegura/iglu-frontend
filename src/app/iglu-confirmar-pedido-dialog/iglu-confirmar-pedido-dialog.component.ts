@@ -21,4 +21,8 @@ export class IgluConfirmarPedidoDialogComponent implements OnInit {
     return this.data.pedido.numero;
   }
 
+  public getTotalAPagar(): number{
+    return 400;
+  }
+
 }
