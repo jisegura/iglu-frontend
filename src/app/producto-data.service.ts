@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Producto } from './producto.model';
-import { Observable, of, } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { Http } from '@angular/http';
 import { map } from 'rxjs/operators';
 
@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 })
 export class ProductoDataService {
 
-  public producto: Producto[] = [{
+  public producto1: Producto[] = [{
     "id_producto": 1,
     "nombre": "1 Kilo",
     "precio": 200,
@@ -160,10 +160,37 @@ export class ProductoDataService {
     "imagen": '/images/porter.jpg'
   }];
 
-  public constructor(/*private http: Http*/) { }
+  /*public producto: Observable<Producto[]>;
+  private _productos: BehaviorSubject<Producto[]>;
+  private baseUrl: string;
+  private dataStore: {
+    productos: Producto[]
+  };*/
+
+  public constructor(
+    //private http: Http
+  ) { 
+    //this.baseUrl = "http://192.168.1.35:3000";
+    //this.dataStore = { productos: [] };
+    //this._productos = <BehaviorSubject<Producto[]>> new BehaviorSubject([]);
+    //this.producto = this._productos.asObservable();
+  }
+
+  /*public get productos(): Observable<Producto[]>{
+    return this._productos.asObservable();
+  }
+
+  public loadAll(): void{
+    this.http.get("${this.baseUrl}/producto").subscribe(data => {
+      this.dataStore.productos = data.json();
+      this._productos.next(Object.assign({}, this.dataStore).productos);
+    },
+    error => console.log("ERROR: no se cargaron los Productos"),
+    () => console.log("Se cargaron los Productos"));
+  }*/
 
   public getProductos(): Observable<Producto[]>{
-    return of(this.producto);
+    return of(this.producto1);
   }
 
   /*getProductos(): Observable<Producto[]>{
