@@ -4,15 +4,15 @@
   </div>
   <div class="modal-body">
     <mat-dialog-content>
-      <div class="row">
+      <div *ngIf="showSelect()" class="row">
         <mat-form-field class="col-12">
           <mat-select placeholder="Seleccionar producto">
-            <mat-option *ngFor="let prod of data.productos" value="option">{{prod.nombre}}</mat-option>
+            <mat-option *ngFor="let prod of data.productos" value="{{prod.id_producto}}">{{prod.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
 
-      <div class="row">
+      <div *ngIf="showCheckBox()" class="row">
         <mat-checkbox class="col-4">
           Editar nombre
         </mat-checkbox>
@@ -24,11 +24,13 @@
         <mat-checkbox class="col-4">
           Editar imagen
         </mat-checkbox>
+      </div>
 
+      <div *ngIf="showInput()" class="row">
         <mat-form-field class="col-4">
           <input matInput placeholder="Nombre">
         </mat-form-field>
-
+      
         <mat-form-field class="col-4">
           <input matInput type="number" placeholder="Precio">
         </mat-form-field>
