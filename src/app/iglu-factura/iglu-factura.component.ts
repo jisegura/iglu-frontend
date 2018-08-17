@@ -47,11 +47,11 @@ export class IgluFacturaComponent implements OnInit {
   }
 
   public getNameProducto(id: number): string{
-    return this.productos.find(producto => producto.id_producto == id).nombre;
+    return this.productos.find(producto => producto.Id_producto == id).Nombre;
   }
 
   public getPriceProducto(id: number, cant: number, desc: number): number{
-    return this.getDescuento(this.productos.find(producto => producto.id_producto == id).precio * cant, desc);
+    return this.getDescuento(this.productos.find(producto => producto.Id_producto == id).Precio * cant, desc);
   }
 
   public cancelarPedido(pedido: Pedido): void{

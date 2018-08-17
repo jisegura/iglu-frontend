@@ -1,8 +1,8 @@
 export class Producto {
-  id_producto: number;
-  nombre: string;
-  precio: number;
-  imagen: string;
+  Id_producto: number;
+  Nombre: string;
+  Precio: number;
+  Imagen: string;
 }
 
 export class TablaProducto {

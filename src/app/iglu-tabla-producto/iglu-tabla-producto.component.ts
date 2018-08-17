@@ -37,7 +37,7 @@ export class IgluTablaProductoComponent implements OnInit {
         if (this.pedido.productos.length > pos) {
           this.tablaProductos[f][c] = new TablaProducto;
           this.tablaProductos[f][c].cant = this.pedido.productos[pos].cant;
-          this.tablaProductos[f][c].image = this.productos.find(prod => prod.id_producto == this.pedido.productos[pos].id).imagen;
+          this.tablaProductos[f][c].image = this.productos.find(prod => prod.Id_producto == this.pedido.productos[pos].id).Imagen;
         }
       }
     }

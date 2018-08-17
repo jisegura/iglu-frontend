@@ -1,7 +1,7 @@
 <div class="contenedor">
   <mat-card>
     <button *ngFor="let producto of productos" matBadge="{{getCantidad(producto)}}" matBadgeHidden="{{isVisible(producto)}}" matBadgePosition="above after" matBadgeColor="primary" mat-raised-button class="btn-img" (click)="addProducto(producto)">
-      <span>{{producto.nombre}}</span>
+      <span>{{producto.Nombre}}</span>
     </button>
   </mat-card>
 </div>

@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Producto } from './producto.model';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
+import { HttpErrorHandler, HandleError } from './http-error-handler.service';
+
 
 const httpOptions = {
 	headers: new HttpHeaders({
@@ -15,7 +17,7 @@ const httpOptions = {
 })
 export class ProductoDataService {
 
-  public producto1: Producto[] = [{
+  /*public producto1: Producto[] = [{
     "id_producto": 1,
     "nombre": "1 Kilo",
     "precio": 200,
@@ -164,22 +166,33 @@ export class ProductoDataService {
     "nombre": "Cafe",
     "precio": 80,
     "imagen": '/images/porter.jpg'
-  }];
+  }];*/
 
   private productoUrl: string = "producto/";
+  private handleError: HandleError;
 
   public constructor(
-    private http: HttpClient
-  ) { }
-
-
-  public getProducto(): Observable<Producto[]>{
-    return this.http.get<Producto[]>(this.productoUrl);
+    private http: HttpClient,
+    public httpErrorHandler: HttpErrorHandler,
+  ) { 
+  	this.handleError = httpErrorHandler.createHandleError('ProductoService');
   }
 
   public getProductos(): Observable<Producto[]>{
-    return of(this.producto1);
+    return this.http.get<Producto[]>(this.productoUrl).pipe(
+    	catchError(this.handleError('getProductos', []))
+    );
   }
+
+  public addProducto(producto: Producto): Observable<Producto>{
+    return this.http.post<Producto>(this.productoUrl, producto, httpOptions).pipe(
+      catchError(this.handleError('addProducto', producto))
+    );
+  }
+
+  /*public getProducto(): Observable<Producto[]>{
+    return of(this.producto1);
+  }*/
 
   /*getProductos(): Observable<Producto[]>{
     return this.http.get('http://192.168.1.35:3000/producto').pipe(map(response => {

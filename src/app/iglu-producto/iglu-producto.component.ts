@@ -32,7 +32,7 @@ export class IgluProductoComponent implements OnInit {
     if (this.pedidos.length != 0) {
       let cantidad = this.pedidos
                       .find(pedido => pedido.active).productos
-                      .find(prod => prod.id == producto.id_producto);
+                      .find(prod => prod.id == producto.Id_producto);
       return (cantidad != undefined) ? cantidad.cant : 0;
     } else {
       return 0;
@@ -43,7 +43,7 @@ export class IgluProductoComponent implements OnInit {
     if (this.pedidos.length != 0) {
       let cantidad = this.pedidos
                       .find(pedido => pedido.active).productos
-                      .find(prod => prod.id == producto.id_producto);
+                      .find(prod => prod.id == producto.Id_producto);
       return (cantidad != undefined) ? false : true;
     } else {
       return true;
@@ -51,21 +51,20 @@ export class IgluProductoComponent implements OnInit {
   }
 
   public addProducto(producto: Producto): void{
-    this.productoDataService.getProducto();
     if (this.pedidos.length != 0) {
       let cantidad = this.pedidos
                       .find(pedido => pedido.active).productos
-                      .find(prod => prod.id == producto.id_producto);
+                      .find(prod => prod.id == producto.Id_producto);
       if (this.pedidos
             .find(pedido => pedido.active).productos
-            .find(prod => prod.id == producto.id_producto) != undefined) {
+            .find(prod => prod.id == producto.Id_producto) != undefined) {
         this.pedidos
           .find(pedido => pedido.active).productos
-          .find(prod => prod.id == producto.id_producto).cant++
+          .find(prod => prod.id == producto.Id_producto).cant++
       } else {
         this.pedidos
           .find(pedido => pedido.active).productos
-          .push({"id": producto.id_producto, "cant": 1, "desc": 0});
+          .push({"id": producto.Id_producto, "cant": 1, "desc": 0});
       }
     }
   }

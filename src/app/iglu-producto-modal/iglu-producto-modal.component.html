@@ -7,7 +7,7 @@
       <div *ngIf="showSelect()" class="row">
         <mat-form-field class="col-12">
           <mat-select placeholder="Seleccionar producto">
-            <mat-option *ngFor="let prod of data.productos" value="{{prod.id_producto}}">{{prod.nombre}}</mat-option>
+            <mat-option *ngFor="let prod of data.productos" value="{{prod.Id_producto}}">{{prod.Nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -28,11 +28,11 @@
 
       <div *ngIf="showInput()" class="row">
         <mat-form-field class="col-4">
-          <input matInput placeholder="Nombre">
+          <input matInput placeholder="Nombre" (change)="onNameInput($event)">
         </mat-form-field>
       
         <mat-form-field class="col-4">
-          <input matInput type="number" placeholder="Precio">
+          <input matInput type="number" placeholder="Precio" (change)="onPriceInput($event)">
         </mat-form-field>
 
         <div class="col-4 btn-box">
@@ -56,7 +56,7 @@
       <div class="row">
         <button mat-raised-button mat-dialog-close>Cancelar</button>
         <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-        <button mat-raised-button color="primary" [mat-dialog-close]="true">{{getTitulo()}}</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="isDisabled" (click)="dataSend()">{{getTitulo()}}</button>
       </div>
     </mat-dialog-actions>
   </div>

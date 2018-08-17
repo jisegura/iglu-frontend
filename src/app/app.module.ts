@@ -17,6 +17,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
 
+import { HttpErrorHandler } from './http-error-handler.service';
+import { MessageService } from './message.service';
 import { httpInterceptorProviders } from './http-interceptors/index';
 
 import { IgluFacturaComponent } from './iglu-factura/iglu-factura.component';
@@ -65,6 +67,8 @@ import { IgluProductoModalComponent } from './iglu-producto-modal/iglu-producto-
     MatMenuModule
   ],
   providers: [
+    HttpErrorHandler,
+    MessageService,
     httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
