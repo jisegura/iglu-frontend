@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { MatCheckboxModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,7 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
 
-//import { ProductoDataService } from './producto-data.service';
+import { httpInterceptorProviders } from './http-interceptors/index';
 
 import { IgluFacturaComponent } from './iglu-factura/iglu-factura.component';
 import { IgluProductoComponent } from './iglu-producto/iglu-producto.component';
@@ -49,6 +50,7 @@ import { IgluProductoModalComponent } from './iglu-producto-modal/iglu-producto-
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatButtonModule,
     MatCheckboxModule,
     MatSidenavModule,
@@ -62,7 +64,9 @@ import { IgluProductoModalComponent } from './iglu-producto-modal/iglu-producto-
     MatRadioModule,
     MatMenuModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

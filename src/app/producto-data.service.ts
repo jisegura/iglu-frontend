@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Producto } from './producto.model';
 import { Observable, of, BehaviorSubject } from 'rxjs';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -160,34 +160,33 @@ export class ProductoDataService {
     "imagen": '/images/porter.jpg'
   }];
 
-  /*public producto: Observable<Producto[]>;
+  public producto: Observable<Producto[]>;
   private _productos: BehaviorSubject<Producto[]>;
   private baseUrl: string;
   private dataStore: {
     productos: Producto[]
-  };*/
+  };
 
   public constructor(
-    //private http: Http
-  ) { 
-    //this.baseUrl = "http://192.168.1.35:3000";
-    //this.dataStore = { productos: [] };
-    //this._productos = <BehaviorSubject<Producto[]>> new BehaviorSubject([]);
-    //this.producto = this._productos.asObservable();
+    private http: HttpClient
+  ) {
+    this.baseUrl = "http://192.168.1.38:3000";
+    this.dataStore = { productos: [] };
+    this._productos = <BehaviorSubject<Producto[]>> new BehaviorSubject([]);
+    this.producto = this.getProducto();
   }
 
-  /*public get productos(): Observable<Producto[]>{
+  public get productos(): Observable<Producto[]>{
     return this._productos.asObservable();
   }
 
-  public loadAll(): void{
-    this.http.get("${this.baseUrl}/producto").subscribe(data => {
-      this.dataStore.productos = data.json();
-      this._productos.next(Object.assign({}, this.dataStore).productos);
-    },
-    error => console.log("ERROR: no se cargaron los Productos"),
-    () => console.log("Se cargaron los Productos"));
-  }*/
+  public getProducto(): Observable<Producto[]> {
+    const productoUrl: string = this.baseUrl + "/producto/";
+    return this.http.get<Producto[]>(productoUrl).pipe(map(response => {
+      let prod = response;
+      return <Producto[]>Object.keys(prod).map(key => Object.assign({ key }, prod[key]));
+    }))
+  }
 
   public getProductos(): Observable<Producto[]>{
     return of(this.producto1);
