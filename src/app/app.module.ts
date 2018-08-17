@@ -30,6 +30,7 @@ import { IgluSidemenuComponent } from './iglu-sidemenu/iglu-sidemenu.component';
 import { IgluConfigmenuButtonsComponent } from './iglu-configmenu-buttons/iglu-configmenu-buttons.component';
 import { IgluSidebarComponent } from './iglu-sidebar/iglu-sidebar.component';
 import { IgluProductoModalComponent } from './iglu-producto-modal/iglu-producto-modal.component';
+import { IgluCategoriaModalComponent } from './iglu-categoria-modal/iglu-categoria-modal.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { IgluProductoModalComponent } from './iglu-producto-modal/iglu-producto-
     IgluSidemenuComponent,
     IgluConfigmenuButtonsComponent,
     IgluSidebarComponent,
-    IgluProductoModalComponent
+    IgluProductoModalComponent,
+    IgluCategoriaModalComponent
   ],
   entryComponents: [
     IgluConfirmarPedidoDialogComponent,
