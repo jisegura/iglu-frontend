@@ -5,6 +5,11 @@ export class Producto {
   Imagen: string;
 }
 
+export class Categoria {
+	Id_categoria: number;
+	Nombre: string;
+}
+
 export class TablaProducto {
   cant: number;
   image: string;

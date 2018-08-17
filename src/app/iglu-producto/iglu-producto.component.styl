@@ -1,7 +1,27 @@
 .contenedor
   height: 354px
-  width: 1110px
+  width: calc(100vw - 68px)
   padding: 5px
+  
+  .card-prod
+    width: 1100px
+    display: inline-block
+    
+  .card-cate
+    width: calc(100vw - 68px - 1122px)
+    display: inline-block
+    position: absolute
+    margin-left: 10px
+    
+    .hmatcard
+      text-align: center
+    
+    button
+      margin: 4px
+      
+      span
+        font-weight: bold
+        font-size: 16px
 
 button.btn-img
   height: 100px
@@ -15,3 +35,8 @@ button.btn-img
 
   span
     font-weight: bold
+
+    
+.hmatcard
+  height: 344px
+  overflow: auto

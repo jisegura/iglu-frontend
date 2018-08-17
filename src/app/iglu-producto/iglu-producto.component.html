@@ -1,7 +1,29 @@
 <div class="contenedor">
-  <mat-card>
-    <button *ngFor="let producto of productos" matBadge="{{getCantidad(producto)}}" matBadgeHidden="{{isVisible(producto)}}" matBadgePosition="above after" matBadgeColor="primary" mat-raised-button class="btn-img" (click)="addProducto(producto)">
-      <span>{{producto.Nombre}}</span>
-    </button>
-  </mat-card>
+  <div class="card-prod">
+    <mat-card class="hmatcard">
+      <button *ngFor="let producto of productos" matBadge="{{getCantidad(producto)}}" matBadgeHidden="{{isVisible(producto)}}" matBadgePosition="above after" matBadgeColor="primary" mat-raised-button class="btn-img" (click)="addProducto(producto)">
+        <span>{{producto.Nombre}}</span>
+      </button>
+    </mat-card>
+  </div>
+
+  <div class="card-cate">
+    <mat-card class="hmatcard">
+      <button color="primary" mat-raised-button>
+        <span>Categoria 1</span>
+      </button>
+      <button color="primary" mat-raised-button>
+        <span>Categoria 1</span>
+      </button>
+      <button color="primary" mat-raised-button>
+        <span>Categoria 1</span>
+      </button>
+      <button color="primary" mat-raised-button>
+        <span>Categoria 1</span>
+      </button>
+      <button color="primary" mat-raised-button>
+        <span>Categoria 1</span>
+      </button>
+    </mat-card>
+  </div>
 </div>

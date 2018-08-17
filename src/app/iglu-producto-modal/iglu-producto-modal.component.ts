@@ -16,6 +16,7 @@ export class MODE {
 })
 export class IgluProductoModalComponent implements OnInit {
 
+  public hide: boolean = true;
   public isDisabled: boolean;
   private mode: MODE;
   private nameInputComplete: boolean;

@@ -17,30 +17,72 @@ const httpOptions = {
 })
 export class ProductoDataService {
 
-  /*public producto1: Producto[] = [{
-    "id_producto": 1,
-    "nombre": "1 Kilo",
-    "precio": 200,
-    "imagen": '/images/porter.jpg'
+  public producto1: Producto[] = [{
+    "Id_producto": 1,
+    "Nombre": "1 Kilo",
+    "Precio": 200,
+    "Imagen": '/images/porter.jpg'
   },
   {
-    "id_producto": 2,
-    "nombre": "Bombom",
-    "precio": 60,
-    "imagen": '/images/porter.jpg'
+    "Id_producto": 2,
+    "Nombre": "Bombom",
+    "Precio": 60,
+    "Imagen": '/images/porter.jpg'
   },
   {
-    "id_producto": 3,
-    "nombre": "Cafe",
-    "precio": 80,
-    "imagen": '/images/porter.jpg'
+    "Id_producto": 3,
+    "Nombre": "Cafe",
+    "Precio": 80,
+    "Imagen": '/images/porter.jpg'
   },
   {
-    "id_producto": 4,
-    "nombre": "Cafe",
-    "precio": 80,
-    "imagen": '/images/porter.jpg'
+    "Id_producto": 4,
+    "Nombre": "Cafe",
+    "Precio": 80,
+    "Imagen": '/images/porter.jpg'
   },
+  {
+    "Id_producto": 5,
+    "Nombre": "Cafe",
+    "Precio": 80,
+    "Imagen": '/images/porter.jpg'
+  },
+  {
+    "Id_producto": 6,
+    "Nombre": "Cafe",
+    "Precio": 80,
+    "Imagen": '/images/porter.jpg'
+  },
+  {
+    "Id_producto": 7,
+    "Nombre": "Cafe",
+    "Precio": 80,
+    "Imagen": '/images/porter.jpg'
+  },
+  {
+    "Id_producto": 8,
+    "Nombre": "Cafe",
+    "Precio": 80,
+    "Imagen": '/images/porter.jpg'
+  },
+  {
+    "Id_producto": 9,
+    "Nombre": "Cafe",
+    "Precio": 80,
+    "Imagen": '/images/porter.jpg'
+  },
+  {
+    "Id_producto": 10,
+    "Nombre": "Cafe",
+    "Precio": 80,
+    "Imagen": '/images/porter.jpg'
+  },
+  {
+    "Id_producto": 11,
+    "Nombre": "Cafe",
+    "Precio": 80,
+    "Imagen": '/images/porter.jpg'
+  }];/*,
   {
     "id_producto": 5,
     "nombre": "Cafe",
@@ -178,7 +220,7 @@ export class ProductoDataService {
   	this.handleError = httpErrorHandler.createHandleError('ProductoService');
   }
 
-  public getProductos(): Observable<Producto[]>{
+  public getProducto(): Observable<Producto[]>{
     return this.http.get<Producto[]>(this.productoUrl).pipe(
     	catchError(this.handleError('getProductos', []))
     );
@@ -190,9 +232,9 @@ export class ProductoDataService {
     );
   }
 
-  /*public getProducto(): Observable<Producto[]>{
+  public getProductos(): Observable<Producto[]>{
     return of(this.producto1);
-  }*/
+  }
 
   /*getProductos(): Observable<Producto[]>{
     return this.http.get('http://192.168.1.35:3000/producto').pipe(map(response => {
