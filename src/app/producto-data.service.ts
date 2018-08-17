@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Producto } from './producto.model';
-import { Observable, of, BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+const httpOptions = {
+	headers: new HttpHeaders({
+		'Content-Type': 'application/json'
+	})
+}
 
 @Injectable({
   providedIn: 'root'
@@ -160,32 +166,15 @@ export class ProductoDataService {
     "imagen": '/images/porter.jpg'
   }];
 
-  public producto: Observable<Producto[]>;
-  private _productos: BehaviorSubject<Producto[]>;
-  private baseUrl: string;
-  private dataStore: {
-    productos: Producto[]
-  };
+  private productoUrl: string = "producto/";
 
   public constructor(
     private http: HttpClient
-  ) {
-    this.baseUrl = "http://192.168.1.38:3000";
-    this.dataStore = { productos: [] };
-    this._productos = <BehaviorSubject<Producto[]>> new BehaviorSubject([]);
-    this.producto = this.getProducto();
-  }
+  ) { }
 
-  public get productos(): Observable<Producto[]>{
-    return this._productos.asObservable();
-  }
 
-  public getProducto(): Observable<Producto[]> {
-    const productoUrl: string = this.baseUrl + "/producto/";
-    return this.http.get<Producto[]>(productoUrl).pipe(map(response => {
-      let prod = response;
-      return <Producto[]>Object.keys(prod).map(key => Object.assign({ key }, prod[key]));
-    }))
+  public getProducto(): Observable<Producto[]>{
+    return this.http.get<Producto[]>(this.productoUrl);
   }
 
   public getProductos(): Observable<Producto[]>{

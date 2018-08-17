@@ -51,6 +51,7 @@ export class IgluProductoComponent implements OnInit {
   }
 
   public addProducto(producto: Producto): void{
+    this.productoDataService.getProducto();
     if (this.pedidos.length != 0) {
       let cantidad = this.pedidos
                       .find(pedido => pedido.active).productos
