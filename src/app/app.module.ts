@@ -49,7 +49,8 @@ import { IgluCategoriaModalComponent } from './iglu-categoria-modal/iglu-categor
   ],
   entryComponents: [
     IgluConfirmarPedidoDialogComponent,
-    IgluProductoModalComponent
+    IgluProductoModalComponent,
+    IgluCategoriaModalComponent
   ],
   imports: [
     BrowserModule,

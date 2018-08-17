@@ -33,7 +33,7 @@ export class IgluProductoModalComponent implements OnInit {
     this.mode = new MODE;
     this.nameInputComplete = false;
     this.priceInputComplete = false;
-    this.productoDataService.getProductos().subscribe(producto => this.productos = producto);
+    this.productoDataService.getProductos().subscribe(productos => this.productos = productos);
   }
 
   public getTitulo(): string{

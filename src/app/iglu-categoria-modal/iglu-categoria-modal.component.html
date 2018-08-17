@@ -1,3 +1,44 @@
-<p>
-  iglu-categoria-modal works!
-</p>
+<div class="modal-container">
+  <div class="modal-header">
+    <h2 mat-dialog-title>{{getTitulo()}} una categoria</h2>
+  </div>
+  <div class="modal-body">
+    <mat-dialog-content>
+      <div *ngIf="showSelect()" class="row">
+       <mat-form-field class="col-12">
+          <mat-select placeholder="Seleccionar categoria">
+            <mat-option *ngFor="let categoria of categorias" value="{{categoria.Id_categoria}}">{{categoria.Nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="showCheckBox()" class="row">
+        <mat-checkbox color="primary" class="col-6">
+          Editar nombre
+        </mat-checkbox>
+      </div>
+
+      <div *ngIf="showInput()" class="row">
+        <mat-form-field class="col-4">
+          <input matInput placeholder="Nombre" (change)="onNameInput($event)">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field class="offset-8 col-4">
+          <input matInput placeholder="Contraseña admin" [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </mat-form-field>
+      </div>
+    </mat-dialog-content>
+  </div>
+  <div class="modal-footer">
+    <mat-dialog-actions>
+      <div class="row">
+        <button mat-raised-button mat-dialog-close>Cancelar</button>
+        <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+        <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="isDisabled" (click)="dataSend()">{{getTitulo()}}</button>
+      </div>
+    </mat-dialog-actions>
+  </div>
+</div>

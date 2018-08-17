@@ -9,8 +9,8 @@
 
   <div class="card-cate">
     <mat-card class="hmatcard">
-      <button color="primary" mat-raised-button>
-        <span>Categoria 1</span>
+      <button *ngFor="let categoria of categorias" color="primary" mat-raised-button>
+        <span>{{categoria.Nombre}}</span>
       </button>
       <button color="primary" mat-raised-button>
         <span>Categoria 1</span>

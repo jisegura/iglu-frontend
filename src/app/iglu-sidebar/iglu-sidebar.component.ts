@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ProductoDataService } from '../producto-data.service';
 import { Producto } from '../producto.model';
 import { MatDialog } from '@angular/material';
-import { IgluProductoModalComponent } from '../iglu-producto-modal/iglu-producto-modal.component'
+import { IgluProductoModalComponent } from '../iglu-producto-modal/iglu-producto-modal.component';
+import { IgluCategoriaModalComponent } from '../iglu-categoria-modal/iglu-categoria-modal.component';
+
 
 @Component({
   selector: 'app-iglu-sidebar',
@@ -22,6 +24,18 @@ export class IgluSidebarComponent implements OnInit {
     this.productoDataService
       .getProductos()
       .subscribe(productos => this.productos = productos);
+  }
+
+  public openModalCate(modo: string): void{
+    const dialogRef = this.dialog.open(IgluCategoriaModalComponent, {
+      data: {
+        titulo: modo
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   public openModalProd(modo: string): void{

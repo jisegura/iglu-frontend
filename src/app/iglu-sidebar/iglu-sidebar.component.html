@@ -2,9 +2,9 @@
   <div class="container container-body">
 	<button mat-raised-button [matMenuTriggerFor]="menucategorias">Categorias</button>
     <mat-menu #menucategorias="matMenu">
-      <button mat-menu-item (click)="openModalProd('POST')">Agregar</button>
-      <button mat-menu-item (click)="openModalProd('PUT')">Editar</button>
-      <button mat-menu-item (click)="openModalProd('DELETE')">Eliminar</button>
+      <button mat-menu-item (click)="openModalCate('POST')">Agregar</button>
+      <button mat-menu-item (click)="openModalCate('PUT')">Editar</button>
+      <button mat-menu-item (click)="openModalCate('DELETE')">Eliminar</button>
     </mat-menu>
 
     <button mat-raised-button [matMenuTriggerFor]="menuproductos">Productos</button>
