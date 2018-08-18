@@ -4,6 +4,7 @@ import { Pedido } from '../pedido.model';
 import { ProductoDataService } from '../producto-data.service';
 import { Producto, Categoria } from '../producto.model';
 import { CategoriaDataService } from '../categoria-data.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-iglu-producto',
@@ -14,7 +15,7 @@ export class IgluProductoComponent implements OnInit {
 
   public productos: Producto[];
   public pedidos: Pedido[];
-  public categorias: Categoria[];
+  public categorias: Observable<Categoria[]>;
 
   public constructor(
     private pedidoDataService: PedidoDataService,
@@ -29,9 +30,8 @@ export class IgluProductoComponent implements OnInit {
     this.productoDataService
       .getProductos()
       .subscribe(productos => this.productos = productos);
-    this.categoriaDataService
-      .getCategoria()
-      .subscribe(categorias => this.categorias = categorias);
+    this.categorias = this.categoriaDataService.categorias;
+    this.categoriaDataService.loadAll();
   }
 
   public getCantidad(producto: Producto): number{

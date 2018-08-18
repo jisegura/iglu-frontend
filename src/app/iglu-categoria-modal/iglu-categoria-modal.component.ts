@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { CategoriaDataService } from '../categoria-data.service';
 import { Categoria } from '../producto.model';
+import { Observable } from 'rxjs';
 
 export class MODE {
   public POST: string = "POST";
@@ -18,7 +19,7 @@ export class IgluCategoriaModalComponent implements OnInit {
 
   public hide: boolean = true;
   private mode: MODE;
-  private categorias: Categoria[];
+  private categorias: Observable<Categoria[]>;
 
   public constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -27,7 +28,7 @@ export class IgluCategoriaModalComponent implements OnInit {
 
   public ngOnInit(): void{
     this.mode = new MODE;
-    this.categoriaDataService.getCategoria().subscribe(categorias => this.categorias = categorias);
+    this.categorias = this.categoriaDataService.getCategoria();
   }
 
   public getTitulo(): string{
@@ -66,7 +67,7 @@ export class IgluCategoriaModalComponent implements OnInit {
       Nombre: "Kc Yo"
     } as Categoria;
 
-    this.categoriaDataService.addCategoria(newCategoria).subscribe(categoria => this.categorias.push(categoria));
+    this.categoriaDataService.create(newCategoria);
   }
 
 
