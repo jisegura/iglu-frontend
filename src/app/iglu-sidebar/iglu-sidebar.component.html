@@ -1,17 +1,32 @@
 <div class="contenedor-sidebar">
-  <div class="container container-body">
-	<button mat-raised-button [matMenuTriggerFor]="menucategorias">Categorias</button>
+  <div class="container container-header">
+    
+    <button mat-button [matMenuTriggerFor]="menuadmin" class="btn-menu">
+      <mat-icon>more_vert</mat-icon>
+      <span>Menu Admin</span>
+    </button>
+
+    <mat-menu #menuadmin="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="menucategorias">Categorias</button>
+      <button mat-menu-item [matMenuTriggerFor]="menuproductos">Productos</button>
+    </mat-menu>
+
     <mat-menu #menucategorias="matMenu">
       <button mat-menu-item (click)="openModalCate('POST')">Agregar</button>
       <button mat-menu-item (click)="openModalCate('PUT')">Editar</button>
       <button mat-menu-item (click)="openModalCate('DELETE')">Eliminar</button>
     </mat-menu>
 
-    <button mat-raised-button [matMenuTriggerFor]="menuproductos">Productos</button>
     <mat-menu #menuproductos="matMenu">
       <button mat-menu-item (click)="openModalProd('POST')">Agregar</button>
       <button mat-menu-item (click)="openModalProd('PUT')">Editar</button>
       <button mat-menu-item (click)="openModalProd('DELETE')">Eliminar</button>
     </mat-menu>
+
+  </div>
+
+
+  <div class="container container-body">
+
   </div>
 </div>
