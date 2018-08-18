@@ -16,6 +16,7 @@ export class MODE {
 })
 export class IgluCategoriaModalComponent implements OnInit {
 
+  public hide: boolean = true;
   private mode: MODE;
   private categorias: Categoria[];
 
