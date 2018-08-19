@@ -41,8 +41,7 @@ export class IgluSidebarComponent implements OnInit {
   public openModalProd(modo: string): void{
     const dialogRef = this.dialog.open(IgluProductoModalComponent, {
       data: {
-        titulo: modo,
-        productos: this.productos
+        titulo: modo
       }
     });
 

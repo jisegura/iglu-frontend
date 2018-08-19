@@ -14,8 +14,10 @@ import { Observable } from 'rxjs';
 export class IgluProductoComponent implements OnInit {
 
   public productos: Producto[];
+  //public productos: Observable<Producto[]>;
   public pedidos: Pedido[];
-  public categorias: Observable<Categoria[]>;
+  public categorias: Categoria[];
+  //public categorias: Observable<Categoria[]>;
 
   public constructor(
     private pedidoDataService: PedidoDataService,
@@ -30,8 +32,13 @@ export class IgluProductoComponent implements OnInit {
     this.productoDataService
       .getProductos()
       .subscribe(productos => this.productos = productos);
-    this.categorias = this.categoriaDataService.categorias;
-    this.categoriaDataService.loadAll();
+    //this.productos = this.productoDataService.productos;
+    //this.productoDataService.loadAll();
+    this.categoriaDataService
+      .getCatoMock()
+      .subscribe(categorias => this.categorias = categorias);
+    //this.categorias = this.categoriaDataService.categorias;
+    //this.categoriaDataService.loadAll();
   }
 
   public getCantidad(producto: Producto): number{
@@ -54,6 +61,10 @@ export class IgluProductoComponent implements OnInit {
     } else {
       return true;
     }
+  }
+
+  public btnIsVisible(producto: Producto): boolean{
+    return true;
   }
 
   public addProducto(producto: Producto): void{

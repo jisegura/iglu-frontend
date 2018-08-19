@@ -11,11 +11,21 @@ const httpOptions = {
   })
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriaDataService {
+
+  public cateMock: Categoria[] = [{
+    "Id_categoria": 1,
+    "Nombre": "helado"
+  },{
+    "Id_categoria": 2,
+    "Nombre": "caliente"
+  },{
+    "Id_categoria": 3,
+    "Nombre": "EsCaLoFrIo"
+  }];
 
   public categorias: Observable<Categoria[]>;
   private categoriaUrl: string;
@@ -123,6 +133,10 @@ export class CategoriaDataService {
     return this.http.delete(url, httpOptions).pipe(
       catchError(this.handleError('deleteCategoria'))
     );
+  }
+
+  public getCatoMock(): Observable<Categoria[]>{
+    return of(this.cateMock);
   }
 
 }
