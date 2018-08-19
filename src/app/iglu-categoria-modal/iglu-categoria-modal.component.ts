@@ -39,7 +39,7 @@ export class IgluCategoriaModalComponent implements OnInit {
     this.nameInputComplete = false;
     this.selectInputComplete = false;
     this.categoria = new Categoria;
-    this.categorias = this.categoriaDataService.getCategoria();
+    this.categorias = this.categoriaDataService.categorias;
   }
 
   public getTitulo(): string{

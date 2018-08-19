@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { ProductoDataService } from '../producto-data.service';
 import { Producto } from '../producto.model';
+import { Observable } from 'rxjs';
 
 export class MODE {
   public POST: string = "POST";
@@ -21,7 +22,11 @@ export class IgluProductoModalComponent implements OnInit {
   private mode: MODE;
   private nameInputComplete: boolean;
   private priceInputComplete: boolean;
-  private productos: Producto[];
+  private selectInputComplete: boolean;
+  private pwInputComplete: boolean;
+  private productos: Observable<Producto[]>;
+
+  private pw: string = "pw";
 
   public constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -33,7 +38,8 @@ export class IgluProductoModalComponent implements OnInit {
     this.mode = new MODE;
     this.nameInputComplete = false;
     this.priceInputComplete = false;
-    this.productoDataService.getProductos().subscribe(productos => this.productos = productos);
+    this.selectInputComplete = false;
+    this.productos = this.productoDataService.productos;
   }
 
   public getTitulo(): string{
@@ -53,13 +59,6 @@ export class IgluProductoModalComponent implements OnInit {
     return true;
   }
 
-  public showCheckBox(): boolean{
-    if (this.mode.PUT == this.data.titulo) {
-      return true;
-    }
-    return false;
-  }
-
   public showInput(): boolean{
     if (this.mode.DELETE == this.data.titulo) {
       return false;
@@ -73,6 +72,16 @@ export class IgluProductoModalComponent implements OnInit {
     } else {
       this.nameInputComplete = true;
     }
+    this.validButtonEnviar();
+  }
+
+  public onSelectInput(value): void{
+    if (value === "") {
+      this.selectInputComplete = false;
+    } else {
+      this.selectInputComplete = true;
+    }
+    // seguir aca this.productos.forEach
     this.validButtonEnviar();
   }
 
@@ -102,7 +111,6 @@ export class IgluProductoModalComponent implements OnInit {
       Imagen: "imgTe"
     } as Producto;
 
-    this.productoDataService.addProducto(newProducto).subscribe(producto => this.productos.push(producto));
   }
 
 }

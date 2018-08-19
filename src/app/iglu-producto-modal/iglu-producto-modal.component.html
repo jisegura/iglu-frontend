@@ -6,24 +6,10 @@
     <mat-dialog-content>
       <div *ngIf="showSelect()" class="row">
         <mat-form-field class="col-12">
-          <mat-select placeholder="Seleccionar producto">
-            <mat-option *ngFor="let prod of data.productos" value="{{prod.Id_producto}}">{{prod.Nombre}}</mat-option>
+          <mat-select placeholder="Seleccionar producto" (selectionChange)="onSelectInput($event.value)">
+            <mat-option *ngFor="let prod of productos | async" value="{{prod.Id_producto}}">{{prod.Nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
-      </div>
-
-      <div *ngIf="showCheckBox()" class="row">
-        <mat-checkbox color="primary" class="col-4">
-          Editar nombre
-        </mat-checkbox>
-
-        <mat-checkbox color="primary" class="col-4">
-          Editar precio
-        </mat-checkbox>
-
-        <mat-checkbox color="primary" class="col-4">
-          Editar imagen
-        </mat-checkbox>
       </div>
 
       <div *ngIf="showInput()" class="row">
