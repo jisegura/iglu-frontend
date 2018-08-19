@@ -6,16 +6,11 @@
     <mat-dialog-content>
       <div *ngIf="showSelect()" class="row">
        <mat-form-field class="col-12">
-          <mat-select placeholder="Seleccionar categoria">
+          <mat-select placeholder="Seleccionar categoria" (selectionChange)="onSelectInput($event.value)">
             <mat-option *ngFor="let categoria of categorias | async" value="{{categoria.Id_categoria}}">{{categoria.Nombre}}</mat-option>
+            <mat-option value="1" >asd</mat-option>
           </mat-select>
         </mat-form-field>
-      </div>
-
-      <div *ngIf="showCheckBox()" class="row">
-        <mat-checkbox color="primary" class="col-6">
-          Editar nombre
-        </mat-checkbox>
       </div>
 
       <div *ngIf="showInput()" class="row">
@@ -26,7 +21,7 @@
 
       <div class="row">
         <mat-form-field class="offset-8 col-4">
-          <input matInput placeholder="Contraseña admin" [type]="hide ? 'password' : 'text'">
+          <input matInput (change)="onPassInput($event)" placeholder="Contraseña admin" [type]="hide ? 'password' : 'text'">
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         </mat-form-field>
       </div>
