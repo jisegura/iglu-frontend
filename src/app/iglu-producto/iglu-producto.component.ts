@@ -4,6 +4,8 @@ import { Pedido } from '../pedido.model';
 import { ProductoDataService } from '../producto-data.service';
 import { Producto, Categoria } from '../producto.model';
 import { CategoriaDataService } from '../categoria-data.service';
+import { CategoriaFilterService, CategoriaFilter } from '../categoria-filter.service';
+
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,18 +19,23 @@ export class IgluProductoComponent implements OnInit {
   //public productos: Observable<Producto[]>;
   public pedidos: Pedido[];
   public categorias: Categoria[];
+  public categoriaActive: CategoriaFilter;
   //public categorias: Observable<Categoria[]>;
 
   public constructor(
     private pedidoDataService: PedidoDataService,
     private productoDataService: ProductoDataService,
-    private categoriaDataService: CategoriaDataService
+    private categoriaDataService: CategoriaDataService,
+    private categoriaFilterService: CategoriaFilterService
   ) { }
 
   public ngOnInit(): void{
     this.pedidoDataService
       .getPedidos()
       .subscribe(pedidos => this.pedidos = pedidos);
+    this.categoriaFilterService
+      .getCategoriaActive()
+      .subscribe(categoriaActive => this.categoriaActive = categoriaActive);
     this.productoDataService
       .getProductos()
       .subscribe(productos => this.productos = productos);
@@ -64,7 +71,11 @@ export class IgluProductoComponent implements OnInit {
   }
 
   public btnIsVisible(producto: Producto): boolean{
-    return true;
+    return (producto.Id_categoria === this.categoriaActive.active) ? true : false;
+  }
+
+  public setActive(categoria: Categoria): void{
+    this.categoriaActive.active = categoria.Id_categoria;
   }
 
   public addProducto(producto: Producto): void{

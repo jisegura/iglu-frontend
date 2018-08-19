@@ -11,7 +11,7 @@
 
   <div class="card-cate">
     <mat-card class="hmatcard">
-      <button *ngFor="let categoria of categorias" color="primary" mat-raised-button>
+      <button *ngFor="let categoria of categorias" color="primary" mat-raised-button (click)="setActive(categoria)">
         <span>{{categoria.Nombre}}</span>
       </button>
     </mat-card>
