@@ -29,12 +29,6 @@ export class TablaProducto {
   image: string;
 }
 
-export class Empleado {
-  Id_empleado
-  FirstName
-  LastName
-}
-
 export class Factura {
   Id_factura
   Id_caja

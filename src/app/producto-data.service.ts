@@ -246,7 +246,6 @@ export class ProductoDataService {
     this.getProducto().subscribe(producto => {
       this.dataStore.productos = producto;
       this._productos.next(Object.assign({}, this.dataStore).productos);
-      this.httpSnackBarService.openSnackBar("Producto.loadAll", "OK");
     }, error => this.httpSnackBarService.openSnackBar("Producto.loadAll", "ERROR"));
   }
 

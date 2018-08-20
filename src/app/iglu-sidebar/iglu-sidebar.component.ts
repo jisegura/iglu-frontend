@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductoDataService } from '../producto-data.service';
-import { Producto } from '../producto.model';
 import { MatDialog } from '@angular/material';
 import { IgluProductoModalComponent } from '../iglu-producto-modal/iglu-producto-modal.component';
 import { IgluCategoriaModalComponent } from '../iglu-categoria-modal/iglu-categoria-modal.component';
+import { IgluEmpleadoModalComponent } from '../iglu-empleado-modal/iglu-empleado-modal.component';
+
 
 
 @Component({
@@ -13,18 +13,11 @@ import { IgluCategoriaModalComponent } from '../iglu-categoria-modal/iglu-catego
 })
 export class IgluSidebarComponent implements OnInit {
 
-  public productos: Producto[] = [];
-
   public constructor(
-    public dialog: MatDialog,
-    private productoDataService: ProductoDataService
+    public dialog: MatDialog
   ) { }
 
-  public ngOnInit(): void{
-    this.productoDataService
-      .getProductos()
-      .subscribe(productos => this.productos = productos);
-  }
+  public ngOnInit(): void{ }
 
   public openModalCate(modo: string): void{
     const dialogRef = this.dialog.open(IgluCategoriaModalComponent, {
@@ -40,6 +33,18 @@ export class IgluSidebarComponent implements OnInit {
 
   public openModalProd(modo: string): void{
     const dialogRef = this.dialog.open(IgluProductoModalComponent, {
+      data: {
+        titulo: modo
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  public openModalEmpl(modo: string): void{
+    const dialogRef = this.dialog.open(IgluEmpleadoModalComponent, {
       data: {
         titulo: modo
       }

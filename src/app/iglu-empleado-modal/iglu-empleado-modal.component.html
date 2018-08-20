@@ -1,3 +1,70 @@
-<p>
-  iglu-empleado-modal works!
-</p>
+<div class="modal-container">
+  <div class="modal-header">
+    <h2 mat-dialog-title>{{getTitulo()}} un empleado</h2>
+  </div>
+
+  <div class="modal-body">
+    <mat-dialog-content>
+
+      <ng-container *ngIf="showPOST()">
+        <div class="row">
+          <mat-form-field class="col-4">
+            <input matInput placeholder="Nombre" (change)="onNameInput($event)">
+          </mat-form-field>
+
+          <mat-form-field class="col-4">
+            <input matInput placeholder="Apellido" (change)="onApellInput($event)">
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="showPUT()">
+        <div class="row">
+          <mat-form-field class="col-12">
+            <mat-select placeholder="Seleccionar empleado" (selectionChange)="onSelectInput($event.value)">
+              <mat-option *ngFor="let empl of empleados | async" value="{{empl.Id_empleado}}">{{empl.FirstName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <ng-container *ngFor="let empl of empleados | async">
+            <mat-form-field *ngIf="putEmpleadoId(empl)" class="col-4">
+              <input matInput placeholder="Nombre" (change)="onNameInput($event)" value="{{empl.FirstName}}">
+            </mat-form-field>
+
+            <mat-form-field class="col-4">
+              <input matInput placeholder="Apellido" (change)="onApellInput($event)" value="{{empl.LastName}}">
+            </mat-form-field>
+          </ng-container>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="showDELETE()">
+        <div class="row">
+          <mat-form-field class="col-12">
+            <mat-select placeholder="Seleccionar empleado" (selectionChange)="onSelectInput($event.value)">
+              <mat-option *ngFor="let empl of empleados | async" value="{{empl.Id_empleado}}">{{empl.LastName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+      <div class="row">
+        <mat-form-field class="offset-8 col-4">
+          <input matInput (change)="onPassInput($event)" placeholder="Contraseña admin" [type]="hide ? 'password' : 'text'">
+          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </mat-form-field>
+      </div>
+
+    </mat-dialog-content>
+  </div>
+
+  <div class="modal-footer">
+    <mat-dialog-actions>
+      <div class="row">
+        <button mat-raised-button mat-dialog-close>Cancelar</button>
+        <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+        <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="isDisabled" (click)="dataSend()">{{getTitulo()}}</button>
+      </div>
+    </mat-dialog-actions>
+  </div>
+</div>

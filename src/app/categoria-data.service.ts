@@ -53,7 +53,6 @@ export class CategoriaDataService {
     this.getCategoria().subscribe(categorias => {
       this.dataStore.categorias = categorias;
       this._categorias.next(Object.assign({}, this.dataStore).categorias);
-      this.httpSnackBarService.openSnackBar("Categoria.loadAll", "OK");
     }, error => this.httpSnackBarService.openSnackBar("Categoria.loadAll", "ERROR"));
   }
 
