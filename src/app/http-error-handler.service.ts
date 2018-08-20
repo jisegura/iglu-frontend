@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 
 import { MessageService } from './message.service';
 
@@ -26,7 +26,8 @@ export class HttpErrorHandler {
 
       this.messageService.add(`${serviceName}: ${operation} failed: ${message}`);
 
-      return of(result);
+      //return of(result);
+      return throwError(new Error(`${serviceName}: ${operation} failed: ${message}`));
     }
   }
 }

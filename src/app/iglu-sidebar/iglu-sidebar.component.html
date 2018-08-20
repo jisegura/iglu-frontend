@@ -10,6 +10,7 @@
       <button mat-menu-item [matMenuTriggerFor]="menucategorias">Categorias</button>
       <button mat-menu-item [matMenuTriggerFor]="menuproductos">Productos</button>
       <button mat-menu-item [matMenuTriggerFor]="menuempleados">Empleados</button>
+      <button mat-menu-item>Cajas</button>
     </mat-menu>
 
     <mat-menu #menucategorias="matMenu">
@@ -34,6 +35,6 @@
 
 
   <div class="container container-body">
-
+    <app-iglu-empleado-list></app-iglu-empleado-list>
   </div>
 </div>

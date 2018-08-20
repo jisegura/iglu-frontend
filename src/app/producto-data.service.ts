@@ -246,7 +246,7 @@ export class ProductoDataService {
     this.getProducto().subscribe(producto => {
       this.dataStore.productos = producto;
       this._productos.next(Object.assign({}, this.dataStore).productos);
-    }, error => this.httpSnackBarService.openSnackBar("Producto.loadAll", "ERROR"));
+    }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
   public create(producto: Producto): void{
@@ -254,7 +254,7 @@ export class ProductoDataService {
       this.dataStore.productos.push(producto);
       this._productos.next(Object.assign({}, this.dataStore).productos);
       this.httpSnackBarService.openSnackBar("Producto.create", "OK");
-    }, error => this.httpSnackBarService.openSnackBar("Producto.create", "ERROR"));
+    }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
   public update(producto: Producto): void{
@@ -267,7 +267,7 @@ export class ProductoDataService {
 
       this._productos.next(Object.assign({}, this.dataStore).productos);
       this.httpSnackBarService.openSnackBar("Producto.update", "OK");
-    }, error => this.httpSnackBarService.openSnackBar("Producto.update", "ERROR"));
+    }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
   public remove(id: number): void{
@@ -280,7 +280,7 @@ export class ProductoDataService {
 
       this._productos.next(Object.assign({}, this.dataStore).productos);
       this.httpSnackBarService.openSnackBar("Producto.remove", "OK");
-    }, error => this.httpSnackBarService.openSnackBar("Producto.remove", "ERROR"));
+    }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
   public getProducto(): Observable<Producto[]>{

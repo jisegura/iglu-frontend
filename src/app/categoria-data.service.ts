@@ -53,7 +53,7 @@ export class CategoriaDataService {
     this.getCategoria().subscribe(categorias => {
       this.dataStore.categorias = categorias;
       this._categorias.next(Object.assign({}, this.dataStore).categorias);
-    }, error => this.httpSnackBarService.openSnackBar("Categoria.loadAll", "ERROR"));
+    }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
   public load(id: number | string): void{
@@ -73,7 +73,7 @@ export class CategoriaDataService {
 
       this._categorias.next(Object.assign({}, this.dataStore).categorias);
       this.httpSnackBarService.openSnackBar("Categoria.load", "OK");
-    }, error => this.httpSnackBarService.openSnackBar("Categoria.load", "ERROR"));
+    }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
   public create(categoria: Categoria): void{
@@ -81,7 +81,7 @@ export class CategoriaDataService {
       this.dataStore.categorias.push(categoria);
       this._categorias.next(Object.assign({}, this.dataStore).categorias);
       this.httpSnackBarService.openSnackBar("Categoria.create", "OK");
-    }, error => this.httpSnackBarService.openSnackBar("Categoria.create", "ERROR"));
+    }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
   public update(categoria: Categoria): void{
@@ -94,7 +94,7 @@ export class CategoriaDataService {
 
       this._categorias.next(Object.assign({}, this.dataStore).categorias);
       this.httpSnackBarService.openSnackBar("Categoria.update", "OK");
-    }, error => this.httpSnackBarService.openSnackBar("Categoria.update", "ERROR"));
+    }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
   public remove(id: number): void{
@@ -107,7 +107,7 @@ export class CategoriaDataService {
 
       this._categorias.next(Object.assign({}, this.dataStore).categorias);
       this.httpSnackBarService.openSnackBar("Categoria.remove", "OK");
-    }, error => this.httpSnackBarService.openSnackBar("Categoria.remove", "ERROR"));
+    }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
   public getCategoria(): Observable<Categoria[]>{
