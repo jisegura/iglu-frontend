@@ -15,12 +15,12 @@ import { Observable } from 'rxjs';
 })
 export class IgluProductoComponent implements OnInit {
 
-  public productos: Producto[];
-  //public productos: Observable<Producto[]>;
+  //public productos: Producto[];
+  public productos: Observable<Producto[]>;
   public pedidos: Pedido[];
-  public categorias: Categoria[];
+  //public categorias: Categoria[];
   public categoriaActive: CategoriaFilter;
-  //public categorias: Observable<Categoria[]>;
+  public categorias: Observable<Categoria[]>;
 
   public constructor(
     private pedidoDataService: PedidoDataService,
@@ -36,16 +36,16 @@ export class IgluProductoComponent implements OnInit {
     this.categoriaFilterService
       .getCategoriaActive()
       .subscribe(categoriaActive => this.categoriaActive = categoriaActive);
-    this.productoDataService
-      .getProductos()
-      .subscribe(productos => this.productos = productos);
-    //this.productos = this.productoDataService.productos;
-    //this.productoDataService.loadAll();
-    this.categoriaDataService
-      .getCatoMock()
-      .subscribe(categorias => this.categorias = categorias);
-    //this.categorias = this.categoriaDataService.categorias;
-    //this.categoriaDataService.loadAll();
+    //this.productoDataService
+    //  .getProductos()
+    //  .subscribe(productos => this.productos = productos);
+    this.productos = this.productoDataService.productos;
+    this.productoDataService.loadAll();
+    //this.categoriaDataService
+    //  .getCatoMock()
+    //  .subscribe(categorias => this.categorias = categorias);
+    this.categorias = this.categoriaDataService.categorias;
+    this.categoriaDataService.loadAll();
   }
 
   public getCantidad(producto: Producto): number{

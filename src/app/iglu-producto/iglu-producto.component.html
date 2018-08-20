@@ -1,7 +1,7 @@
 <div class="contenedor">
   <div class="card-prod">
     <mat-card class="hmatcard">
-      <ng-container *ngFor="let producto of productos">
+      <ng-container *ngFor="let producto of productos | async">
         <button *ngIf="btnIsVisible(producto)" matBadge="{{getCantidad(producto)}}" matBadgeHidden="{{isVisible(producto)}}" matBadgePosition="above after" matBadgeColor="primary" mat-raised-button class="btn-img" (click)="addProducto(producto)">
           <span>{{producto.Nombre}}</span>
         </button>
@@ -11,7 +11,7 @@
 
   <div class="card-cate">
     <mat-card class="hmatcard">
-      <button *ngFor="let categoria of categorias" color="primary" mat-raised-button (click)="setActive(categoria)">
+      <button *ngFor="let categoria of categorias | async" color="primary" mat-raised-button (click)="setActive(categoria)">
         <span>{{categoria.Nombre}}</span>
       </button>
     </mat-card>

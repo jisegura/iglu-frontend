@@ -2,22 +2,43 @@
   <div class="modal-header">
     <h2 mat-dialog-title>{{getTitulo()}} una categoria</h2>
   </div>
+
   <div class="modal-body">
     <mat-dialog-content>
-      <div *ngIf="showSelect()" class="row">
-       <mat-form-field class="col-12">
-          <mat-select placeholder="Seleccionar categoria" (selectionChange)="onSelectInput($event.value)">
-            <mat-option *ngFor="let categoria of categorias | async" value="{{categoria.Id_categoria}}">{{categoria.Nombre}}</mat-option>
-            <mat-option value="1" >asd</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
 
-      <div *ngIf="showInput()" class="row">
-        <mat-form-field class="col-4">
-          <input matInput placeholder="Nombre" (change)="onNameInput($event)">
-        </mat-form-field>
-      </div>
+      <ng-container *ngIf="showPOST()">
+        <div class="row">
+          <mat-form-field class="col-4">
+            <input matInput placeholder="Nombre" (change)="onNameInput($event)">
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="showPUT()">
+        <div class="row">
+          <mat-form-field class="col-12">
+            <mat-select placeholder="Seleccionar categoria" (selectionChange)="onSelectInput($event.value)">
+              <mat-option *ngFor="let cate of categorias | async" value="{{cate.Id_categoria}}">{{cate.Nombre}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <ng-container *ngFor="let cate of categorias | async">
+            <mat-form-field *ngIf="putCategoriaId(cate)" class="col-4">
+              <input matInput placeholder="Nombre" (change)="onNameInput($event)" value="{{cate.Nombre}}">
+            </mat-form-field>
+          </ng-container>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="showDELETE()">
+        <div class="row">
+          <mat-form-field class="col-12">
+            <mat-select placeholder="Seleccionar categoria" (selectionChange)="onSelectInput($event.value)">
+              <mat-option *ngFor="let cate of categorias | async" value="{{cate.Id_categoria}}">{{cate.Nombre}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </ng-container>
 
       <div class="row">
         <mat-form-field class="offset-8 col-4">
@@ -25,8 +46,10 @@
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         </mat-form-field>
       </div>
+
     </mat-dialog-content>
   </div>
+
   <div class="modal-footer">
     <mat-dialog-actions>
       <div class="row">

@@ -25,6 +25,7 @@ export class IgluCategoriaModalComponent implements OnInit {
   private pwInputComplete: boolean;
   private categorias: Observable<Categoria[]>;
   private categoria: Categoria;
+  private categoriaCopy: Categoria;
 
   private pw: string = "pw";
 
@@ -38,7 +39,9 @@ export class IgluCategoriaModalComponent implements OnInit {
     this.mode = new MODE;
     this.nameInputComplete = false;
     this.selectInputComplete = false;
-    this.categoria = new Categoria;
+    this.pwInputComplete = false;
+    this.categoria = new Categoria(0,"");
+    this.categoriaCopy = new Categoria(0,"");
     this.categorias = this.categoriaDataService.categorias;
   }
 
@@ -52,18 +55,16 @@ export class IgluCategoriaModalComponent implements OnInit {
     }
   }
 
-  public showSelect(): boolean{
-    if (this.mode.POST == this.data.titulo) {
-      return false;
-    }
-    return true;
+  public showPOST(): boolean{
+    return this.mode.POST === this.data.titulo;
   }
 
-  public showInput(): boolean{
-    if (this.mode.DELETE == this.data.titulo) {
-      return false;
-    }
-    return true;
+  public showPUT(): boolean{
+    return this.mode.PUT === this.data.titulo;
+  }
+
+  public showDELETE(): boolean{
+    return this.mode.DELETE === this.data.titulo;
   }
 
   public onNameInput($event): void{
@@ -71,18 +72,26 @@ export class IgluCategoriaModalComponent implements OnInit {
       this.nameInputComplete = false;
     } else {
       this.nameInputComplete = true;
+      this.categoria.Nombre = $event.target.value;
     }
-    this.categoria.Nombre = $event.target.value;
     this.validButtonEnviar();
   }
 
-  public onSelectInput(value): void{
+  public putCategoriaId(categoria: Categoria): boolean{
+    if (categoria.Id_categoria === this.categoria.Id_categoria) {
+      this.categoriaCopy.Nombre = categoria.Nombre;
+      return true;
+    }
+    return false;
+  }
+
+  public onSelectInput(value: string): void{
     if (value === "") {
       this.selectInputComplete = false;
     } else {
       this.selectInputComplete = true;
+      this.categoria.Id_categoria = +value;
     }
-    this.categoria.Id_categoria = value;
     this.validButtonEnviar();
   }
 
@@ -107,7 +116,6 @@ export class IgluCategoriaModalComponent implements OnInit {
     } else {
       this.isDisabled = true;
     }
-    
   }
 
   public dataSend(): void{
@@ -115,14 +123,14 @@ export class IgluCategoriaModalComponent implements OnInit {
       const postCategoria: Categoria = {
         Nombre: this.categoria.Nombre
       } as Categoria;
-      
+
       this.categoriaDataService.create(postCategoria);
     } else if (this.mode.PUT == this.data.titulo) {
       const putCategoria: Categoria = {
         Id_categoria: this.categoria.Id_categoria,
-        Nombre: this.categoria.Nombre
+        Nombre: (this.categoria.Nombre !== "") ? this.categoria.Nombre : this.categoriaCopy.Nombre
       } as Categoria;
-      
+
       this.categoriaDataService.update(putCategoria);
     } else {
       const deleteCategoriaId: number = this.categoria.Id_categoria;

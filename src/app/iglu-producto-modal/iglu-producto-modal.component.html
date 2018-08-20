@@ -2,36 +2,83 @@
   <div class="modal-header">
     <h2 mat-dialog-title>{{getTitulo()}} un producto</h2>
   </div>
+
   <div class="modal-body">
     <mat-dialog-content>
-      <div *ngIf="showSelect()" class="row">
-        <mat-form-field class="col-12">
-          <mat-select placeholder="Seleccionar producto" (selectionChange)="onSelectInput($event.value)">
-            <mat-option *ngFor="let prod of productos | async" value="{{prod.Id_producto}}">{{prod.Nombre}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
 
-      <div *ngIf="showInput()" class="row">
-        <mat-form-field class="col-4">
-          <input matInput placeholder="Nombre" (change)="onNameInput($event)">
-        </mat-form-field>
-      
-        <mat-form-field class="col-4">
-          <input matInput type="number" placeholder="Precio" (change)="onPriceInput($event)">
-        </mat-form-field>
+      <ng-container *ngIf="showPOST()">
+        <div class="row">
+          <mat-form-field class="col-4">
+            <input matInput placeholder="Nombre" (change)="onNameInput($event)">
+          </mat-form-field>
 
-        <div class="col-4 btn-box">
-          <button mat-raised-button color="primary" class="col-12" (click)="fileInput.click()">
-            <span>Subir imagen</span>
-            <input #fileInput type="file" (change)="onFileInput($event)" style="display:none;" />
-          </button>
+          <mat-form-field class="col-4">
+            <input matInput type="number" placeholder="Precio" (change)="onPriceInput($event)">
+          </mat-form-field>
+
+          <mat-form-field class="col-4">
+            <mat-select placeholder="Seleccionar categoria" (selectionChange)="onCateSelect($event.value)">
+              <mat-option *ngFor="let cate of categorias | async" value="{{cate.Id_categoria}}">{{cate.Nombre}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="col-4 btn-box">
+            <button mat-raised-button color="primary" class="col-12" (click)="fileInput.click()">
+              <span>Subir imagen</span>
+              <input #fileInput type="file" (change)="onFileInput($event)" style="display:none;" />
+            </button>
+          </div>
         </div>
-      </div>
+      </ng-container>
+
+      <ng-container *ngIf="showPUT()">
+        <div class="row">
+          <mat-form-field class="col-12">
+            <mat-select placeholder="Seleccionar producto" (selectionChange)="onSelectInput($event.value)">
+              <mat-option *ngFor="let prod of productos | async" value="{{prod.Id_producto}}">{{prod.Nombre}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <ng-container *ngFor="let prod of productos | async">
+            <ng-container *ngIf="putProductoId(prod)">
+              <mat-form-field class="col-4">
+                <input matInput placeholder="Nombre" (change)="onNameInput($event)" value="{{prod.Nombre}}">
+              </mat-form-field>
+
+              <mat-form-field class="col-4">
+                <input matInput type="number" placeholder="Precio" (change)="onPriceInput($event)" value="{{prod.Precio}}">
+              </mat-form-field>
+
+              <mat-form-field class="col-4">
+                <mat-select placeholder="Seleccionar categoria" (selectionChange)="onCateSelect($event.value)" [(value)]="selectCate">
+                  <mat-option *ngFor="let cate of categorias | async" value="{{cate.Id_categoria}}">{{cate.Nombre}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <div class="col-4 btn-box">
+                <button mat-raised-button color="primary" class="col-12" (click)="fileInput.click()">
+                  <span>Subir imagen</span>
+                  <input #fileInput type="file" (change)="onFileInput($event)" style="display:none;" />
+                </button>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="showDELETE()">
+        <div class="row">
+          <mat-form-field class="col-12">
+            <mat-select placeholder="Seleccionar producto" (selectionChange)="onSelectInput($event.value)">
+              <mat-option *ngFor="let prod of productos | async" value="{{prod.Id_producto}}">{{prod.Nombre}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </ng-container>
 
       <div class="row">
         <mat-form-field class="offset-8 col-4">
-          <input matInput placeholder="Contraseña admin" [type]="hide ? 'password' : 'text'">
+          <input matInput (change)="onPassInput($event)" placeholder="Contraseña admin" [type]="hide ? 'password' : 'text'">
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         </mat-form-field>
       </div>
