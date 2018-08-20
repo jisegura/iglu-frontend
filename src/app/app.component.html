@@ -8,13 +8,18 @@
     <div class="row">
       <app-iglu-sidemenu></app-iglu-sidemenu>
       <div class="container-special">
-        <div class="row contenedor">
-          <app-iglu-factura></app-iglu-factura>
-          <app-iglu-factura-last></app-iglu-factura-last>
-        </div>
-        <div class="row">
-          <app-iglu-producto></app-iglu-producto>
-        </div>
+        <ng-container *ngIf="isViewCliente()">
+          <div class="row contenedor">
+            <app-iglu-factura></app-iglu-factura>
+            <app-iglu-factura-last></app-iglu-factura-last>
+          </div>
+          <div class="row">
+            <app-iglu-producto></app-iglu-producto>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="isViewAdmin()">
+          <app-iglu-view-admin></app-iglu-view-admin>
+        </ng-container>
       </div>
     </div>
   </mat-drawer-content>

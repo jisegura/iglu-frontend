@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material';
 import { IgluProductoModalComponent } from '../iglu-producto-modal/iglu-producto-modal.component';
 import { IgluCategoriaModalComponent } from '../iglu-categoria-modal/iglu-categoria-modal.component';
 import { IgluEmpleadoModalComponent } from '../iglu-empleado-modal/iglu-empleado-modal.component';
+import { IgluCajaModalComponent } from '../iglu-caja-modal/iglu-caja-modal.component';
+
 
 
 
@@ -49,6 +51,14 @@ export class IgluSidebarComponent implements OnInit {
         titulo: modo
       }
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  public openModalCaja(): void{
+    const dialogRef = this.dialog.open(IgluCajaModalComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

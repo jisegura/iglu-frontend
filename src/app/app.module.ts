@@ -35,6 +35,8 @@ import { IgluCategoriaModalComponent } from './iglu-categoria-modal/iglu-categor
 import { IgluFacturaLastComponent } from './iglu-factura-last/iglu-factura-last.component';
 import { IgluEmpleadoModalComponent } from './iglu-empleado-modal/iglu-empleado-modal.component';
 import { IgluEmpleadoListComponent } from './iglu-empleado-list/iglu-empleado-list.component';
+import { IgluCajaModalComponent } from './iglu-caja-modal/iglu-caja-modal.component';
+import { IgluViewAdminComponent } from './iglu-view-admin/iglu-view-admin.component';
 
 
 @NgModule({
@@ -52,13 +54,16 @@ import { IgluEmpleadoListComponent } from './iglu-empleado-list/iglu-empleado-li
     IgluCategoriaModalComponent,
     IgluFacturaLastComponent,
     IgluEmpleadoModalComponent,
-    IgluEmpleadoListComponent
+    IgluEmpleadoListComponent,
+    IgluCajaModalComponent,
+    IgluViewAdminComponent
   ],
   entryComponents: [
     IgluConfirmarPedidoDialogComponent,
     IgluProductoModalComponent,
     IgluCategoriaModalComponent,
-    IgluEmpleadoModalComponent
+    IgluEmpleadoModalComponent,
+    IgluCajaModalComponent
   ],
   imports: [
     BrowserModule,
