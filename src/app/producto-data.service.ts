@@ -4,6 +4,8 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
+import { HttpSnackBarService } from './http-snack-bar.service';
+
 
 const httpOptions = {
 	headers: new HttpHeaders({
@@ -231,6 +233,7 @@ export class ProductoDataService {
   public constructor(
     private http: HttpClient,
     public httpErrorHandler: HttpErrorHandler,
+    public httpSnackBarService: HttpSnackBarService
   ) {
     this.productoUrl = "producto/";
     this.dataStore = { productos: [] };
@@ -243,14 +246,16 @@ export class ProductoDataService {
     this.getProducto().subscribe(producto => {
       this.dataStore.productos = producto;
       this._productos.next(Object.assign({}, this.dataStore).productos);
-    });
+      this.httpSnackBarService.openSnackBar("Producto.loadAll", "OK");
+    }, error => this.httpSnackBarService.openSnackBar("Producto.loadAll", "ERROR"));
   }
 
   public create(producto: Producto): void{
     this.addProducto(producto).subscribe(producto => {
       this.dataStore.productos.push(producto);
       this._productos.next(Object.assign({}, this.dataStore).productos);
-    });
+      this.httpSnackBarService.openSnackBar("Producto.create", "OK");
+    }, error => this.httpSnackBarService.openSnackBar("Producto.create", "ERROR"));
   }
 
   public update(producto: Producto): void{
@@ -262,7 +267,8 @@ export class ProductoDataService {
       });
 
       this._productos.next(Object.assign({}, this.dataStore).productos);
-    });
+      this.httpSnackBarService.openSnackBar("Producto.update", "OK");
+    }, error => this.httpSnackBarService.openSnackBar("Producto.update", "ERROR"));
   }
 
   public remove(id: number): void{
@@ -274,7 +280,8 @@ export class ProductoDataService {
       });
 
       this._productos.next(Object.assign({}, this.dataStore).productos);
-    });
+      this.httpSnackBarService.openSnackBar("Producto.remove", "OK");
+    }, error => this.httpSnackBarService.openSnackBar("Producto.remove", "ERROR"));
   }
 
   public getProducto(): Observable<Producto[]>{

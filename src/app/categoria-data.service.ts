@@ -4,6 +4,8 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
+import { HttpSnackBarService } from './http-snack-bar.service';
+
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -38,6 +40,7 @@ export class CategoriaDataService {
   constructor(
     private http: HttpClient,
     public httpErrorHandler: HttpErrorHandler,
+    public httpSnackBarService: HttpSnackBarService
   ) {
     this.categoriaUrl = "categoria/";
     this.dataStore = { categorias: [] };
@@ -50,7 +53,8 @@ export class CategoriaDataService {
     this.getCategoria().subscribe(categorias => {
       this.dataStore.categorias = categorias;
       this._categorias.next(Object.assign({}, this.dataStore).categorias);
-    });
+      this.httpSnackBarService.openSnackBar("Categoria.loadAll", "OK");
+    }, error => this.httpSnackBarService.openSnackBar("Categoria.loadAll", "ERROR"));
   }
 
   public load(id: number | string): void{
@@ -69,14 +73,16 @@ export class CategoriaDataService {
       }
 
       this._categorias.next(Object.assign({}, this.dataStore).categorias);
-    });
+      this.httpSnackBarService.openSnackBar("Categoria.load", "OK");
+    }, error => this.httpSnackBarService.openSnackBar("Categoria.load", "ERROR"));
   }
 
   public create(categoria: Categoria): void{
     this.addCategoria(categoria).subscribe(categoria => {
       this.dataStore.categorias.push(categoria);
       this._categorias.next(Object.assign({}, this.dataStore).categorias);
-    });
+      this.httpSnackBarService.openSnackBar("Categoria.create", "OK");
+    }, error => this.httpSnackBarService.openSnackBar("Categoria.create", "ERROR"));
   }
 
   public update(categoria: Categoria): void{
@@ -88,7 +94,8 @@ export class CategoriaDataService {
       });
 
       this._categorias.next(Object.assign({}, this.dataStore).categorias);
-    });
+      this.httpSnackBarService.openSnackBar("Categoria.update", "OK");
+    }, error => this.httpSnackBarService.openSnackBar("Categoria.update", "ERROR"));
   }
 
   public remove(id: number): void{
@@ -100,7 +107,8 @@ export class CategoriaDataService {
       });
 
       this._categorias.next(Object.assign({}, this.dataStore).categorias);
-    });
+      this.httpSnackBarService.openSnackBar("Categoria.remove", "OK");
+    }, error => this.httpSnackBarService.openSnackBar("Categoria.remove", "ERROR"));
   }
 
   public getCategoria(): Observable<Categoria[]>{

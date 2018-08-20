@@ -144,7 +144,7 @@ export class IgluProductoModalComponent implements OnInit {
       } else if (this.mode.PUT == this.data.titulo) {
         this.isDisabled = !(this.selectInputComplete && (this.nameInputComplete || this.priceInputComplete || this.cateSelectComplete));
       } else {
-        //return "Eliminar";
+        this.isDisabled = !(this.selectInputComplete);
       }
     } else {
       this.isDisabled = true;
@@ -170,13 +170,11 @@ export class IgluProductoModalComponent implements OnInit {
         Imagen: this.producto.Imagen
       } as Producto;
 
-      console.log(putProducto);
-      //this.productoDataService.update(putProducto);
+      this.productoDataService.update(putProducto);
     } else {
       const deleteCategoriaId: number = this.producto.Id_producto;
 
-      console.log(deleteCategoriaId);
-      //this.productoDataService.remove(deleteCategoriaId);
+      this.productoDataService.remove(deleteCategoriaId);
     }
 
   }

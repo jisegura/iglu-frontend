@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { MatCheckboxModule } from '@angular/material';
+import { MatCheckboxModule, MatSnackBarModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -64,6 +64,7 @@ import { IgluEmpleadoModalComponent } from './iglu-empleado-modal/iglu-empleado-
     HttpClientModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatSnackBarModule,
     MatSidenavModule,
     MatBadgeModule,
     MatCardModule,
