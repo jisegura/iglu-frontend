@@ -1,3 +1,13 @@
-<p>
-  iglu-caja-status works!
-</p>
+<div class="box-caja-status">
+  <div class="bgc-caja-status">
+
+    <ng-container *ngIf="cajaOpen | async; let _caja">
+      <span>id: {{_caja.Id_caja}}</span>
+      <span>inic: {{_caja.Inicio}}</span>
+      <span>fInic: {{_caja.HoraInicio}}</span>
+      <span>fin: {{_caja.Fin}}</span>
+      <span>fFin: {{_caja.HoraFin}}</span>
+    </ng-container>
+
+  </div>
+</div>

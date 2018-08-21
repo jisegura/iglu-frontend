@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CajaDataService } from '../caja-data.service';
+import { Caja } from '../caja.model';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-iglu-caja-status',
@@ -7,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IgluCajaStatusComponent implements OnInit {
 
-  constructor() { }
+  public cajaOpen: Observable<Caja>;
+
+  constructor(
+  	private cadaDataService: CajaDataService
+  ) { }
 
   ngOnInit() {
+    this.cajaOpen = this.cadaDataService.cajaOpen;
+    this.cadaDataService.loadCajaOpen();
+  }
+
+  public haveCajaOpen(): boolean{
+    return true;
   }
 
 }
