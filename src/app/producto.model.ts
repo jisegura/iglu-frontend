@@ -46,11 +46,3 @@ export class Renglon {
   Precio
   Descuento
 }
-
-export class Caja {
-  Id_caja
-  Inicio
-  Fin
-  HoraInicio
-  HoraFin
-}
