@@ -6,7 +6,7 @@ export class VistaActive {
 }
 
 export class VistaAdmin {
-  public active: "NONE" | "CATEGORIA" | "PRODUCTO" | "EMPLEADO" | "CAJA";
+  public active: "NONE" | "CATEGORIA" | "PRODUCTO" | "EMPLEADO" | "CAJA" | "CAJAOPEN";
 }
 
 @Injectable({

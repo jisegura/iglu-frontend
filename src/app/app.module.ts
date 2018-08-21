@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeEsAr from '@angular/common/locales/es-AR';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -18,6 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatListModule } from '@angular/material/list';
 
 import { HttpErrorHandler } from './http-error-handler.service';
 import { MessageService } from './message.service';
@@ -45,6 +48,7 @@ import { IgluProductoAdminFormComponent } from './iglu-producto-admin-form/iglu-
 import { IgluCategoriaAdminFormComponent } from './iglu-categoria-admin-form/iglu-categoria-admin-form.component';
 import { IgluCajaAdminComponent } from './iglu-caja-admin/iglu-caja-admin.component';
 
+registerLocaleData(localeEsAr);
 
 @NgModule({
   declarations: [
@@ -93,12 +97,14 @@ import { IgluCajaAdminComponent } from './iglu-caja-admin/iglu-caja-admin.compon
     MatDialogModule,
     MatRadioModule,
     MatMenuModule,
-    MatTabsModule
+    MatTabsModule,
+    MatListModule
   ],
   providers: [
     HttpErrorHandler,
     MessageService,
-    httpInterceptorProviders
+    httpInterceptorProviders,
+    { provide: LOCALE_ID, useValue: "es-AR" }
   ],
   bootstrap: [AppComponent]
 })

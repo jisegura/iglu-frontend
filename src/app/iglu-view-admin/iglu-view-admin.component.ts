@@ -42,6 +42,10 @@ export class IgluViewAdminComponent implements OnInit {
     this.viewAdminActive.active = "EMPLEADO";
   }
 
+  public modeCaja(): void{
+    this.viewAdminActive.active = "CAJA";
+  }
+
   public isViewCategoria(): boolean{
     return this.viewAdminActive.active == "CATEGORIA";
   }
@@ -52,6 +56,14 @@ export class IgluViewAdminComponent implements OnInit {
 
   public isViewEmpleado(): boolean{
     return this.viewAdminActive.active == "EMPLEADO";
+  }
+
+  public isViewCaja(): boolean{
+    return this.viewAdminActive.active == "CAJA";
+  }
+
+  public isViewCajaOpen(): boolean{
+    return this.viewAdminActive.active == "CAJAOPEN";
   }
 
 }

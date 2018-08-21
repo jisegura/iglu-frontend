@@ -28,7 +28,7 @@
                     </div>
                   </td>
                   <td>
-                    <strong>{{getPriceProducto(producto.id, producto.cant, producto.desc) | currency}}</strong>
+                    <strong>{{getPriceProducto(producto.id, producto.cant, producto.desc) | currency : "ARS"}}</strong>
                   </td>
                 </tr>
               </ng-container>
@@ -48,7 +48,7 @@
             <span class="scolor" matSuffix>%</span>
           </mat-form-field>
         </div>
-        <span *ngIf="pedido.active" class="factura-total">{{getTotalCost() | currency}}</span>
+        <span *ngIf="pedido.active" class="factura-total">{{getTotalCost() | currency : "ARS"}}</span>
       </ng-container>
     </mat-card-footer>
   </mat-card>

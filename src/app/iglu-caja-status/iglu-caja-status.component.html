@@ -2,11 +2,19 @@
   <div class="bgc-caja-status">
 
     <ng-container *ngIf="cajaOpen | async; let _caja">
-      <span>id: {{_caja.Id_caja}}</span>
-      <span>inic: {{_caja.Inicio}}</span>
-      <span>fInic: {{_caja.HoraInicio}}</span>
-      <span>fin: {{_caja.Fin}}</span>
-      <span>fFin: {{_caja.HoraFin}}</span>
+      <ng-container *ngIf="haveCajaOpen(_caja)">
+        <span class="titulocaja">Caja Abierta</span>
+        <span class="fechacaja">Desde: {{ _caja.HoraInicio | date : 'd/M/yy, H:mm'}}</span>
+        <button mat-button (click)="showCajaOpen()">
+          <span>Ver caja</span>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="!haveCajaOpen(_caja)">
+        <span class="titulocaja">Cajas Cerradas</span>
+        <button mat-button>
+          <span>Abrir una Caja</span>
+        </button>
+      </ng-container>
     </ng-container>
 
   </div>

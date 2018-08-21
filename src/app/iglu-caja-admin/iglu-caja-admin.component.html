@@ -1,3 +1,51 @@
-<p>
-  iglu-caja-admin works!
-</p>
+<div class="contenedor-caja">
+  <ng-container *ngIf="caja">
+    <ng-container *ngIf="cajaOpen | async; let _caja">
+      <mat-list>
+        <h3 mat-header>Caja #{{_caja.Id_caja}}</h3>
+        <div class="col-6 datos-caja">
+          <mat-list-item>
+            <mat-icon mat-list-icon>today</mat-icon>
+            <p mat-line>{{_caja.HoraInicio | date : 'EEEE, MMMM d, y, h:mm:ss a'}}</p>
+            <p mat-line>{{_caja.HoraInicio | date : 'EEEE, MMMM d, y, h:mm:ss a'}}</p>
+          </mat-list-item>
+        </div>
+        <div class="col-6 datos-caja">
+          <mat-list-item>
+            <mat-icon mat-list-icon>local_atm</mat-icon>
+            <p mat-line>{{_caja.Inicio | currency : "ARS"}}</p>
+          </mat-list-item>
+        </div>
+      </mat-list>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="!caja">
+    todas las cajas
+  </ng-container>
+
+  <div class="row">
+    <mat-form-field class="col-6">
+      <mat-select placeholder="Seleccionar Tipo de Factura">
+        <mat-option value="1">Todas</mat-option>
+        <mat-option value="2">Clientes</mat-option>
+        <mat-option value="3">Retiros</mat-option>
+        <mat-option value="4">Otras</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="col-6">
+      <mat-select placeholder="Seleccionar Turno">
+        <mat-option value="1">Todos</mat-option>
+        <mat-option value="2">Michelle</mat-option>
+        <mat-option value="3">Juan</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <div class="col-12 box-facturas">
+      
+    </div>
+  </div>
+
+</div>

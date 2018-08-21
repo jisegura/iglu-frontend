@@ -13,7 +13,7 @@
       <button mat-button class="btn-menu" (click)="modeEmpleado()">
         <span>Empleados</span>
       </button>
-      <button mat-button class="btn-menu">
+      <button mat-button class="btn-menu" (click)="modeCaja()">
         <span>Cajas</span>
       </button>
 
@@ -39,6 +39,14 @@
 
       <ng-container *ngIf="isViewEmpleado()">
         <app-iglu-empleado-admin></app-iglu-empleado-admin>
+      </ng-container>
+
+      <ng-container *ngIf="isViewCaja()">
+        <app-iglu-caja-admin></app-iglu-caja-admin>
+      </ng-container>
+
+      <ng-container *ngIf="isViewCajaOpen()">
+        <app-iglu-caja-admin [caja]="true"></app-iglu-caja-admin>
       </ng-container>
 
     </mat-card>
