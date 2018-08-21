@@ -17,6 +17,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { HttpErrorHandler } from './http-error-handler.service';
 import { MessageService } from './message.service';
@@ -92,7 +93,8 @@ import { IgluEmpleadoAdminComponent } from './iglu-empleado-admin/iglu-empleado-
     MatSelectModule,
     MatDialogModule,
     MatRadioModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTabsModule
   ],
   providers: [
     HttpErrorHandler,

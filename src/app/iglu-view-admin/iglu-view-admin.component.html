@@ -4,13 +4,13 @@
       <span>MENU ADMIN</span>
     </div>
     <div class="boto-body">
-      <button mat-button class="btn-menu">
+      <button mat-button class="btn-menu" (click)="modeCategoria()">
         <span>Categorias</span>
       </button>
-      <button mat-button class="btn-menu">
+      <button mat-button class="btn-menu" (click)="modeProducto()">
         <span>Productos</span>
       </button>
-      <button mat-button class="btn-menu">
+      <button mat-button class="btn-menu" (click)="modeEmpleado()">
         <span>Empleados</span>
       </button>
       <button mat-button class="btn-menu">
@@ -27,7 +27,17 @@
   <div class="cuerpo-contenedor">
     <mat-card class="cuerpo-card">
 
-      
+      <ng-container *ngIf="isViewCategoria()">
+        <app-iglu-categoria-admin></app-iglu-categoria-admin>
+      </ng-container>
+
+      <ng-container *ngIf="isViewProducto()">
+        <app-iglu-producto-admin></app-iglu-producto-admin>
+      </ng-container>
+
+      <ng-container *ngIf="isViewEmpleado()">
+        <app-iglu-empleado-admin></app-iglu-empleado-admin>
+      </ng-container>
 
     </mat-card>
   </div>
