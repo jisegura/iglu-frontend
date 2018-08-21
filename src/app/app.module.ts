@@ -43,6 +43,9 @@ import { IgluViewClienteComponent } from './iglu-view-cliente/iglu-view-cliente.
 import { IgluCategoriaAdminComponent } from './iglu-categoria-admin/iglu-categoria-admin.component';
 import { IgluProductoAdminComponent } from './iglu-producto-admin/iglu-producto-admin.component';
 import { IgluEmpleadoAdminComponent } from './iglu-empleado-admin/iglu-empleado-admin.component';
+import { IgluEmpleadoAdminFormComponent } from './iglu-empleado-admin-form/iglu-empleado-admin-form.component';
+import { IgluProductoAdminFormComponent } from './iglu-producto-admin-form/iglu-producto-admin-form.component';
+import { IgluCategoriaAdminFormComponent } from './iglu-categoria-admin-form/iglu-categoria-admin-form.component';
 
 
 @NgModule({
@@ -67,7 +70,10 @@ import { IgluEmpleadoAdminComponent } from './iglu-empleado-admin/iglu-empleado-
     IgluViewClienteComponent,
     IgluCategoriaAdminComponent,
     IgluProductoAdminComponent,
-    IgluEmpleadoAdminComponent
+    IgluEmpleadoAdminComponent,
+    IgluEmpleadoAdminFormComponent,
+    IgluProductoAdminFormComponent,
+    IgluCategoriaAdminFormComponent
   ],
   entryComponents: [
     IgluConfirmarPedidoDialogComponent,
