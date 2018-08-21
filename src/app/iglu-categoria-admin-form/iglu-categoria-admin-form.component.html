@@ -1,3 +1,50 @@
-<p>
-  iglu-categoria-admin-form works!
-</p>
+<div class="modal-container">
+
+  <div class="modal-body">
+    <mat-dialog-content>
+
+      <ng-container *ngIf="showPOST()">
+        <div class="row">
+          <mat-form-field class="col-4">
+            <input matInput placeholder="Nombre" (change)="onNameInput($event)">
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="showPUT()">
+        <div class="row">
+          <mat-form-field class="col-12">
+            <mat-select placeholder="Seleccionar categoria" (selectionChange)="onSelectInput($event.value)">
+              <mat-option *ngFor="let cate of categorias | async" value="{{cate.Id_categoria}}">{{cate.Nombre}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <ng-container *ngFor="let cate of categorias | async">
+            <mat-form-field *ngIf="putCategoriaId(cate)" class="col-4">
+              <input matInput placeholder="Nombre" (change)="onNameInput($event)" value="{{cate.Nombre}}">
+            </mat-form-field>
+          </ng-container>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="showDELETE()">
+        <div class="row">
+          <mat-form-field class="col-12">
+            <mat-select placeholder="Seleccionar categoria" (selectionChange)="onSelectInput($event.value)">
+              <mat-option *ngFor="let cate of categorias | async" value="{{cate.Id_categoria}}">{{cate.Nombre}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </ng-container>
+
+    </mat-dialog-content>
+  </div>
+
+  <div class="modal-footer">
+    <mat-dialog-actions>
+      <div class="row">
+        <button mat-raised-button class="mleft" color="primary" [disabled]="isDisabled" (click)="dataSend()">{{getTitulo()}}</button>
+      </div>
+    </mat-dialog-actions>
+  </div>
+</div>

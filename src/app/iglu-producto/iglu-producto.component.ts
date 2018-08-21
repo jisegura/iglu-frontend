@@ -40,12 +40,12 @@ export class IgluProductoComponent implements OnInit {
     //  .getProductos()
     //  .subscribe(productos => this.productos = productos);
     this.productos = this.productoDataService.productos;
-    this.productoDataService.loadAll();
+    //this.productoDataService.loadAll();
     //this.categoriaDataService
     //  .getCatoMock()
     //  .subscribe(categorias => this.categorias = categorias);
     this.categorias = this.categoriaDataService.categorias;
-    this.categoriaDataService.loadAll();
+    //this.categoriaDataService.loadAll();
   }
 
   public getCantidad(producto: Producto): number{

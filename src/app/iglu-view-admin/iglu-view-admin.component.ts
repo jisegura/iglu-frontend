@@ -26,6 +26,7 @@ export class IgluViewAdminComponent implements OnInit {
   }
 
   public exitModeAdmin():void {
+    this.viewAdminActive.active = "NONE";
     this.viewActive.active = "CLIENTE";
   }
 

@@ -1,3 +1,17 @@
-<p>
-  iglu-producto-admin works!
-</p>
+<mat-tab-group dynamicHeight>
+  <mat-tab label="Agregar">
+    <div>
+      <app-iglu-producto-admin-form [modo]="'POST'"></app-iglu-producto-admin-form>
+    </div>
+  </mat-tab>
+  <mat-tab label="Editar">
+    <div>
+      <app-iglu-producto-admin-form [modo]="'PUT'"></app-iglu-producto-admin-form>
+    </div>
+  </mat-tab>
+  <mat-tab label="Eliminar">
+    <div>
+      <app-iglu-producto-admin-form [modo]="'DELETE'"></app-iglu-producto-admin-form>
+    </div>
+  </mat-tab>
+</mat-tab-group>

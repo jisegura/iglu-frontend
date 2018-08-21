@@ -1,17 +1,17 @@
 <mat-tab-group dynamicHeight>
   <mat-tab label="Agregar">
     <div>
-      Small content
+      <app-iglu-categoria-admin-form [modo]="'POST'"></app-iglu-categoria-admin-form>
     </div>
   </mat-tab>
   <mat-tab label="Editar">
     <div>
-      Large content
+      <app-iglu-categoria-admin-form [modo]="'PUT'"></app-iglu-categoria-admin-form>
     </div>
   </mat-tab>
   <mat-tab label="Eliminar">
     <div>
-      Large content
+      <app-iglu-categoria-admin-form [modo]="'DELETE'"></app-iglu-categoria-admin-form>
     </div>
   </mat-tab>
 </mat-tab-group>

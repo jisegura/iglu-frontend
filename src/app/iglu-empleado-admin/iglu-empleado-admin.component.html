@@ -1,3 +1,17 @@
-<p>
-  iglu-empleado-admin works!
-</p>
+<mat-tab-group dynamicHeight>
+  <mat-tab label="Agregar">
+    <div>
+      <app-iglu-empleado-admin-form [modo]="'POST'"></app-iglu-empleado-admin-form>
+    </div>
+  </mat-tab>
+  <mat-tab label="Editar">
+    <div>
+      <app-iglu-empleado-admin-form [modo]="'PUT'"></app-iglu-empleado-admin-form>
+    </div>
+  </mat-tab>
+  <mat-tab label="Eliminar">
+    <div>
+      <app-iglu-empleado-admin-form [modo]="'DELETE'"></app-iglu-empleado-admin-form>
+    </div>
+  </mat-tab>
+</mat-tab-group>
