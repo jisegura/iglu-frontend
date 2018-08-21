@@ -5,7 +5,6 @@ import { ProductoDataService } from '../producto-data.service';
 import { Producto, Categoria } from '../producto.model';
 import { CategoriaDataService } from '../categoria-data.service';
 import { CategoriaFilterService, CategoriaFilter } from '../categoria-filter.service';
-
 import { Observable } from 'rxjs';
 
 @Component({

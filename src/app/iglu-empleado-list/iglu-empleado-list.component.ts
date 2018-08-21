@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { EmpleadoDataService } from '../empleado-data.service';
+import { Empleado } from '../empleado.model';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-iglu-empleado-list',
@@ -7,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IgluEmpleadoListComponent implements OnInit {
 
-  constructor() { }
+  public empleados: Observable<Empleado[]>;
+
+  constructor(
+  	private empleadoDataService: EmpleadoDataService
+  ) { }
 
   ngOnInit() {
+    this.empleados = this.empleadoDataService.empleados;
   }
 
 }

@@ -62,7 +62,7 @@ export class IgluEmpleadoAdminFormComponent implements OnInit {
   }
 
   public showNameApell(empleado: Empleado): string{
-    return empleado.FirstName + " " + empleado.LastName:
+    return empleado.FirstName + " " + empleado.LastName;
   }
 
   public onNameInput($event): void{

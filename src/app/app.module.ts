@@ -31,10 +31,7 @@ import { IgluTablaProductoComponent } from './iglu-tabla-producto/iglu-tabla-pro
 import { IgluSidemenuComponent } from './iglu-sidemenu/iglu-sidemenu.component';
 import { IgluConfigmenuButtonsComponent } from './iglu-configmenu-buttons/iglu-configmenu-buttons.component';
 import { IgluSidebarComponent } from './iglu-sidebar/iglu-sidebar.component';
-import { IgluProductoModalComponent } from './iglu-producto-modal/iglu-producto-modal.component';
-import { IgluCategoriaModalComponent } from './iglu-categoria-modal/iglu-categoria-modal.component';
 import { IgluFacturaLastComponent } from './iglu-factura-last/iglu-factura-last.component';
-import { IgluEmpleadoModalComponent } from './iglu-empleado-modal/iglu-empleado-modal.component';
 import { IgluEmpleadoListComponent } from './iglu-empleado-list/iglu-empleado-list.component';
 import { IgluCajaModalComponent } from './iglu-caja-modal/iglu-caja-modal.component';
 import { IgluViewAdminComponent } from './iglu-view-admin/iglu-view-admin.component';
@@ -59,10 +56,7 @@ import { IgluCategoriaAdminFormComponent } from './iglu-categoria-admin-form/igl
     IgluSidemenuComponent,
     IgluConfigmenuButtonsComponent,
     IgluSidebarComponent,
-    IgluProductoModalComponent,
-    IgluCategoriaModalComponent,
     IgluFacturaLastComponent,
-    IgluEmpleadoModalComponent,
     IgluEmpleadoListComponent,
     IgluCajaModalComponent,
     IgluViewAdminComponent,
@@ -77,9 +71,6 @@ import { IgluCategoriaAdminFormComponent } from './iglu-categoria-admin-form/igl
   ],
   entryComponents: [
     IgluConfirmarPedidoDialogComponent,
-    IgluProductoModalComponent,
-    IgluCategoriaModalComponent,
-    IgluEmpleadoModalComponent,
     IgluCajaModalComponent
   ],
   imports: [
