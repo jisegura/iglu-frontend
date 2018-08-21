@@ -14,17 +14,11 @@ export class AppComponent implements OnInit {
 
   public viewActive: VistaActive;
 
-  @ViewChild('sidenav') public sidenav: MatSidenav;
-
   public constructor(
-    private sidenavService: SidenavService,
     private viewsService: ViewsService
   ) { }
 
   public ngOnInit(): void{
-    this.sidenavService
-      .setSidenav(this.sidenav);
-
     this.viewsService
       .getVistaActive()
       .subscribe(viewActive => this.viewActive = viewActive);

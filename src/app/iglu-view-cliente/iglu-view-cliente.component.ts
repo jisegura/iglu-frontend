@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
+import { SidenavService } from '../sidenav.service';
 
 @Component({
   selector: 'app-iglu-view-cliente',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IgluViewClienteComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('sidenav') public sidenav: MatSidenav;
+
+  constructor(
+    private sidenavService: SidenavService
+  ) { }
 
   ngOnInit() {
+    this.sidenavService
+      .setSidenav(this.sidenav);
   }
 
 }

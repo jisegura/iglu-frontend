@@ -1,3 +1,19 @@
-<p>
-  iglu-view-cliente works!
-</p>
+<mat-drawer-container class="main-container">
+  <mat-drawer #sidenav mode="over">
+    <app-iglu-sidebar></app-iglu-sidebar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="row">
+      <app-iglu-sidemenu></app-iglu-sidemenu>
+      <div class="container-special">
+        <div class="row contenedor">
+          <app-iglu-factura></app-iglu-factura>
+          <app-iglu-factura-last></app-iglu-factura-last>
+        </div>
+        <div class="row">
+          <app-iglu-producto></app-iglu-producto>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
