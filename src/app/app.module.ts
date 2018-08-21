@@ -38,6 +38,7 @@ import { IgluEmpleadoListComponent } from './iglu-empleado-list/iglu-empleado-li
 import { IgluCajaModalComponent } from './iglu-caja-modal/iglu-caja-modal.component';
 import { IgluViewAdminComponent } from './iglu-view-admin/iglu-view-admin.component';
 import { IgluCajaStatusComponent } from './iglu-caja-status/iglu-caja-status.component';
+import { IgluViewClienteComponent } from './iglu-view-cliente/iglu-view-cliente.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { IgluCajaStatusComponent } from './iglu-caja-status/iglu-caja-status.com
     IgluEmpleadoListComponent,
     IgluCajaModalComponent,
     IgluViewAdminComponent,
-    IgluCajaStatusComponent
+    IgluCajaStatusComponent,
+    IgluViewClienteComponent
   ],
   entryComponents: [
     IgluConfirmarPedidoDialogComponent,
