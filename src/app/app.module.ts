@@ -39,6 +39,9 @@ import { IgluCajaModalComponent } from './iglu-caja-modal/iglu-caja-modal.compon
 import { IgluViewAdminComponent } from './iglu-view-admin/iglu-view-admin.component';
 import { IgluCajaStatusComponent } from './iglu-caja-status/iglu-caja-status.component';
 import { IgluViewClienteComponent } from './iglu-view-cliente/iglu-view-cliente.component';
+import { IgluCategoriaAdminComponent } from './iglu-categoria-admin/iglu-categoria-admin.component';
+import { IgluProductoAdminComponent } from './iglu-producto-admin/iglu-producto-admin.component';
+import { IgluEmpleadoAdminComponent } from './iglu-empleado-admin/iglu-empleado-admin.component';
 
 
 @NgModule({
@@ -60,7 +63,10 @@ import { IgluViewClienteComponent } from './iglu-view-cliente/iglu-view-cliente.
     IgluCajaModalComponent,
     IgluViewAdminComponent,
     IgluCajaStatusComponent,
-    IgluViewClienteComponent
+    IgluViewClienteComponent,
+    IgluCategoriaAdminComponent,
+    IgluProductoAdminComponent,
+    IgluEmpleadoAdminComponent
   ],
   entryComponents: [
     IgluConfirmarPedidoDialogComponent,
