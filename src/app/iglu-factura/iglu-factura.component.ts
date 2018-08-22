@@ -4,6 +4,10 @@ import { PedidoDataService } from '../pedido-data.service';
 import { Pedido } from '../pedido.model';
 import { ProductoDataService } from '../producto-data.service';
 import { Producto } from '../producto.model';
+import { CajaDataService } from '../caja-data.service';
+import { Caja } from '../caja.model';
+import { Factura, Clientes, Renglon } from '../factura.model';
+
 import { IgluConfirmarPedidoDialogComponent } from '../iglu-confirmar-pedido-dialog/iglu-confirmar-pedido-dialog.component';
 import { Observable } from 'rxjs';
 
@@ -16,13 +20,16 @@ export class IgluFacturaComponent implements OnInit {
 
   public productos: Producto[] = [];
   public prodObs: Observable<Producto[]>;
+  public cajaOpen: Caja;
+  public cajaOpenObs: Observable<Caja>;
   public pedidos: Pedido[];
 
 
   public constructor(
     public dialog: MatDialog,
     private pedidoDataService: PedidoDataService,
-    private productoDataService: ProductoDataService
+    private productoDataService: ProductoDataService,
+    private cajaDataService: CajaDataService
   ) { }
 
   public ngOnInit(): void{
@@ -31,6 +38,8 @@ export class IgluFacturaComponent implements OnInit {
       .subscribe(pedidos => this.pedidos = pedidos);
     this.prodObs = this.productoDataService.productos;
     this.prodObs.subscribe(prod => this.productos = prod);
+    this.cajaOpenObs = this.cajaDataService.cajaOpen;
+    this.cajaOpenObs.subscribe(caja => this.cajaOpen = caja);
   }
 
   private getDescuento(precio: number, descuento: number): number{
@@ -63,6 +72,12 @@ export class IgluFacturaComponent implements OnInit {
   }
 
   public openDialog(): void{
+    const cliente = {
+      Id_caja: this.cajaOpen.Id_caja,
+    } as Clientes;
+
+    console.log(cliente);
+
     const dialogRef = this.dialog.open(IgluConfirmarPedidoDialogComponent, {
       data: {
         pedido: this.pedidos.find(pedido => pedido.active)

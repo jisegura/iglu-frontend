@@ -9,3 +9,8 @@ export class Empleado {
     this.LastName = apellido;
   }
 }
+
+export class EmpleadoActivo {
+  active: boolean;
+  Id_empleado: number;
+}
