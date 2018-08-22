@@ -47,6 +47,8 @@ import { IgluEmpleadoAdminFormComponent } from './iglu-empleado-admin-form/iglu-
 import { IgluProductoAdminFormComponent } from './iglu-producto-admin-form/iglu-producto-admin-form.component';
 import { IgluCategoriaAdminFormComponent } from './iglu-categoria-admin-form/iglu-categoria-admin-form.component';
 import { IgluCajaAdminComponent } from './iglu-caja-admin/iglu-caja-admin.component';
+import { IgluRetidosModalComponent } from './iglu-retidos-modal/iglu-retidos-modal.component';
+import { IgluOtrosModalComponent } from './iglu-otros-modal/iglu-otros-modal.component';
 
 registerLocaleData(localeEsAr);
 
@@ -73,7 +75,9 @@ registerLocaleData(localeEsAr);
     IgluEmpleadoAdminFormComponent,
     IgluProductoAdminFormComponent,
     IgluCategoriaAdminFormComponent,
-    IgluCajaAdminComponent
+    IgluCajaAdminComponent,
+    IgluRetidosModalComponent,
+    IgluOtrosModalComponent
   ],
   entryComponents: [
     IgluConfirmarPedidoDialogComponent,
