@@ -28,21 +28,3 @@ export class TablaProducto {
   cant: number;
   image: string;
 }
-
-export class Factura {
-  Id_factura
-  Id_caja
-  Id_empleado
-  Fecha
-  Precio
-  Comentario
-}
-
-export class Renglon {
-  Id_renglon
-  Id_facrura
-  Id_producto
-  Cantidad
-  Precio
-  Descuento
-}

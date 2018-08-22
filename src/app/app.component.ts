@@ -5,6 +5,7 @@ import { ViewsService, VistaActive } from './views.service';
 import { ProductoDataService } from './producto-data.service';
 import { CategoriaDataService } from './categoria-data.service';
 import { EmpleadoDataService } from './empleado-data.service';
+import { CajaDataService } from './caja-data.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit {
     private viewsService: ViewsService,
     private productoDataService: ProductoDataService,
     private categoriaDataService: CategoriaDataService,
-    private empleadoDataService: EmpleadoDataService
+    private empleadoDataService: EmpleadoDataService,
+    private cajaDataService: CajaDataService
   ) { }
 
   public ngOnInit(): void{
@@ -31,6 +33,7 @@ export class AppComponent implements OnInit {
     this.categoriaDataService.loadAll();
     this.productoDataService.loadAll();
     this.empleadoDataService.loadAll();
+    this.cajaDataService.loadCajaOpen();
   }
 
   public isViewCliente(): boolean{

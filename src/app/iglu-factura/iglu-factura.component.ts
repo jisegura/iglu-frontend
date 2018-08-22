@@ -5,6 +5,7 @@ import { Pedido } from '../pedido.model';
 import { ProductoDataService } from '../producto-data.service';
 import { Producto } from '../producto.model';
 import { IgluConfirmarPedidoDialogComponent } from '../iglu-confirmar-pedido-dialog/iglu-confirmar-pedido-dialog.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-iglu-factura',
@@ -14,6 +15,7 @@ import { IgluConfirmarPedidoDialogComponent } from '../iglu-confirmar-pedido-dia
 export class IgluFacturaComponent implements OnInit {
 
   public productos: Producto[] = [];
+  public prodObs: Observable<Producto[]>;
   public pedidos: Pedido[];
 
 
@@ -27,9 +29,8 @@ export class IgluFacturaComponent implements OnInit {
     this.pedidoDataService
       .getPedidos()
       .subscribe(pedidos => this.pedidos = pedidos);
-    this.productoDataService
-      .getProductos()
-      .subscribe(productos => this.productos = productos);
+    this.prodObs = this.productoDataService.productos;
+    this.prodObs.subscribe(prod => this.productos = prod);
   }
 
   private getDescuento(precio: number, descuento: number): number{

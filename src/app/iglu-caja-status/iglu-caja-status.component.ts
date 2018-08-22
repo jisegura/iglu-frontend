@@ -22,7 +22,6 @@ export class IgluCajaStatusComponent implements OnInit {
 
   ngOnInit() {
     this.cajaOpen = this.cadaDataService.cajaOpen;
-    this.cadaDataService.loadCajaOpen();
     this.viewsService
       .getAdminVistaActive()
       .subscribe(viewAdminActive => this.viewAdminActive = viewAdminActive);

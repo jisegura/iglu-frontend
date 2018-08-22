@@ -1,27 +1,25 @@
 <div class="contenedor-caja">
-  <ng-container *ngIf="caja">
-    <ng-container *ngIf="cajaOpen | async; let _caja">
-      <mat-list>
-        <h3 mat-header>Caja #{{_caja.Id_caja}}</h3>
-        <div class="col-6 datos-caja">
-          <mat-list-item>
-            <mat-icon mat-list-icon>today</mat-icon>
-            <p mat-line>{{_caja.HoraInicio | date : 'EEEE, MMMM d, y, h:mm:ss a'}}</p>
-            <p mat-line>{{_caja.HoraInicio | date : 'EEEE, MMMM d, y, h:mm:ss a'}}</p>
-          </mat-list-item>
-        </div>
-        <div class="col-6 datos-caja">
-          <mat-list-item>
-            <mat-icon mat-list-icon>local_atm</mat-icon>
-            <p mat-line>{{_caja.Inicio | currency : "ARS"}}</p>
-          </mat-list-item>
-        </div>
-      </mat-list>
-    </ng-container>
+ 
+  <ng-container *ngIf="cajaOpen | async; let _caja">
+    <mat-list>
+      <h3 mat-header>Caja #{{_caja.Id_caja}}</h3>
+      <div class="col-6 datos-caja">
+        <mat-list-item>
+          <mat-icon mat-list-icon>today</mat-icon>
+          <p mat-line>{{_caja.HoraInicio | date : 'EEEE, MMMM d, y, h:mm:ss a'}}</p>
+          <p *ngIf="!caja" mat-line>{{_caja.HoraInicio | date : 'EEEE, MMMM d, y, h:mm:ss a'}}</p>
+        </mat-list-item>
+      </div>
+      <div class="col-6 datos-caja">
+        <mat-list-item>
+          <mat-icon mat-list-icon>local_atm</mat-icon>
+          <p mat-line>{{_caja.Inicio | currency : "ARS"}}</p>
+          <p *ngIf="!caja" mat-line>{{_caja.Inicio | currency : "ARS"}}</p>
+        </mat-list-item>
+      </div>
+    </mat-list>
   </ng-container>
-  <ng-container *ngIf="!caja">
-    todas las cajas
-  </ng-container>
+
 
   <div class="row">
     <mat-form-field class="col-6">
@@ -44,7 +42,45 @@
 
   <div class="row">
     <div class="col-12 box-facturas">
-      
+      <div>CLIENTES</div>
+      <ng-container *ngFor="let cliente of clientes">
+        <div>1: {{cliente.Id_factura}}</div>
+        <div>2: {{cliente.Id_caja}}</div>
+        <div>3: {{cliente.Id_empleado}}</div>
+        <div>4: {{cliente.Fecha}}</div>
+        <div>5: {{cliente.Precio}}</div>
+        <div>6: {{cliente.ComentarioBaja}}</div>
+        <div>7: {{cliente.Descuento}}</div>
+        <div>8: {{cliente.FormaDePago}}</div>
+        <div>9: {{cliente.Renglones}}</div>
+        <ng-container *ngFor="let reg of cliente.Renglones">
+          <div>9.1: {{reg.Id_renglon}}</div>
+          <div>9.2: {{reg.Id_producto}}</div>
+          <div>9.3: {{reg.Id_factura}}</div>
+          <div>9.4: {{reg.Cantidad}}</div>
+          <div>9.5: {{reg.Precio}}</div>
+          <div>9.6: {{reg.Descuento}}</div>
+        </ng-container>
+      </ng-container>
+      <div>RETIROS</div>
+      <ng-container *ngFor="let retiro of retiros">
+        <div>1: {{retiro.Id_factura}}</div>
+        <div>2: {{retiro.Id_caja}}</div>
+        <div>3: {{retiro.Id_empleado}}</div>
+        <div>4: {{retiro.Fecha}}</div>
+        <div>5: {{retiro.Precio}}</div>
+        <div>6: {{retiro.ComentarioBaja}}</div>
+      </ng-container>
+      <div>OTROS</div>
+      <ng-container *ngFor="let otro of otros">
+        <div>1: {{otro.Id_factura}}</div>
+        <div>2: {{otro.Id_caja}}</div>
+        <div>3: {{otro.Id_empleado}}</div>
+        <div>4: {{otro.Fecha}}</div>
+        <div>5: {{otro.Precio}}</div>
+        <div>6: {{otro.ComentarioBaja}}</div>
+        <div>7: {{otro.Comentario}}</div>
+      </ng-container>
     </div>
   </div>
 

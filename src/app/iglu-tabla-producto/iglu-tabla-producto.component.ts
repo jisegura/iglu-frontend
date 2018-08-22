@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ProductoDataService } from '../producto-data.service';
 import { Producto, TablaProducto } from '../producto.model';
 import { Pedido } from '../pedido.model';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class IgluTablaProductoComponent implements OnInit {
   @Input() public col: number;
   @Input() public pedido: Pedido;
   public productos: Producto[];
+  public prodObs: Observable<Producto[]>
   public tablaProductos: TablaProducto[][];
 
   public constructor(
@@ -22,9 +24,8 @@ export class IgluTablaProductoComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void{
-    this.productoDataService
-      .getProductos()
-      .subscribe(productos => this.productos = productos);
+    this.prodObs = this.productoDataService.productos;
+    this.prodObs.subscribe(prod => this.productos = prod);
     this.crearTabla();
   }
 
