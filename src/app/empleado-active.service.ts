@@ -7,11 +7,14 @@ import { Observable, of } from 'rxjs';
 })
 export class EmpleadoActiveService {
 
-  public empleado: EmpleadoActivo[] = [];
+  public empleado: EmpleadoActivo = {
+  	active: false,
+  	Id_empleado: 0
+  };
 
   constructor() { }
 
-  public getEmpleados(): Observable<EmpleadoActivo[]>{
+  public getEmpleados(): Observable<EmpleadoActivo>{
     return of(this.empleado);
   }
 }

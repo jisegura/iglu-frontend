@@ -2,7 +2,7 @@
   <div class="bgc-empleado">
 
   <mat-radio-group>
-    <mat-radio-button *ngFor="let empl of empleados | async" color="primary" value="{{empl.Id_empleado}}"><span>{{empl.FirstName}}</span></mat-radio-button>
+    <mat-radio-button *ngFor="let empl of empleados" color="primary" value="{{empl.Id_empleado}}" (change)="switchActive($event)"><span>{{empl.FirstName}}</span></mat-radio-button>
   </mat-radio-group>
 
   </div>

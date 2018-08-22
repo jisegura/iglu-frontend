@@ -12,8 +12,9 @@ import { Observable } from 'rxjs';
 })
 export class IgluEmpleadoListComponent implements OnInit {
 
-  public empleados: Observable<Empleado[]>;
-  public empleadoActivo: EmpleadoActivo[];
+  public empleadosObs: Observable<Empleado[]>;
+  public empleados: Empleado[];
+  public empleadoActivo: EmpleadoActivo;
 
   constructor(
   	private empleadoDataService: EmpleadoDataService,
@@ -21,8 +22,14 @@ export class IgluEmpleadoListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.empleados = this.empleadoDataService.empleados;
+    this.empleadosObs = this.empleadoDataService.empleados;
+    this.empleadosObs.subscribe(empl => this.empleados = empl);
     this.empleadoActiveService.getEmpleados().subscribe(empl => this.empleadoActivo = empl);
+  }
+
+  public switchActive(event): void{
+    this.empleadoActivo.active = true;
+    this.empleadoActivo.Id_empleado = event.value;
   }
 
 }

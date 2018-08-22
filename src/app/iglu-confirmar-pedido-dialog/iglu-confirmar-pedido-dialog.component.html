@@ -7,18 +7,20 @@
       <div class="row">
         <app-iglu-tabla-producto [fila]="2" [col]="6" [pedido]="data.pedido"></app-iglu-tabla-producto>
         <div class="show-total">
-          <span>{{getTotalAPagar() | currency}}</span>
+          <span>{{data.factura.Precio | currency : "ARS"}}</span>
         </div>
       </div>
       <div class="row pradio">
-        <mat-radio-group class="w100">
-          <mat-radio-button class="col-4" color="primary" value="1">Efectico</mat-radio-button>
-          <mat-radio-button class="col-4" color="primary" value="2">Debito</mat-radio-button>
-          <mat-radio-button class="col-4" color="primary" value="3">Credito</mat-radio-button>
+        <mat-radio-group class="col-8">
+          <mat-radio-button class="col-4 mpago" color="primary" value="1" (change)="metodoDePago($event)">Efectico</mat-radio-button>
+          <mat-radio-button class="col-4 mpago" color="primary" value="2" (change)="metodoDePago($event)">Debito</mat-radio-button>
+          <mat-radio-button class="col-4 mpago" color="primary" value="3" (change)="metodoDePago($event)">Credito</mat-radio-button>
         </mat-radio-group>
-      </div>
-      <div class="row pcheck">
-        <mat-checkbox class="col-12" color="primary">Facurar ?</mat-checkbox>
+        <div class="col-4 cambio">
+          <span>Calcular cambio</span>
+          <input type="number" (keyup)="showCambio($event)">
+          <span class="showcambio">{{cambio | currency : "ARS"}}</span>
+        </div>
       </div>
     </mat-dialog-content>
   </div>
@@ -27,7 +29,7 @@
       <div class="row">
         <button mat-raised-button mat-dialog-close>Cancelar</button>
         <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-        <button mat-raised-button color="primary"s [mat-dialog-close]="true">Facturar</button>
+        <button mat-raised-button color="primary"s [mat-dialog-close]="true" [disabled]="isDisabled" (click)="sendFactura()">Aceptar</button>
       </div>
     </mat-dialog-actions>
   </div>

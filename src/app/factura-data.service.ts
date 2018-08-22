@@ -51,21 +51,21 @@ export class FacturaDataService {
   }
 
   public addClienteFactura(cliente: Clientes): Observable<Clientes>{
-    const url = `${this.facturaUrl}"clientes/"`;
+    const url = `${this.facturaUrl}clientes/`;
     return this.http.post<Clientes>(url, cliente, httpOptions).pipe(
       catchError(this.handleError('addClienteFactura', cliente))
     );
   }
 
   public addRetirosFactura(retiro: Retiros): Observable<Retiros>{
-    const url = `${this.facturaUrl}"retiros/"`;
+    const url = `${this.facturaUrl}retiros/`;
     return this.http.post<Clientes>(url, retiro, httpOptions).pipe(
       catchError(this.handleError('addRetiroFactura', retiro))
     );
   }
 
   public addOtrosFactura(otro: Otros): Observable<Otros>{
-    const url = `${this.facturaUrl}"otros/"`;
+    const url = `${this.facturaUrl}otros/`;
     return this.http.post<Otros>(url, otro, httpOptions).pipe(
       catchError(this.handleError('addOtroFactura', otro))
     );

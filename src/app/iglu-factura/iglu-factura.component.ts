@@ -6,6 +6,8 @@ import { ProductoDataService } from '../producto-data.service';
 import { Producto } from '../producto.model';
 import { CajaDataService } from '../caja-data.service';
 import { Caja } from '../caja.model';
+import { EmpleadoActiveService } from '../empleado-active.service';
+import { EmpleadoActivo } from '../empleado.model';
 import { Factura, Clientes, Renglon } from '../factura.model';
 
 import { IgluConfirmarPedidoDialogComponent } from '../iglu-confirmar-pedido-dialog/iglu-confirmar-pedido-dialog.component';
@@ -23,13 +25,15 @@ export class IgluFacturaComponent implements OnInit {
   public cajaOpen: Caja;
   public cajaOpenObs: Observable<Caja>;
   public pedidos: Pedido[];
+  public emplActivo: EmpleadoActivo;
 
 
   public constructor(
     public dialog: MatDialog,
     private pedidoDataService: PedidoDataService,
     private productoDataService: ProductoDataService,
-    private cajaDataService: CajaDataService
+    private cajaDataService: CajaDataService,
+    private empleadoActiveService: EmpleadoActiveService
   ) { }
 
   public ngOnInit(): void{
@@ -40,6 +44,7 @@ export class IgluFacturaComponent implements OnInit {
     this.prodObs.subscribe(prod => this.productos = prod);
     this.cajaOpenObs = this.cajaDataService.cajaOpen;
     this.cajaOpenObs.subscribe(caja => this.cajaOpen = caja);
+    this.empleadoActiveService.getEmpleados().subscribe(empl => this.emplActivo = empl);
   }
 
   private getDescuento(precio: number, descuento: number): number{
@@ -72,15 +77,31 @@ export class IgluFacturaComponent implements OnInit {
   }
 
   public openDialog(): void{
-    const cliente = {
-      Id_caja: this.cajaOpen.Id_caja,
-    } as Clientes;
+    let renglon: Renglon[] = [];
 
-    console.log(cliente);
+    this.pedidos.find(pedido => pedido.active).productos.forEach(producto => {
+      let reng: Renglon = new Renglon();
+      reng.Id_producto = producto.id;
+      reng.Cantidad = producto.cant;
+      reng.Precio = this.getPriceProducto(producto.id, producto.cant, producto.desc);
+      reng.Descuento = +producto.desc;
+      renglon.push(reng);
+    })
+
+    let cliente = {
+      Id_caja: this.cajaOpen.Id_caja,
+      Id_empleado: +this.emplActivo.Id_empleado,
+      Precio: this.getTotalCost(),
+      ComentarioBaja: "",
+      Descuento: +this.pedidos.find(pedido => pedido.active).desc_total,
+      FormaDePago: 0,
+      Renglones: renglon,
+    } as Clientes;
 
     const dialogRef = this.dialog.open(IgluConfirmarPedidoDialogComponent, {
       data: {
-        pedido: this.pedidos.find(pedido => pedido.active)
+        pedido: this.pedidos.find(pedido => pedido.active),
+        factura: cliente
       }
     });
 
