@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Otros } from '../factura.model';
+import { Otros, FacturaGeneral } from '../factura.model';
 import { CajaDataService } from '../caja-data.service';
 import { Caja } from '../caja.model';
 import { EmpleadoActiveService } from '../empleado-active.service';
@@ -64,11 +64,28 @@ export class IgluOtrosModalComponent implements OnInit {
       Id_caja: this.cajaOpen.Id_caja,
       Id_empleado: +this.emplActivo.Id_empleado,
       Precio: this.retiro,
-      Comentario: this.coment
-    } as Otros;
+      ComentarioBaja: "",
+      Descuento: {
+        Int64: 0,
+        Valid: false
+      },
+      FormaDePago: {
+        Int64: 0,
+        Valid: false
+      },
+      Renglones: [],
+      Comentario: {
+        String: this.coment,
+        Valid: true
+      }
+    } as FacturaGeneral;
 
-    console.log(otro);
-    this.facturaDataService.addOtrosFactura(otro).subscribe(producto => this.httpSnackBarService.openSnackBar("Factura Otros", "OK"), error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
+    this.facturaDataService
+      .addOtrosFactura(otro)
+      .subscribe(producto => {
+        this.httpSnackBarService.openSnackBar("Factura Otros", "OK");
+        this.facturaDataService.loadAllLastFacturas(this.cajaOpen.Id_caja);
+      }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
 }

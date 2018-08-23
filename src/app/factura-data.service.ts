@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Clientes, Retiros, Otros, FacturaByIdCaja, Factura } from './factura.model';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 import { HttpSnackBarService } from './http-snack-bar.service';
@@ -20,13 +20,29 @@ export class FacturaDataService {
   private facturaUrl: string;
   private handleError: HandleError;
 
+  public lastFacturas: Observable<Factura[]>;
+  private _lastFacturas: BehaviorSubject<Factura[]>;
+  private dataStore: {
+    lastFacturas: Factura[]
+  };
+
   constructor(
   	private http: HttpClient,
     public httpErrorHandler: HttpErrorHandler,
     public httpSnackBarService: HttpSnackBarService
   ) {
     this.facturaUrl = "factura/";
-    this.handleError = httpErrorHandler.createHandleError('CajaService');
+    this.handleError = httpErrorHandler.createHandleError('FacturaService');
+    this.dataStore = { lastFacturas: [] };
+    this._lastFacturas = <BehaviorSubject<Factura[]>> new BehaviorSubject([]);
+    this.lastFacturas = this._lastFacturas.asObservable();
+  }
+
+  public loadAllLastFacturas(id: number): void{
+    this.getLastFacturas(id).subscribe(facturas => {
+      this.dataStore.lastFacturas = facturas;
+      this._lastFacturas.next(Object.assign({}, this.dataStore).lastFacturas);
+    }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
   public getClientesByIdCaja(id: number): Observable<Clientes[]>{
@@ -74,6 +90,13 @@ export class FacturaDataService {
   public updateFactura(factura: Factura): Observable<Factura>{
     return this.http.put<Factura>(this.facturaUrl, factura, httpOptions).pipe(
       catchError(this.handleError('updateFactura', factura))
+    );
+  }
+
+  public getLastFacturas(id: number): Observable<Factura[]>{
+    const url = `${this.facturaUrl}ultimas/${id}`;
+    return this.http.get<Factura[]>(url).pipe(
+      catchError(this.handleError('getLastFacturas', []))
     );
   }
 

@@ -8,7 +8,7 @@ import { CajaDataService } from '../caja-data.service';
 import { Caja } from '../caja.model';
 import { EmpleadoActiveService } from '../empleado-active.service';
 import { EmpleadoActivo } from '../empleado.model';
-import { Factura, Clientes, Renglon } from '../factura.model';
+import { Factura, Clientes, Renglon, FacturaGeneral } from '../factura.model';
 
 import { IgluConfirmarPedidoDialogComponent } from '../iglu-confirmar-pedido-dialog/iglu-confirmar-pedido-dialog.component';
 import { Observable } from 'rxjs';
@@ -93,10 +93,20 @@ export class IgluFacturaComponent implements OnInit {
       Id_empleado: +this.emplActivo.Id_empleado,
       Precio: this.getTotalCost(),
       ComentarioBaja: "",
-      Descuento: +this.pedidos.find(pedido => pedido.active).desc_total,
-      FormaDePago: 0,
+      Descuento: {
+        Int64: +this.pedidos.find(pedido => pedido.active).desc_total,
+        Valid: true
+      },
+      FormaDePago: {
+        Int64: 0,
+        Valid: true
+      },
       Renglones: renglon,
-    } as Clientes;
+      Comentario: {
+        String: "",
+        Valid: false
+      }
+    } as FacturaGeneral;
 
     const dialogRef = this.dialog.open(IgluConfirmarPedidoDialogComponent, {
       data: {

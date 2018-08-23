@@ -8,6 +8,6 @@ export class Pedido {
   active: boolean;
   numero: number;
   productos: ProductoPedido[];
-  desc_total: number = 0;
+  desc_total: number = 0.0;
   total: number;
 }

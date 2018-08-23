@@ -14,7 +14,7 @@ export class VistaAdmin {
 })
 export class ViewsService {
 
-  public vistaActive: VistaActive = { active: "CLIENTE" };
+  public vistaActive: VistaActive = { active: "ADMIN" };
   public vistaAdminActive: VistaAdmin = { active: "NONE" };
 
   public constructor() { }

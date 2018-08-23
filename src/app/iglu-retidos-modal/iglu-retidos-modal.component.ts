@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Retiros } from '../factura.model';
+import { Retiros, FacturaGeneral } from '../factura.model';
 import { CajaDataService } from '../caja-data.service';
 import { Caja } from '../caja.model';
 import { EmpleadoActiveService } from '../empleado-active.service';
@@ -48,9 +48,28 @@ export class IgluRetidosModalComponent implements OnInit {
       Id_caja: this.cajaOpen.Id_caja,
       Id_empleado: +this.emplActivo.Id_empleado,
       Precio: this.retiro,
-    } as Retiros;
+      ComentarioBaja: "",
+      Descuento: {
+        Int64: 0,
+        Valid: false
+      },
+      FormaDePago: {
+        Int64: 0,
+        Valid: false
+      },
+      Renglones: [],
+      Comentario: {
+        String: "",
+        Valid: false
+      }
+    } as FacturaGeneral;
 
-    this.facturaDataService.addRetirosFactura(ret).subscribe(producto => this.httpSnackBarService.openSnackBar("Factura Retiro", "OK"), error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
+    this.facturaDataService
+      .addRetirosFactura(ret)
+      .subscribe(producto => {
+        this.httpSnackBarService.openSnackBar("Factura Retiro", "OK");
+        this.facturaDataService.loadAllLastFacturas(this.cajaOpen.Id_caja);
+      }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
 }
