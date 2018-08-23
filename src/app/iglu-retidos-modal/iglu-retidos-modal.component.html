@@ -1,3 +1,21 @@
-<p>
-  iglu-retidos-modal works!
-</p>
+<div class="modal-container">
+  <div class="modal-header">
+    <h2 mat-dialog-title>Retiros</h2>
+  </div>
+  <div class="modal-body">
+    <mat-dialog-content>
+      <mat-form-field>
+        <input matInput [(ngModel)]="retiro" placeholder="cantidad a retirar" min="1" type="number" (keyup)="checkValor($event)">
+      </mat-form-field>
+    </mat-dialog-content>
+  </div>
+  <div class="modal-footer">
+    <mat-dialog-actions>
+      <div class="row">
+        <button mat-raised-button mat-dialog-close>Cancelar</button>
+        <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+        <button mat-raised-button color="primary"s [mat-dialog-close]="true" [disabled]="isDisabled" (click)="sendFactura()">Aceptar</button>
+      </div>
+    </mat-dialog-actions>
+  </div>
+</div>

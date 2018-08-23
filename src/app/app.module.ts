@@ -81,7 +81,9 @@ registerLocaleData(localeEsAr);
   ],
   entryComponents: [
     IgluConfirmarPedidoDialogComponent,
-    IgluCajaModalComponent
+    IgluCajaModalComponent,
+    IgluRetidosModalComponent,
+    IgluOtrosModalComponent
   ],
   imports: [
     BrowserModule,
