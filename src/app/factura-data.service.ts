@@ -45,6 +45,13 @@ export class FacturaDataService {
     }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
+  public getAllFacturasByIdCaja(id: number): Observable<Factura[]>{
+    const url = `${this.facturaUrl}all/${id}`;
+    return this.http.get<Factura[]>(url).pipe(
+      catchError(this.handleError('getAllFactirasByIdCaja', []))
+    );
+  }
+
   public getClientesByIdCaja(id: number): Observable<Clientes[]>{
     const url = `${this.facturaUrl}clientes/${id}`;
     return this.http.get<Clientes[]>(url).pipe(

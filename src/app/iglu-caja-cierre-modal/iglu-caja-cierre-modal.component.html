@@ -1,0 +1,44 @@
+<div class="modal-container">
+  <div class="modal-header">
+    <h2 mat-dialog-title>Cierre De Caja</h2>
+  </div>
+  <div class="modal-body">
+    <mat-dialog-content>
+      <mat-list role="list">
+        <mat-list-item role="listitem">
+          <div class="col-6">Inicio de caja</div>
+          <div class="col-6">{{data.cajaInicio | currency : 'ARS'}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem">
+          <div class="col-6">Ingresos</div>
+          <div class="col-6 gpos">{{data.ingresos | currency : 'ARS'}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem">
+          <div class="col-6">Retiros</div>
+          <div class="col-6 gneg">{{data.retiros | currency : 'ARS'}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem">
+          <div class="col-6">Gastos</div>
+          <div class="col-6 gneg">{{data.gastos | currency : 'ARS'}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item class="totalf" role="listitem">
+          <div class="col-6">Total</div>
+          <div class="col-6">{{data.cajaFin | currency : 'ARS'}}</div>
+        </mat-list-item>
+      </mat-list>
+    </mat-dialog-content>
+  </div>
+  <div class="modal-footer">
+    <mat-dialog-actions>
+      <div class="row">
+        <button mat-raised-button mat-dialog-close>Cancelar</button>
+        <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+        <button mat-raised-button color="primary" [mat-dialog-close]="true">Aceptar</button>
+      </div>
+    </mat-dialog-actions>
+  </div>
+</div>

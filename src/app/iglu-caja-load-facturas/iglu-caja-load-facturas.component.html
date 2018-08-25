@@ -1,0 +1,75 @@
+<div class="row">
+  <mat-form-field class="col-6">
+    <mat-select placeholder="Seleccionar Tipo de Factura" [(value)]="selectedFact" (selectionChange)="onSelectChange()">
+      <mat-option value="all">Todas</mat-option>
+      <mat-option value="clientes">Clientes</mat-option>
+      <mat-option value="retiros">Retiros</mat-option>
+      <mat-option value="gastos">Gastos</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="col-6">
+    <mat-select placeholder="Seleccionar Turno" [(value)]="selectedEmpl" (selectionChange)="onSelectChange()">
+      <mat-option value="all">Todos</mat-option>
+      <mat-option *ngFor="let empl of empleados" value="{{empl.Id_empleado}}">{{getEmpleadoName(empl.Id_empleado)}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div class="box-facturas">
+  <mat-nav-list>
+    <ng-container *ngFor="let fact of facturas">
+      <ng-container *ngIf="filtroEmpl(fact) && filtroFact(fact)">
+        <ng-container *ngIf="isFactClientes(fact)">
+          <a mat-list-item href="#">
+            <div class="col-4 colum1">
+              <h4 mat-line>Factura</h4>
+              <p mat-line>{{fact.Fecha | date : 'mediumTime'}}</p>
+            </div>
+            <div class="col-4 colum2">
+              <p mat-line>{{getEmpleadoName(fact.Id_empleado)}}</p>
+              <span mat-line>{{getFacturaBaja(fact.ComentarioBaja)}}</span>
+            </div>
+            <div class="col-4 colum3">
+              <h4>{{fact.Precio | currency : 'ARS'}}</h4>
+            </div>
+          </a>
+        </ng-container>
+        <ng-container *ngIf="isFactRetiros(fact)">
+          <a mat-list-item href="#">
+            <div class="col-4 colum1">
+              <h4 mat-line>Retiro</h4>
+              <p mat-line>{{fact.Fecha | date : 'mediumTime'}}</p>
+            </div>
+            <div class="col-4 colum2">
+              <p mat-line>{{getEmpleadoName(fact.Id_empleado)}}</p>
+              <span mat-line>{{getFacturaBaja(fact.ComentarioBaja)}}</span>
+            </div>
+            <div class="col-4 colum3">
+              <h4>{{fact.Precio | currency : 'ARS'}}</h4>
+            </div>
+          </a>
+        </ng-container>
+        <ng-container *ngIf="isFactOtros(fact)">
+          <a mat-list-item href="#">
+            <div class="col-4 colum1">
+              <h4 mat-line>Gastos</h4>
+              <p mat-line>{{fact.Fecha | date : 'mediumTime'}}</p>
+            </div>
+            <div class="col-4 colum2">
+              <p mat-line>{{getEmpleadoName(fact.Id_empleado)}}</p>
+              <span mat-line>{{getFacturaBaja(fact.ComentarioBaja)}}</span>
+            </div>
+            <div class="col-4 colum3">
+              <h4>{{fact.Precio | currency : 'ARS'}}</h4>
+            </div>
+          </a>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </mat-nav-list>
+</div>
+
+<div class="row rowTotal">
+  <button mat-raised-button color="primary" (click)="openDialog()">Cerrar Caja</button>
+</div>

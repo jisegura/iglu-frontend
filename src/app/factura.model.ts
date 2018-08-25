@@ -5,6 +5,19 @@ export class Factura {
   Fecha: string;
   Precio: number;
   ComentarioBaja: string;
+  Descuento: {
+    Int64: number,
+    Valid: boolean
+  };
+  FormaDePago: {
+    Int64: number,
+    Valid: boolean
+  };
+  Renglones: Renglon[];
+  Comentario: {
+    String: string,
+    Valid: boolean
+  }
 }
 
 export class Renglon {
@@ -25,27 +38,13 @@ export class Retiros extends Factura {
 }
 
 export class Otros extends Factura {
-	Comentario: {
-    String: string,
-    Valid: boolean
-  }
+
 }
 
 export class Clientes extends Factura {
-  Descuento: {
-    Int64: number,
-    Valid: boolean
-  };
-  FormaDePago: {
-    Int64: number,
-    Valid: boolean
-  };
-  Renglones: Renglon[];
+
 }
 
-export class FacturaGeneral extends Clientes {
-  Comentario: {
-    String: string,
-    Valid: boolean
-  }
+export class FacturaGeneral extends Factura {
+
 }
