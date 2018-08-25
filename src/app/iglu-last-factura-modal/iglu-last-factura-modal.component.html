@@ -1,0 +1,48 @@
+<div class="modal-container">
+  <div class="modal-header">
+    <h2 mat-dialog-title>{{getTitulo()}}</h2>
+  </div>
+  <div class="modal-body">
+    <mat-dialog-content>
+      <div class="col-12">
+        <span>Hora: {{data.fact.Fecha | date : 'mediumTime'}}</span>
+      </div>
+      <ng-container *ngFor="let prod of data.fact.Renglones">
+        <div class="col-12">
+          <span class="col-3">{{getProductoName(prod)}}</span>
+          <span class="col-3">{{prod.Cantidad}}</span>
+          <span class="col-3">{{prod.Descuento}}</span>
+          <span class="col-3">{{prod.Precio}}</span>
+        </div>
+      </ng-container>
+      <ng-container>
+        <div class="col-12">
+          <span *ngIf="data.fact.FormaDePago.Valid" class="col-4">{{getFormaDePago(data.fact.FormaDePago.Int64)}}</span>
+          <span *ngIf="data.fact.Descuento.Valid" class="col-4">{{data.fact.Descuento.Int64}}</span>
+          <span *ngIf="data.fact.Comentario.Valid" class="col-8">{{data.fact.Comentario.String}}</span>
+          <span class="col-4">{{data.fact.Precio}}</span>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="data.valid">
+        <mat-form-field class="col-12">
+          <textarea matInput #message maxlength="255" [(ngModel)]="coment" placeholder="Deja un comentario para dar de baja" (keyup)="checkArea($event)"></textarea>
+          <mat-hint align="end">{{message.value.length}} / 255</mat-hint>
+        </mat-form-field>
+      </ng-container>
+      <ng-container *ngIf="!data.valid">
+        <ng-container *ngIf="haveComentBaja(data.fact.ComentarioBaja)">
+          <span>Comentario baja: {{data.fact.ComentarioBaja}}</span>
+        </ng-container>
+      </ng-container>
+    </mat-dialog-content>
+  </div>
+  <div class="modal-footer">
+    <mat-dialog-actions>
+      <div class="row">
+        <button mat-raised-button mat-dialog-close>Cancelar</button>
+        <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+        <button mat-raised-button color="primary" [disabled]="isDisabled" [mat-dialog-close]="true">Dar de baja</button>
+      </div>
+    </mat-dialog-actions>
+  </div>
+</div>

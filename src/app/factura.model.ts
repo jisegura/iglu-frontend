@@ -1,7 +1,10 @@
 export class Factura {
   Id_factura: number;
   Id_caja: number;
-  Id_empleado: number;
+  Id_empleado: {
+    Int64: number,
+    Valid: boolean
+  };
   Fecha: string;
   Precio: number;
   ComentarioBaja: string;
@@ -22,7 +25,10 @@ export class Factura {
 
 export class Renglon {
   Id_renglon: number;
-  Id_producto: number;
+  Id_producto: {
+    Int64: number,
+    Valid: boolean
+  };
   Id_factura: number;
   Cantidad: number;
   Precio: number;

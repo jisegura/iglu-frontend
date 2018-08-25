@@ -51,6 +51,8 @@ import { IgluRetidosModalComponent } from './iglu-retidos-modal/iglu-retidos-mod
 import { IgluOtrosModalComponent } from './iglu-otros-modal/iglu-otros-modal.component';
 import { IgluCajaLoadFacturasComponent } from './iglu-caja-load-facturas/iglu-caja-load-facturas.component';
 import { IgluCajaCierreModalComponent } from './iglu-caja-cierre-modal/iglu-caja-cierre-modal.component';
+import { IgluCajaAbrirModalComponent } from './iglu-caja-abrir-modal/iglu-caja-abrir-modal.component';
+import { IgluLastFacturaModalComponent } from './iglu-last-factura-modal/iglu-last-factura-modal.component';
 
 registerLocaleData(localeEsAr);
 
@@ -81,14 +83,18 @@ registerLocaleData(localeEsAr);
     IgluRetidosModalComponent,
     IgluOtrosModalComponent,
     IgluCajaLoadFacturasComponent,
-    IgluCajaCierreModalComponent
+    IgluCajaCierreModalComponent,
+    IgluCajaAbrirModalComponent,
+    IgluLastFacturaModalComponent
   ],
   entryComponents: [
     IgluConfirmarPedidoDialogComponent,
     IgluCajaModalComponent,
     IgluRetidosModalComponent,
     IgluOtrosModalComponent,
-    IgluCajaCierreModalComponent
+    IgluCajaCierreModalComponent,
+    IgluCajaAbrirModalComponent,
+    IgluLastFacturaModalComponent
   ],
   imports: [
     BrowserModule,

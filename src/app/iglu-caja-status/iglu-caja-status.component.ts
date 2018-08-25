@@ -3,6 +3,9 @@ import { CajaDataService } from '../caja-data.service';
 import { Caja } from '../caja.model';
 import { ViewsService, VistaAdmin } from '../views.service';
 import { Observable } from 'rxjs';
+import { MatDialog } from '@angular/material';
+import { IgluCajaAbrirModalComponent } from '../iglu-caja-abrir-modal/iglu-caja-abrir-modal.component';
+
 
 
 @Component({
@@ -16,6 +19,7 @@ export class IgluCajaStatusComponent implements OnInit {
   public viewAdminActive: VistaAdmin;
 
   constructor(
+    public dialog: MatDialog,
   	private cadaDataService: CajaDataService,
     private viewsService: ViewsService
   ) { }
@@ -33,6 +37,20 @@ export class IgluCajaStatusComponent implements OnInit {
 
   public showCajaOpen(): void{
     this.viewAdminActive.active = "CAJAOPEN";
+  }
+
+  public openDialog(): void{
+
+    const dialogRef = this.dialog.open(IgluCajaAbrirModalComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        let caja = {
+          Inicio: result
+        } as Caja
+        this.cadaDataService.create(caja);
+      }
+    });
   }
 
 }

@@ -62,7 +62,10 @@ export class IgluOtrosModalComponent implements OnInit {
   public sendFactura(): void{
     const otro = {
       Id_caja: this.cajaOpen.Id_caja,
-      Id_empleado: +this.emplActivo.Id_empleado,
+      Id_empleado: {
+        Int64: +this.emplActivo.Id_empleado,
+        Valid: true
+      },
       Precio: this.retiro,
       ComentarioBaja: "",
       Descuento: {

@@ -1,0 +1,19 @@
+<div class="modal-container">
+  <div class="modal-header">
+    <h2 mat-dialog-title>Abrir una caja</h2>
+  </div>
+  <div class="modal-body">
+    <mat-form-field>
+      <input matInput type="number" placeholder="Inicio de la caja" min="0" [(ngModel)]="inicio" (change)="onInicioInput()">
+    </mat-form-field>
+  </div>
+  <div class="modal-footer">
+    <mat-dialog-actions>
+      <div class="row">
+        <button mat-raised-button [mat-dialog-close]="undefined">Cancelar</button>
+        <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
+        <button mat-raised-button color="primary" [disabled]="isDisabled" [mat-dialog-close]="inicio">Aceptar</button>
+      </div>
+    </mat-dialog-actions>
+  </div>
+</div>

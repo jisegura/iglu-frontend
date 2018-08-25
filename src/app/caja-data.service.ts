@@ -60,9 +60,9 @@ export class CajaDataService {
   }
 
   public create(caja: Caja): void{
-    this.addCaja(caja).subscribe(caja => {
-      this.dataStore.cajas.push(caja);
-      this._cajas.next(Object.assign({}, this.dataStore).cajas);
+    this.abrirCaja(caja).subscribe(caja => {
+      this.dataStoreOpen.caja = caja;
+      this._cajaOpen.next(Object.assign({}, this.dataStoreOpen).caja);
       this.httpSnackBarService.openSnackBar("Caja.create", "OK");
     }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
@@ -107,9 +107,9 @@ export class CajaDataService {
     );
   }
 
-  public addCaja(caja: Caja): Observable<Caja>{
+  public abrirCaja(caja: Caja): Observable<Caja>{
     return this.http.post<Caja>(this.cajaUrl, caja, httpOptions).pipe(
-      catchError(this.handleError('addCaja', caja))
+      catchError(this.handleError('abrirCaja', caja))
     );
   }
 

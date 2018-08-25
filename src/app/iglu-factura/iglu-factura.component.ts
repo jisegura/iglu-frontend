@@ -81,7 +81,10 @@ export class IgluFacturaComponent implements OnInit {
 
     this.pedidos.find(pedido => pedido.active).productos.forEach(producto => {
       let reng: Renglon = new Renglon();
-      reng.Id_producto = producto.id;
+      reng.Id_producto = {
+        Int64: producto.id,
+        Valid: true
+      };
       reng.Cantidad = producto.cant;
       reng.Precio = this.getPriceProducto(producto.id, producto.cant, producto.desc);
       reng.Descuento = +producto.desc;
@@ -90,7 +93,10 @@ export class IgluFacturaComponent implements OnInit {
 
     let cliente = {
       Id_caja: this.cajaOpen.Id_caja,
-      Id_empleado: +this.emplActivo.Id_empleado,
+      Id_empleado: {
+        Int64: +this.emplActivo.Id_empleado,
+        Valid: true
+      },
       Precio: this.getTotalCost(),
       ComentarioBaja: "",
       Descuento: {

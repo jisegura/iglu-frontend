@@ -3,6 +3,8 @@ import { FacturaDataService } from '../factura-data.service';
 import { Factura, FacturaGeneral } from '../factura.model';
 import { CajaDataService } from '../caja-data.service';
 import { Caja } from '../caja.model';
+import { MatDialog } from '@angular/material';
+import { IgluLastFacturaModalComponent } from '../iglu-last-factura-modal/iglu-last-factura-modal.component';
 
 
 import { Observable } from 'rxjs';
@@ -22,6 +24,7 @@ export class IgluFacturaLastComponent implements OnInit {
   public lastValue: number = 0;
 
   constructor(
+    public dialog: MatDialog,
     private facturaDataService: FacturaDataService,
     private cajaDataService: CajaDataService
   ) { }
@@ -55,6 +58,30 @@ export class IgluFacturaLastComponent implements OnInit {
 
   public isFactOtros(factura: FacturaGeneral): boolean{
     return !factura.FormaDePago.Valid && !factura.Descuento.Valid && factura.Comentario.Valid;
+  }
+
+  public openDialog(factura: Factura): void{
+    let facTipo: number;
+
+    if (this.isFactClientes(factura)) {
+      facTipo = 1;
+    } else if (this.isFactRetiros(factura)) {
+      facTipo = 2;
+    } else if (this.isFactOtros(factura)) {
+      facTipo = 3;
+    }
+
+    const dialogRef = this.dialog.open(IgluLastFacturaModalComponent, {
+      data: {
+        tipo: facTipo,
+        valid: true,
+        fact: factura
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

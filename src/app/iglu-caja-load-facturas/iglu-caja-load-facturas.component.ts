@@ -10,8 +10,6 @@ import { IgluCajaCierreModalComponent } from '../iglu-caja-cierre-modal/iglu-caj
 
 
 
-
-
 @Component({
   selector: 'app-iglu-caja-load-facturas',
   templateUrl: './iglu-caja-load-facturas.component.html',
@@ -80,7 +78,7 @@ export class IgluCajaLoadFacturasComponent implements OnInit {
 
   public filtroEmpl(fact: Factura): boolean{
     if (this.selectedEmpl !== "all") {
-      return fact.Id_empleado === +this.selectedEmpl;
+      return fact.Id_empleado.Int64 === +this.selectedEmpl;
     }
     return true;
   }

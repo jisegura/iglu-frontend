@@ -11,7 +11,7 @@
       </ng-container>
       <ng-container *ngIf="!haveCajaOpen(_caja)">
         <span class="titulocaja">Cajas Cerradas</span>
-        <button mat-button>
+        <button mat-button (click)="openDialog()">
           <span>Abrir una Caja</span>
         </button>
       </ng-container>
