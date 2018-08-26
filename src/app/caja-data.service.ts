@@ -63,20 +63,15 @@ export class CajaDataService {
     this.abrirCaja(caja).subscribe(caja => {
       this.dataStoreOpen.caja = caja;
       this._cajaOpen.next(Object.assign({}, this.dataStoreOpen).caja);
-      this.httpSnackBarService.openSnackBar("Caja.create", "OK");
+      this.httpSnackBarService.openSnackBar("Abrir Caja", "OK");
     }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
   public update(caja: Caja): void{
-    this.updateCaja(caja).subscribe(caja => {
-      this.dataStore.cajas.forEach((item, index) => {
-        if (item.Id_caja === caja.Id_caja) {
-          this.dataStore.cajas[index] = caja;
-        }
-      });
-
-      this._cajas.next(Object.assign({}, this.dataStore).cajas);
-      this.httpSnackBarService.openSnackBar("Caja.update", "OK");
+    this.cerrarCaja(caja).subscribe(caja => {
+      this.dataStoreOpen.caja = {Id_caja: 0, Inicio: 0} as Caja;
+      this._cajaOpen.next(Object.assign({}, this.dataStoreOpen).caja);
+      this.httpSnackBarService.openSnackBar("Cierre Caja", "OK");
     }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
@@ -110,6 +105,12 @@ export class CajaDataService {
   public abrirCaja(caja: Caja): Observable<Caja>{
     return this.http.post<Caja>(this.cajaUrl, caja, httpOptions).pipe(
       catchError(this.handleError('abrirCaja', caja))
+    );
+  }
+
+  public cerrarCaja(caja: Caja): Observable<Caja>{
+    return this.http.put<Caja>(this.cajaUrl, caja, httpOptions).pipe(
+      catchError(this.handleError('updateCaja', caja))
     );
   }
 

@@ -1,7 +1,9 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { ProductoDataService } from '../producto-data.service';
 import { Producto } from '../producto.model';
-import { Renglon } from '../factura.model';
+import { FacturaDataService } from '../factura-data.service';
+import { HttpSnackBarService } from '../http-snack-bar.service';
+import { Factura, Renglon } from '../factura.model';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { Observable } from 'rxjs'
 
@@ -16,10 +18,13 @@ export class IgluLastFacturaModalComponent implements OnInit {
   public productosObs: Observable<Producto[]>;
   public coment: string;
   public isDisabled: boolean = true;
+  public displayedColumns: string[] = ['name', 'cant', 'desc', 'precio'];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private productoDataService: ProductoDataService
+    private productoDataService: ProductoDataService,
+    private facturaDataService: FacturaDataService,
+    private httpSnackBarService: HttpSnackBarService
   ) { }
 
   ngOnInit() {
@@ -52,6 +57,10 @@ export class IgluLastFacturaModalComponent implements OnInit {
     }
   }
 
+  public haveRenglones(): boolean{
+    return this.data.fact.Renglones.length !== 0;
+  }
+
   public haveComentBaja(comentario: string): boolean{
     return comentario === "" ? false : true;
   }
@@ -64,6 +73,20 @@ export class IgluLastFacturaModalComponent implements OnInit {
     } else {
       return "Gasto";
     }
+  }
+
+  public darDeBaja(): void{
+    let factura = {
+      Id_factura: this.data.fact.Id_factura,
+      ComentarioBaja: this.coment
+    } as Factura;
+
+    console.log(factura);
+
+    this.facturaDataService.updateFactura(factura)
+      .subscribe(fact => {
+        this.facturaDataService.loadAllLastFacturas(this.data.cajaId);
+      }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
 }

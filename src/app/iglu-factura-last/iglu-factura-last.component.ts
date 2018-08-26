@@ -32,13 +32,18 @@ export class IgluFacturaLastComponent implements OnInit {
   ngOnInit() {
     this.lastFacturasObs = this.facturaDataService.lastFacturas;
     this.cajaObs = this.cajaDataService.cajaOpen;
+    this.cajaObs.subscribe(caja => this.caja = caja);
   }
 
   public isCajaOpen(caja: Caja): boolean{
     if (caja.Id_caja !== undefined) {
-      if (this.lastValue !== caja.Id_caja) {
-        this.facturaDataService.loadAllLastFacturas(caja.Id_caja);
-        this.lastValue = caja.Id_caja;
+      if (caja.Id_caja !== 0) {
+        if (this.lastValue !== caja.Id_caja) {
+          this.facturaDataService.loadAllLastFacturas(caja.Id_caja);
+          this.lastValue = caja.Id_caja;
+        }
+      } else {
+        return false;
       }
     }
     return true;
@@ -75,7 +80,8 @@ export class IgluFacturaLastComponent implements OnInit {
       data: {
         tipo: facTipo,
         valid: true,
-        fact: factura
+        fact: factura,
+        cajaId: this.caja.Id_caja
       }
     });
 
