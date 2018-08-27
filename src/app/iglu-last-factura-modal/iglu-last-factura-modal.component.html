@@ -8,7 +8,7 @@
   <div class="modal-body">
     <mat-dialog-content>
 
-      <ng-container *ngIf="haveRenglones()"> 
+      <ng-container *ngIf="haveRenglones()">
         <table mat-table [dataSource]="data.fact.Renglones" class="mat-table-prod">
 
           <!--- Note that these columns can be defined in any order.
@@ -35,7 +35,7 @@
           <!-- Symbol Column -->
           <ng-container matColumnDef="precio">
             <th mat-header-cell *matHeaderCellDef> Precio </th>
-            <td mat-cell *matCellDef="let prod"> {{prod.Precio}} </td>
+            <td mat-cell *matCellDef="let prod"> {{prod.Precio | currency : "ARS"}} </td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -61,7 +61,7 @@
           <div *ngIf="!data.fact.Comentario.Valid && !data.fact.Descuento.Valid && !data.fact.FormaDePago.Valid" class="col-8"></div>
           <div class="col-4">
             <span>Total:</span>
-            <p>{{data.fact.Precio}}</p>
+            <p>{{data.fact.Precio | currency : "ARS"}}</p>
           </div>
         </div>
       </ng-container>

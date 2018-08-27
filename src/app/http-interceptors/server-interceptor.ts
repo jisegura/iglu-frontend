@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class ServerInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const serverReq = req.clone({
-      url: `http://25.71.37.25:3000/${req.url}`
+      url: `http://localhost:3000/${req.url}`
     });
     return next.handle(serverReq);
   }
