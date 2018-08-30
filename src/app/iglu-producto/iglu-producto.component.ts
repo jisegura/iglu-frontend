@@ -79,19 +79,33 @@ export class IgluProductoComponent implements OnInit {
 
   public addProducto(producto: Producto): void{
     if (this.pedidos.length != 0) {
-      let cantidad = this.pedidos
-                      .find(pedido => pedido.active).productos
-                      .find(prod => prod.id == producto.Id_producto);
       if (this.pedidos
             .find(pedido => pedido.active).productos
             .find(prod => prod.id == producto.Id_producto) != undefined) {
         this.pedidos
           .find(pedido => pedido.active).productos
-          .find(prod => prod.id == producto.Id_producto).cant++
+          .find(prod => prod.id == producto.Id_producto).cant++;
       } else {
         this.pedidos
           .find(pedido => pedido.active).productos
           .push({"id": producto.Id_producto, "cant": 1, "desc": 0});
+      }
+    }
+  }
+
+  public removeProducto(producto: Producto): void{
+    console.log("A:", producto);
+    if (this.pedidos.length > 0) {
+      if (this.pedidos
+            .find(pedido => pedido.active).productos
+            .find(prod => prod.id == producto.Id_producto) != undefined) {
+        if (this.pedidos
+          .find(pedido => pedido.active).productos
+          .find(prod => prod.id == producto.Id_producto).cant > 1) {
+            this.pedidos
+            .find(pedido => pedido.active).productos
+            .find(prod => prod.id == producto.Id_producto).cant--;
+        }
       }
     }
   }
