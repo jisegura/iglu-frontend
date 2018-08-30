@@ -111,8 +111,10 @@ export class IgluCajaLoadFacturasComponent implements OnInit {
       this.facturas.forEach(item => {
         if (this.alreadyBaja(item)) {
           if (this.isFactClientes(item)) {
-            suma += item.Precio;
-            this.ingresos += item.Precio;
+            if (item.FormaDePago.Int64 === 1) {
+              suma += item.Precio;
+              this.ingresos += item.Precio;
+            }
           } else if (this.isFactRetiros(item)) {
             suma -= item.Precio;
             this.retiros += item.Precio;
