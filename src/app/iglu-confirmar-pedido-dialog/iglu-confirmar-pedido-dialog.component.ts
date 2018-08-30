@@ -49,7 +49,7 @@ export class IgluConfirmarPedidoDialogComponent implements OnInit {
     this.facturaDataService
       .addClienteFactura(this.data.factura)
       .subscribe(producto => {
-        this.httpSnackBarService.openSnackBar("Factura Cliente", "OK");
+        this.httpSnackBarService.openSnackBar("Venta", "OK");
         this.facturaDataService.loadAllLastFacturas(this.cajaOpen.Id_caja);
       }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }

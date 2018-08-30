@@ -67,7 +67,7 @@ export class IgluLastFacturaModalComponent implements OnInit {
 
   public getTitulo(): string{
     if (this.data.tipo === 1) {
-      return "Factura";
+      return "Venta";
     } else if (this.data.tipo === 2) {
       return "Retiro";
     } else {

@@ -70,7 +70,7 @@ export class IgluRetidosModalComponent implements OnInit {
     this.facturaDataService
       .addRetirosFactura(ret)
       .subscribe(producto => {
-        this.httpSnackBarService.openSnackBar("Factura Retiro", "OK");
+        this.httpSnackBarService.openSnackBar("Retiro", "OK");
         this.facturaDataService.loadAllLastFacturas(this.cajaOpen.Id_caja);
       }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
