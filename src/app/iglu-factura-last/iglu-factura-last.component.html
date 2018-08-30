@@ -1,7 +1,7 @@
 <div class="contenedor">
   <mat-card class="carta-height">
     <ng-container>
-      <mat-card-title class="mat-titulo">Facturas Cobradas</mat-card-title>
+      <mat-card-title class="mat-titulo">Ventas Realizadas</mat-card-title>
     </ng-container>
     <mat-card-content class="mat-body">
       <ng-container *ngIf="isCajaOpen(cajaObs | async)">
@@ -9,16 +9,16 @@
           <ng-container *ngFor="let fact of lastFacturasObs | async">
             <ng-container *ngIf="alreadyBaja(fact)">
               <ng-container *ngIf="isFactClientes(fact)">
-                <a mat-list-item href="#" (click)="openDialog(fact)">
+                <a mat-list-item (click)="openDialog(fact)">
                   <h4 mat-line>
-                    <div class="col-4">Factura</div>
+                    <div class="col-4">Venta</div>
                     <div class="col-4">{{fact.Fecha | date : 'h:mm a'}}</div>
                     <div class="col-4">{{fact.Precio | currency : 'ARS'}}</div>
                   </h4>
                 </a>
               </ng-container>
               <ng-container *ngIf="isFactRetiros(fact)">
-                <a mat-list-item href="#" (click)="openDialog(fact)">
+                <a mat-list-item (click)="openDialog(fact)">
                   <h4 mat-line>
                     <div class="col-4">Retiro</div>
                     <div class="col-4">{{fact.Fecha | date : 'h:mm a'}}</div>
@@ -27,7 +27,7 @@
                 </a>
               </ng-container>
               <ng-container *ngIf="isFactOtros(fact)">
-                <a mat-list-item href="#" (click)="openDialog(fact)">
+                <a mat-list-item (click)="openDialog(fact)">
                   <h4 mat-line>
                     <div class="col-4">Gastos</div>
                     <div class="col-4">{{fact.Fecha | date : 'h:mm a'}}</div>

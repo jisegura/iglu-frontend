@@ -2,7 +2,7 @@
   <div class="card-prod">
     <mat-card class="hmatcard">
       <ng-container *ngFor="let producto of productos | async">
-        <button *ngIf="btnIsVisible(producto)" matBadge="{{getCantidad(producto)}}" matBadgeHidden="{{isVisible(producto)}}" matBadgePosition="above after" matBadgeColor="primary" mat-raised-button class="btn-img" (click)="addProducto(producto)">
+        <button *ngIf="btnIsVisible(producto)" matBadge="{{getCantidad(producto)}}" matBadgeHidden="{{isVisible(producto)}}" matBadgePosition="above after" matBadgeColor="primary" mat-raised-button class="btn-img" (click)="addProducto(producto)" (contextmenu)="removeProducto(producto)">
           <span>{{producto.Nombre}}</span>
         </button>
       </ng-container>

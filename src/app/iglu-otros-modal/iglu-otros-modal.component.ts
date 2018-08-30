@@ -86,7 +86,7 @@ export class IgluOtrosModalComponent implements OnInit {
     this.facturaDataService
       .addOtrosFactura(otro)
       .subscribe(producto => {
-        this.httpSnackBarService.openSnackBar("Factura Otros", "OK");
+        this.httpSnackBarService.openSnackBar("Gastos", "OK");
         this.facturaDataService.loadAllLastFacturas(this.cajaOpen.Id_caja);
       }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }

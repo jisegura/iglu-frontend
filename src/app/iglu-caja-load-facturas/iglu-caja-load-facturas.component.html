@@ -1,6 +1,6 @@
 <div class="row">
   <mat-form-field class="col-6">
-    <mat-select placeholder="Seleccionar Tipo de Factura" [(value)]="selectedFact" (selectionChange)="onSelectChange()">
+    <mat-select placeholder="Seleccionar Tipo de Venta" [(value)]="selectedFact" (selectionChange)="onSelectChange()">
       <mat-option value="all">Todas</mat-option>
       <mat-option value="clientes">Clientes</mat-option>
       <mat-option value="retiros">Retiros</mat-option>
@@ -21,9 +21,9 @@
     <ng-container *ngFor="let fact of facturas">
       <ng-container *ngIf="filtroEmpl(fact) && filtroFact(fact)">
         <ng-container *ngIf="isFactClientes(fact)">
-          <a mat-list-item href="#" (click)="openDialogFact(fact)">
+          <a mat-list-item (click)="openDialogFact(fact)">
             <div class="col-4 colum1">
-              <h4 mat-line>Factura</h4>
+              <h4 mat-line>Venta</h4>
               <p mat-line>{{fact.Fecha | date : 'mediumTime'}}</p>
             </div>
             <div class="col-4 colum2">
@@ -36,7 +36,7 @@
           </a>
         </ng-container>
         <ng-container *ngIf="isFactRetiros(fact)">
-          <a mat-list-item href="#" (click)="openDialogFact(fact)">
+          <a mat-list-item (click)="openDialogFact(fact)">
             <div class="col-4 colum1">
               <h4 mat-line>Retiro</h4>
               <p mat-line>{{fact.Fecha | date : 'mediumTime'}}</p>
@@ -51,7 +51,7 @@
           </a>
         </ng-container>
         <ng-container *ngIf="isFactOtros(fact)">
-          <a mat-list-item href="#" (click)="openDialogFact(fact)">
+          <a mat-list-item (click)="openDialogFact(fact)">
             <div class="col-4 colum1">
               <h4 mat-line>Gastos</h4>
               <p mat-line>{{fact.Fecha | date : 'mediumTime'}}</p>

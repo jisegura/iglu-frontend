@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
+import { PedidoDataService } from '../pedido-data.service';
 import { Pedido } from '../pedido.model';
 import { FacturaDataService } from '../factura-data.service';
 import { CajaDataService } from '../caja-data.service';
@@ -19,6 +20,7 @@ export class IgluConfirmarPedidoDialogComponent implements OnInit {
 
   public cambio: number;
   public isDisabled: boolean = true;
+  public pedidos: Pedido[];
   public cajaOpen: Caja;
   public cajaOpenObs: Observable<Caja>;
 
@@ -26,10 +28,14 @@ export class IgluConfirmarPedidoDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private facturaDataService: FacturaDataService,
     private cajaDataService: CajaDataService,
-    private httpSnackBarService: HttpSnackBarService
+    private httpSnackBarService: HttpSnackBarService,
+    private pedidoDataService: PedidoDataService
   ) { }
 
   public ngOnInit(): void{
+    this.pedidoDataService
+      .getPedidos()
+      .subscribe(pedidos => this.pedidos = pedidos);
     this.cajaOpenObs = this.cajaDataService.cajaOpen;
     this.cajaOpenObs.subscribe(caja => this.cajaOpen = caja);
   }
@@ -45,12 +51,20 @@ export class IgluConfirmarPedidoDialogComponent implements OnInit {
     }
   }
 
+  public cancelarPedido(pedido: Pedido): void{
+    this.pedidos.splice(this.pedidos.findIndex(ped => ped.numero == pedido.numero), 1);
+    if (this.pedidos.length != 0) {
+      this.pedidos[0].active = true;
+    }
+  }
+
   public sendFactura(): void{
     this.facturaDataService
       .addClienteFactura(this.data.factura)
       .subscribe(producto => {
-        this.httpSnackBarService.openSnackBar("Factura Cliente", "OK");
+        this.httpSnackBarService.openSnackBar("Venta", "OK");
         this.facturaDataService.loadAllLastFacturas(this.cajaOpen.Id_caja);
+        this.cancelarPedido(this.data.pedido);
       }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
