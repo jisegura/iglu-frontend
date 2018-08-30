@@ -94,7 +94,6 @@ export class IgluProductoComponent implements OnInit {
   }
 
   public removeProducto(producto: Producto): void{
-    console.log("A:", producto);
     if (this.pedidos.length > 0) {
       if (this.pedidos
             .find(pedido => pedido.active).productos
