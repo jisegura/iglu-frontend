@@ -90,6 +90,13 @@ export class IgluProductoComponent implements OnInit {
           .find(pedido => pedido.active).productos
           .push({"id": producto.Id_producto, "cant": 1, "desc": 0});
       }
+    } else {
+      let nuevo_pedido = new Pedido;
+      nuevo_pedido.numero = 1;
+      nuevo_pedido.productos = [];
+      nuevo_pedido.productos.push({"id": producto.Id_producto, "cant": 1, "desc": 0});
+      nuevo_pedido.active = true;
+      this.pedidos.push(nuevo_pedido);
     }
   }
 
@@ -104,6 +111,10 @@ export class IgluProductoComponent implements OnInit {
             this.pedidos
             .find(pedido => pedido.active).productos
             .find(prod => prod.id == producto.Id_producto).cant--;
+        } else {
+          this.pedidos
+            .find(pedido => pedido.active).productos
+            .splice(this.pedidos.find(pedido => pedido.active).productos.findIndex(prod => producto.Id_producto == prod.id), 1);
         }
       }
     }

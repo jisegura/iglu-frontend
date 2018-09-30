@@ -11,8 +11,18 @@
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item role="listitem">
-          <div class="col-6">Ingresos</div>
+          <div class="col-6">Ingresos efectivo</div>
           <div class="col-6 gpos">{{data.ingresos | currency : 'ARS'}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem">
+          <div class="col-6">Ingresos debito</div>
+          <div class="col-6 gpos">{{data.ingreso_debito | currency : 'ARS'}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem">
+          <div class="col-6">Ingresos credito</div>
+          <div class="col-6 gpos">{{data.ingreso_credito | currency : 'ARS'}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item role="listitem">

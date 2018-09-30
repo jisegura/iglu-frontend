@@ -11,7 +11,7 @@
               <ng-container *ngIf="isFactClientes(fact)">
                 <a mat-list-item (click)="openDialog(fact)">
                   <h4 mat-line>
-                    <div class="col-4">Venta</div>
+                    <div class="col-4">Venta #{{fact.Id_factura}}</div>
                     <div class="col-4">{{fact.Fecha | date : 'h:mm a'}}</div>
                     <div class="col-4">{{fact.Precio | currency : 'ARS'}}</div>
                   </h4>
@@ -20,7 +20,7 @@
               <ng-container *ngIf="isFactRetiros(fact)">
                 <a mat-list-item (click)="openDialog(fact)">
                   <h4 mat-line>
-                    <div class="col-4">Retiro</div>
+                    <div class="col-4">Retiro #{{fact.Id_factura}}</div>
                     <div class="col-4">{{fact.Fecha | date : 'h:mm a'}}</div>
                     <div class="col-4">{{fact.Precio | currency : 'ARS'}}</div>
                   </h4>
@@ -29,7 +29,7 @@
               <ng-container *ngIf="isFactOtros(fact)">
                 <a mat-list-item (click)="openDialog(fact)">
                   <h4 mat-line>
-                    <div class="col-4">Gastos</div>
+                    <div class="col-4">Gastos #{{fact.Id_factura}}</div>
                     <div class="col-4">{{fact.Fecha | date : 'h:mm a'}}</div>
                     <div class="col-4">{{fact.Precio | currency : 'ARS'}}</div>
                   </h4>

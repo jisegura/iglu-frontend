@@ -24,6 +24,8 @@ export class IgluCajaLoadFacturasComponent implements OnInit {
   @Input() public cajaInicio: number = 0;
   private cajaFin: number = 0;
   private ingresos: number = 0;
+  private ingreso_debito: number = 0;
+  private ingreso_credito: number = 0;
   private retiros: number = 0;
   private gastos: number = 0;
   public facturas: Factura[];
@@ -114,6 +116,10 @@ export class IgluCajaLoadFacturasComponent implements OnInit {
             if (item.FormaDePago.Int64 === 1) {
               suma += item.Precio;
               this.ingresos += item.Precio;
+            } else if (item.FormaDePago.Int64 === 2) {
+              this.ingreso_debito += item.Precio;
+            } else if (item.FormaDePago.Int64 === 3) {
+              this.ingreso_credito += item.Precio;
             }
           } else if (this.isFactRetiros(item)) {
             suma -= item.Precio;
@@ -130,6 +136,8 @@ export class IgluCajaLoadFacturasComponent implements OnInit {
 
   public openDialog(): void{
     this.ingresos = 0;
+    this.ingreso_debito = 0;
+    this.ingreso_credito = 0;
     this.retiros = 0;
     this.gastos = 0;
     this.calcCierreCaja();
@@ -138,6 +146,8 @@ export class IgluCajaLoadFacturasComponent implements OnInit {
       data: {
         cajaInicio: this.cajaInicio,
         ingresos: this.ingresos,
+        ingreso_debito: this.ingreso_debito,
+        ingreso_credito: this.ingreso_credito,
         retiros: this.retiros,
         gastos: this.gastos,
         cajaFin: this.cajaFin
