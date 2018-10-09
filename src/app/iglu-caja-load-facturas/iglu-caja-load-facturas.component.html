@@ -1,5 +1,5 @@
 <div class="row">
-  <mat-form-field class="col-6">
+  <mat-form-field class="col-3">
     <mat-select placeholder="Seleccionar Tipo de Venta" [(value)]="selectedFact" (selectionChange)="onSelectChange()">
       <mat-option value="all">Todas</mat-option>
       <mat-option value="clientes">Clientes</mat-option>
@@ -8,18 +8,24 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field class="col-6">
+  <mat-form-field class="col-3">
     <mat-select placeholder="Seleccionar Empleado" [(value)]="selectedEmpl" (selectionChange)="onSelectChange()">
       <mat-option value="all">Todos</mat-option>
       <mat-option *ngFor="let empl of empleados" value="{{empl.Id_empleado}}">{{getEmpleadoName(empl.Id_empleado)}}</mat-option>
     </mat-select>
   </mat-form-field>
+  <div class="col-3 slidetoggle">
+    <mat-slide-toggle [(ngModel)]="checkedAnul"><span>Mostrar las anuladas</span></mat-slide-toggle>
+  </div>
+  <div class="col-3 slidetoggle">
+    <mat-slide-toggle [(ngModel)]="checkedDesc"><span>Mostrar con descuento</span></mat-slide-toggle>
+  </div>
 </div>
 
 <div class="box-facturas">
   <mat-nav-list>
     <ng-container *ngFor="let fact of facturas">
-      <ng-container *ngIf="filtroEmpl(fact) && filtroFact(fact)">
+      <ng-container *ngIf="filtroEmpl(fact) && filtroFact(fact) && filtroBaja(fact) && filtroDesc(fact)">
         <ng-container *ngIf="isFactClientes(fact)">
           <a mat-list-item (click)="openDialogFact(fact)">
             <div class="col-4 colum1">
@@ -70,6 +76,14 @@
   </mat-nav-list>
 </div>
 
-<div class="row rowTotal">
-  <button mat-raised-button color="primary" (click)="openDialog()">Cerrar Caja</button>
+<div class="row">
+  <mat-form-field class="col-3">
+    <input matInput placeholder="Cierre Real" min="0" (input)="cierreReal = $event.target.value" type="number">
+  </mat-form-field>
+  <mat-form-field class="col-3">
+    <input matInput placeholder="Cierre Fiscal" min="0" (input)="cierreFiscal = $event.target.value" type="number">
+  </mat-form-field>
+  <div class="col-6 rowTotal">
+    <button mat-raised-button color="primary" (click)="openDialog()">Cerrar Caja</button>
+  </div>
 </div>

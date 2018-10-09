@@ -21,6 +21,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { HttpErrorHandler } from './http-error-handler.service';
 import { MessageService } from './message.service';
@@ -115,7 +116,8 @@ registerLocaleData(localeEsAr);
     MatRadioModule,
     MatMenuModule,
     MatTabsModule,
-    MatListModule
+    MatListModule,
+    MatSlideToggleModule
   ],
   providers: [
     HttpErrorHandler,

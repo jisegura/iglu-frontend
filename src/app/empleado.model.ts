@@ -1,5 +1,7 @@
 export class Empleado {
   Id_empleado: number;
+  Id_login: {};
+  FechaBaja: {};
   FirstName: string;
   LastName: string;
 
@@ -13,4 +15,10 @@ export class Empleado {
 export class EmpleadoActivo {
   active: boolean;
   Id_empleado: number;
+}
+
+export class Login {
+  Id_login: number;
+  Usuario: string;
+  Password: string;
 }

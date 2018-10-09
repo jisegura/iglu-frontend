@@ -59,6 +59,8 @@ export class IgluConfirmarPedidoDialogComponent implements OnInit {
   }
 
   public sendFactura(): void{
+
+    console.log("renglones", this.data.factura);
     this.facturaDataService
       .addClienteFactura(this.data.factura)
       .subscribe(producto => {

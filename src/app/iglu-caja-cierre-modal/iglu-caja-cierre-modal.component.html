@@ -16,13 +16,8 @@
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item role="listitem">
-          <div class="col-6">Ingresos debito</div>
+          <div class="col-6">Ingresos debito/credito</div>
           <div class="col-6 gpos">{{data.ingreso_debito | currency : 'ARS'}}</div>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item role="listitem">
-          <div class="col-6">Ingresos credito</div>
-          <div class="col-6 gpos">{{data.ingreso_credito | currency : 'ARS'}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item role="listitem">
@@ -33,6 +28,16 @@
         <mat-list-item role="listitem">
           <div class="col-6">Gastos</div>
           <div class="col-6 gneg">{{data.gastos | currency : 'ARS'}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem">
+          <div class="col-6">Cierre Real</div>
+          <div class="col-6">{{data.cierreReal | currency : 'ARS'}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item role="listitem">
+          <div class="col-6">Cierre Fiscal</div>
+          <div class="col-6">{{data.cierreFiscal | currency : 'ARS'}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
         <mat-list-item class="totalf" role="listitem">

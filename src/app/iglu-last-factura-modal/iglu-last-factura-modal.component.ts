@@ -58,6 +58,7 @@ export class IgluLastFacturaModalComponent implements OnInit {
   }
 
   public haveRenglones(): boolean{
+    console.log("reng", this.data.fact.Renglones.length);
     return this.data.fact.Renglones.length !== 0;
   }
 

@@ -28,6 +28,10 @@ export class IgluCajaLoadFacturasComponent implements OnInit {
   private ingreso_credito: number = 0;
   private retiros: number = 0;
   private gastos: number = 0;
+  private cierreReal: number = 0;
+  private cierreFiscal: number = 0;
+  public checkedAnul: boolean = false;
+  public checkedDesc: boolean = false;
   public facturas: Factura[];
   public empleados: Empleado[];
   public empleadosObs: Observable<Empleado[]>;
@@ -84,12 +88,30 @@ export class IgluCajaLoadFacturasComponent implements OnInit {
   }
 
   public onSelectChange(): void{
-    console.log(this.selectedEmpl, this.selectedFact);
+    console.log(this.selectedEmpl, this.selectedFact, this.checkedAnul);
   }//(selectionChange)="onSelectChange()"
 
   public filtroEmpl(fact: Factura): boolean{
     if (this.selectedEmpl !== "all") {
       return fact.Id_empleado.Int64 === +this.selectedEmpl;
+    }
+    return true;
+  }
+
+  public filtroBaja(fact: Factura): boolean{
+    if (this.checkedAnul) {
+      return !this.alreadyBaja(fact);
+    }
+    return true;
+  }
+
+  private algunRenglonTieneDesc(fact: Factura): boolean{
+    return fact.Renglones.find(ren => ren.Descuento !== 0) !== undefined;
+  }
+
+  public filtroDesc(fact: Factura): boolean{
+    if (this.checkedDesc) {
+      return fact.Descuento.Valid || this.algunRenglonTieneDesc(fact);
     }
     return true;
   }
@@ -109,7 +131,7 @@ export class IgluCajaLoadFacturasComponent implements OnInit {
 
   public calcCierreCaja(): void{
     let suma: number = this.cajaInicio;
-    if (this.facturas !== undefined) {
+    if (this.facturas !== null) {
       this.facturas.forEach(item => {
         if (this.alreadyBaja(item)) {
           if (this.isFactClientes(item)) {
@@ -150,7 +172,9 @@ export class IgluCajaLoadFacturasComponent implements OnInit {
         ingreso_credito: this.ingreso_credito,
         retiros: this.retiros,
         gastos: this.gastos,
-        cajaFin: this.cajaFin
+        cajaFin: this.cajaFin,
+        cierreReal: this.cierreReal,
+        cierreFiscal: this.cierreFiscal
       }
     });
 

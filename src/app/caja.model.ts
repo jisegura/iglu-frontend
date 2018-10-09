@@ -4,6 +4,8 @@ export class Caja {
   Fin: number;
   HoraInicio: string;
   HoraFin: string;
+  CierreReal: number;
+  CierreFiscal: number;
 
   constructor(id: number, inic: number, HoraInic: string, fin?: number, HoraFin?: string) {
     this.Id_caja = id;
