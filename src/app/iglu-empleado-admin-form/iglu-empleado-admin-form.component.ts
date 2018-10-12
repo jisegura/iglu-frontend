@@ -14,9 +14,15 @@ export class IgluEmpleadoAdminFormComponent implements OnInit {
 	@Input() public modo: string;
   public isDisabled: boolean;
   public vistaAdminActive: VistaAdmin;
+  private checkAdminPost: boolean = false;
+  private hide: boolean = true;
+  private rehide: boolean = true;
   private nameInputComplete: boolean;
   private apellInputComplete: boolean;
   private selectInputComplete: boolean;
+  private passwordString: string = "";
+  private rePasswordString: string = "";
+  private errorString: string = "";
   private empleados: Observable<Empleado[]>;
   private empleado: Empleado;
   private empleadoCopy: Empleado;
@@ -81,6 +87,33 @@ export class IgluEmpleadoAdminFormComponent implements OnInit {
     this.validButtonEnviar();
   }
 
+  public onUserInput($event): void{
+    //this.empleado.LastName = $event.target.value;
+    //this.apellInputComplete = true;
+    console.log($event.target.value);
+    console.log(this.passwordString, this.rePasswordString);
+    console.log(this.checkErrorValue());
+    this.validButtonEnviar();
+  }
+
+  public onPwInput($event): void{
+    //this.empleado.LastName = $event.target.value;
+    //this.apellInputComplete = true;
+    this.passwordString = $event.target.value;
+    console.log($event.target.value);
+    this.checkErrorValue();
+    this.validButtonEnviar();
+  }
+
+  public onRePwInput($event): void{
+    //this.empleado.LastName = $event.target.value;
+    //this.apellInputComplete = true;
+    this.rePasswordString = $event.target.value;
+    console.log($event.target.value);
+    this.checkErrorValue();
+    this.validButtonEnviar();
+  }
+
   public putEmpleadoId(empleado: Empleado): boolean{
     if (empleado.Id_empleado === this.empleado.Id_empleado) {
       this.empleadoCopy.FirstName = empleado.FirstName;
@@ -98,6 +131,20 @@ export class IgluEmpleadoAdminFormComponent implements OnInit {
       this.empleado.Id_empleado = +value;
     }
     this.validButtonEnviar();
+  }
+
+  private checkErrorValue(): boolean{
+    if (this.checkAdminPost) {
+      if (this.passwordString === "") {
+        this.errorString = "Las Contraseña No Puede Estar Vacia";
+        return true;
+      } else if (this.passwordString !== this.rePasswordString) {
+        this.errorString = "Las Contraseñas No Coinciden";
+        return true;
+      }
+      return false;
+    }
+    return false;
   }
 
   private validButtonEnviar(): void{

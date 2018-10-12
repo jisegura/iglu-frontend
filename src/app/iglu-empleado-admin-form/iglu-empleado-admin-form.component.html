@@ -1,7 +1,7 @@
 <div class="modal-container">
 
   <div class="modal-body">
-    <mat-dialog-content>
+    <mat-dialog-content class="overh">
 
       <ng-container *ngIf="showPOST()">
         <div class="row">
@@ -12,7 +12,29 @@
           <mat-form-field class="col-4">
             <input matInput placeholder="Apellido" (change)="onApellInput($event)">
           </mat-form-field>
+
+          <div class="col-4 slidetoggle">
+            <mat-slide-toggle [(ngModel)]="checkAdminPost"><span>Admin</span></mat-slide-toggle>
+          </div>
         </div>
+
+        <ng-container *ngIf="checkAdminPost">
+          <div class="row">
+            <mat-form-field class="offset-8 col-4">
+              <input matInput placeholder="Usuario" (change)="onUserInput($event)">
+            </mat-form-field>
+
+            <mat-form-field class="offset-8 col-4">
+              <input matInput placeholder="Password" [(ngModel)]="passwordString" [type]="hide ? 'password' : 'text'">
+              <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field class="offset-8 col-4">
+              <input matInput placeholder="Confirmar Password" [(ngModel)]="rePasswordString" [type]="rehide ? 'password' : 'text'">
+              <mat-icon matSuffix (click)="rehide = !rehide">{{rehide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </mat-form-field>
+          </div>
+        </ng-container>
       </ng-container>
 
       <ng-container *ngIf="showPUT()">
@@ -53,6 +75,7 @@
   <div class="modal-footer">
     <mat-dialog-actions>
       <div class="row">
+        <mat-error *ngIf="checkErrorValue()" class="materror">{{errorString}}</mat-error>
         <button mat-raised-button color="primary" [disabled]="isDisabled" (click)="dataSend()">{{getTitulo()}}</button>
       </div>
     </mat-dialog-actions>
