@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewsService, VistaActive, VistaAdmin } from '../views.service';
+import { MatDialog } from '@angular/material';
+import { IgluExcelExportModalComponent } from '../iglu-excel-export-modal/iglu-excel-export-modal.component';
 
 
 @Component({
@@ -13,6 +15,7 @@ export class IgluViewAdminComponent implements OnInit {
   public viewAdminActive: VistaAdmin;
 
   public constructor(
+    public dialog: MatDialog,
     private viewsService: ViewsService
   ) { }
 
@@ -44,6 +47,14 @@ export class IgluViewAdminComponent implements OnInit {
 
   public modeCaja(): void{
     this.viewAdminActive.active = "CAJA";
+  }
+
+  public openExportExcel(): void{
+     const dialogRef = this.dialog.open(IgluExcelExportModalComponent);
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
+      });
   }
 
   public isViewCategoria(): boolean{

@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { MatCheckboxModule, MatSnackBarModule } from '@angular/material';
+import { MatCheckboxModule, MatSnackBarModule, MatNativeDateModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -22,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { HttpErrorHandler } from './http-error-handler.service';
 import { MessageService } from './message.service';
@@ -54,6 +55,7 @@ import { IgluCajaLoadFacturasComponent } from './iglu-caja-load-facturas/iglu-ca
 import { IgluCajaCierreModalComponent } from './iglu-caja-cierre-modal/iglu-caja-cierre-modal.component';
 import { IgluCajaAbrirModalComponent } from './iglu-caja-abrir-modal/iglu-caja-abrir-modal.component';
 import { IgluLastFacturaModalComponent } from './iglu-last-factura-modal/iglu-last-factura-modal.component';
+import { IgluExcelExportModalComponent } from './iglu-excel-export-modal/iglu-excel-export-modal.component';
 
 registerLocaleData(localeEsAr);
 
@@ -86,7 +88,8 @@ registerLocaleData(localeEsAr);
     IgluCajaLoadFacturasComponent,
     IgluCajaCierreModalComponent,
     IgluCajaAbrirModalComponent,
-    IgluLastFacturaModalComponent
+    IgluLastFacturaModalComponent,
+    IgluExcelExportModalComponent
   ],
   entryComponents: [
     IgluConfirmarPedidoDialogComponent,
@@ -95,7 +98,8 @@ registerLocaleData(localeEsAr);
     IgluOtrosModalComponent,
     IgluCajaCierreModalComponent,
     IgluCajaAbrirModalComponent,
-    IgluLastFacturaModalComponent
+    IgluLastFacturaModalComponent,
+    IgluExcelExportModalComponent
   ],
   imports: [
     BrowserModule,
@@ -117,12 +121,15 @@ registerLocaleData(localeEsAr);
     MatMenuModule,
     MatTabsModule,
     MatListModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     HttpErrorHandler,
     MessageService,
     httpInterceptorProviders,
+    MatDatepickerModule,
     { provide: LOCALE_ID, useValue: "es-AR" }
   ],
   bootstrap: [AppComponent]
