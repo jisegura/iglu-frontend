@@ -78,10 +78,10 @@
 
 <div class="row">
   <mat-form-field class="col-3">
-    <input matInput placeholder="Cierre Real" min="0" (input)="cierreReal = $event.target.value" type="number">
+    <input matInput placeholder="Cierre Real" min="0" [(ngModel)]="cierreReal" type="number">
   </mat-form-field>
   <mat-form-field class="col-3">
-    <input matInput placeholder="Cierre Fiscal" min="0" (input)="cierreFiscal = $event.target.value" type="number">
+    <input matInput placeholder="Cierre Fiscal" min="0" [(ngModel)]="cierreFiscal" type="number">
   </mat-form-field>
   <div class="col-6 rowTotal">
     <button mat-raised-button color="primary" (click)="openDialog()">Cerrar Caja</button>

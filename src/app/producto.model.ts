@@ -4,6 +4,7 @@ export class Producto {
   Nombre: string;
   Precio: number;
   Imagen: string;
+  Activo: boolean;
 
   constructor(id_p: number, id_c: number, nombre: string, precio: number) {
     this.Id_producto = id_p;

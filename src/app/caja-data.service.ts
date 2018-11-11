@@ -88,6 +88,20 @@ export class CajaDataService {
     }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
   }
 
+  public exportExcel(dateInicio: number, dateFin: number): void{
+    this.getExcel(dateInicio, dateFin).subscribe(response =>{
+      this.httpSnackBarService.openSnackBar("Export Excel", "OK");
+    }, error => this.httpSnackBarService.openSnackBar(error, "ERROR"));
+  }
+
+  public getExcel(fechaInicio: number, fechaFin: number): Observable<Caja[]>{
+    const url = `${this.cajaUrl}export/${fechaInicio}/${fechaFin}/`;
+
+    return this.http.get<Caja[]>(url).pipe(
+      catchError(this.handleError('exportExcel', []))
+    );
+  }
+
   public getCaja(): Observable<Caja[]>{
     return this.http.get<Caja[]>(this.cajaUrl).pipe(
       catchError(this.handleError('getCaja', []))

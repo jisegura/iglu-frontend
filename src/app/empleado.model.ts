@@ -1,7 +1,13 @@
 export class Empleado {
   Id_empleado: number;
-  Id_login: {};
-  FechaBaja: {};
+  Id_login: {
+    Int64: number,
+    Valid: boolean
+  };
+  FechaBaja: {
+    Time: number,
+    Valid: boolean
+  };
   FirstName: string;
   LastName: string;
 

@@ -182,7 +182,9 @@ export class IgluCajaLoadFacturasComponent implements OnInit {
       if (result) {
         let caja = {
           Id_caja: this.cajaId,
-          Fin: this.cajaFin
+          Fin: this.cajaFin,
+          CierreReal: this.cierreReal,
+          CierreFiscal: this.cierreFiscal
         } as Caja
 
         this.cajaDataService.update(caja);
