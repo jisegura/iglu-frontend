@@ -27,9 +27,9 @@
   <div class="modal-footer">
     <mat-dialog-actions>
       <div class="row">
-        <button mat-raised-button mat-dialog-close>Cancelar</button>
+        <button mat-raised-button [mat-dialog-close]="false">Cancelar</button>
         <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-        <button mat-raised-button color="primary"s [mat-dialog-close]="true" [disabled]="isDisabled" (click)="sendFactura()">Aceptar</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="true" [disabled]="isDisabled" (click)="sendFactura()">Aceptar</button>
       </div>
     </mat-dialog-actions>
   </div>

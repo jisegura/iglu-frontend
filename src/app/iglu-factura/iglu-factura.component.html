@@ -9,7 +9,7 @@
           <tbody>
             <ng-container *ngFor="let pedido of pedidos">
               <ng-container *ngIf="pedido.active">
-                <tr *ngFor="let producto of pedido.productos">
+                <tr *ngFor="let producto of pedido.productos.slice().reverse()">
                   <td>{{getNameProducto(producto.id)}}</td>
                   <td>
                     <div class="underline-trans">
@@ -39,7 +39,7 @@
     </mat-card-content>
     <mat-card-footer>
       <ng-container *ngFor="let pedido of pedidos">
-        <button class="btn-margen" mat-raised-button color="primary" *ngIf="pedido.active" (click)="openDialog()">Completar Venta</button>
+        <button class="btn-margen" mat-raised-button color="primary" [ngClass]="{'ticketColor': ticket}" *ngIf="pedido.active" (click)="openDialog()">Completar Venta</button>
         <button mat-raised-button *ngIf="pedido.active" (click)="cancelarPedido(pedido)">Cancelar Venta</button>
         <div class="underline-trans">
           <mat-form-field *ngIf="pedido.active" class="desc-total" color="warn">

@@ -26,6 +26,8 @@ export class IgluFacturaComponent implements OnInit {
   public cajaOpenObs: Observable<Caja>;
   public pedidos: Pedido[];
   public emplActivo: EmpleadoActivo;
+  public ticketCont: number;
+  public ticket: boolean;
 
 
   public constructor(
@@ -45,6 +47,8 @@ export class IgluFacturaComponent implements OnInit {
     this.cajaOpenObs = this.cajaDataService.cajaOpen;
     this.cajaOpenObs.subscribe(caja => this.cajaOpen = caja);
     this.empleadoActiveService.getEmpleados().subscribe(empl => this.emplActivo = empl);
+    this.ticketCont = 1;
+    this.ticket = false;
   }
 
   private getDescuento(precio: number, descuento: number): number{
@@ -117,6 +121,7 @@ export class IgluFacturaComponent implements OnInit {
     } as FacturaGeneral;
 
     const dialogRef = this.dialog.open(IgluConfirmarPedidoDialogComponent, {
+      disableClose: true,
       data: {
         pedido: this.pedidos.find(pedido => pedido.active),
         factura: cliente
@@ -124,7 +129,15 @@ export class IgluFacturaComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      if (result) {
+        if (this.ticketCont == 2) {
+          this.ticketCont = 0;
+          this.ticket = true;
+        } else {
+          this.ticketCont++;
+          this.ticket = false;
+        }
+      }
     });
   }
 
