@@ -50,7 +50,9 @@ export class IgluViewAdminComponent implements OnInit {
   }
 
   public openExportExcel(): void{
-     const dialogRef = this.dialog.open(IgluExcelExportModalComponent);
+     const dialogRef = this.dialog.open(IgluExcelExportModalComponent, {
+      disableClose: true
+    });
 
       dialogRef.afterClosed().subscribe(result => {
         console.log(`Dialog result: ${result}`);

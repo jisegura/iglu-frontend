@@ -22,7 +22,9 @@ export class IgluSidebarComponent implements OnInit {
   public ngOnInit(): void{ }
 
   public openModalCaja(): void{
-    const dialogRef = this.dialog.open(IgluCajaModalComponent);
+    const dialogRef = this.dialog.open(IgluCajaModalComponent, {
+      disableClose: true
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -30,7 +32,9 @@ export class IgluSidebarComponent implements OnInit {
   }
 
   public openModalRetiros(): void{
-    const dialogRef = this.dialog.open(IgluRetidosModalComponent);
+    const dialogRef = this.dialog.open(IgluRetidosModalComponent, {
+      disableClose: true
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -38,7 +42,9 @@ export class IgluSidebarComponent implements OnInit {
   }
 
   public openModalOtros(): void{
-    const dialogRef = this.dialog.open(IgluOtrosModalComponent);
+    const dialogRef = this.dialog.open(IgluOtrosModalComponent, {
+      disableClose: true
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
